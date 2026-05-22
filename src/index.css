@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 150 30% 16%;
+    --card: 0 0% 100%;
+    --card-foreground: 150 30% 16%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 150 30% 16%;
+    --primary: 153 42% 17%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 140 30% 97%;
+    --secondary-foreground: 153 42% 17%;
+    --muted: 140 20% 95%;
+    --muted-foreground: 140 12% 40%;
+    --accent: 150 40% 58%;
+    --accent-foreground: 153 42% 17%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 140 20% 88%;
+    --input: 140 20% 88%;
+    --ring: 153 42% 17%;
+    --radius: 0.5rem;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Manrope', sans-serif;
+    color: #1B4332;
+    background: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-[#1B4332] text-white font-semibold rounded-lg transition-all duration-200 hover:bg-[#2D6A4F] hover:shadow-lg;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 border-2 border-[#1B4332] text-[#1B4332] font-semibold rounded-lg transition-all duration-200 hover:bg-[#1B4332] hover:text-white;
+  }
+
+  .btn-outline-green {
+    @apply inline-flex items-center justify-center px-4 py-2 bg-[#D8F3DC] text-[#1B4332] font-medium rounded-lg transition-all duration-200 hover:bg-[#B7E4C7];
+  }
+
+  .card-base {
+    @apply bg-white rounded-2xl border border-[#D8E8DE] transition-all duration-300;
+  }
+
+  .card-base:hover {
+    @apply shadow-lg border-[#52B788];
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  .container-main {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .text-gradient-green {
+    @apply bg-gradient-to-r from-[#1B4332] to-[#40916C] bg-clip-text text-transparent;
+  }
+}
+
+@layer utilities {
+  .bg-mint-light {
+    background-color: #F8FBF9;
+  }
+
+  .bg-mint {
+    background-color: #D8F3DC;
+  }
+
+  .text-primary-green {
+    color: #1B4332;
+  }
+
+  .text-secondary-green {
+    color: #5C7A6B;
+  }
+
+  .text-muted-green {
+    color: #8BA89B;
+  }
+
+  .border-light-green {
+    border-color: #D8E8DE;
+  }
+}
