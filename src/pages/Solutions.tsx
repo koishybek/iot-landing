@@ -17,7 +17,7 @@ const solutions = [
     icon: Home,
     title: "Для частных клиентов",
     description: "Комплект умного учета для квартиры или частного дома. Установка IoT-счетчиков воды с удаленным снятием показаний.",
-    image: "/images/solution-smart-home.jpg",
+    image: "/images/solution_private.png",
     features: [
       "Ультразвуковые счетчики воды",
       "Автоматический сбор показаний",
@@ -31,7 +31,7 @@ const solutions = [
     icon: Building2,
     title: "Для строительных компаний",
     description: "Комплексное оснащение новостроек системами автоматического учета воды и тепла. Проектирование под ключ.",
-    image: "/images/solution-building.jpg",
+    image: "/images/solution_builders.png",
     features: [
       "Проектирование систем учета",
       "Поставка оборудования",
@@ -45,7 +45,7 @@ const solutions = [
     icon: Users,
     title: "Для КСК и управляющих компаний",
     description: "Автоматизация сбора показаний и диспетчеризация инженерных систем многоквартирных домов.",
-    image: "/images/solution-building.jpg",
+    image: "/images/solution_ksk.png",
     features: [
       "Автоматический сбор показаний",
       "Веб-панель управления",
@@ -59,7 +59,7 @@ const solutions = [
     icon: Factory,
     title: "Тепловые пункты / АТП",
     description: "Модернизация и строительство индивидуальных тепловых пунктов с автоматизацией и диспетчеризацией.",
-    image: "/images/solution-heat-point.jpg",
+    image: "/images/solution_heat_points.png",
     features: [
       "Проектирование ИТП",
       "Поставка оборудования",
@@ -73,7 +73,7 @@ const solutions = [
     icon: Wifi,
     title: "Диспетчеризация и Smart Metrix",
     description: "Внедрение облачной платформы Smart Metrix для удаленного мониторинга всех инженерных систем объекта.",
-    image: "/images/smart-dashboard.png",
+    image: "/images/solution_smart_metrix.png",
     features: [
       "Облачная платформа",
       "Мониторинг 24/7",
@@ -119,42 +119,46 @@ export default function Solutions() {
       {/* Solution Cards */}
       <section className="bg-white section-padding">
         <div className="container-main">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {solutions.map((solution) => (
-              <div key={solution.title} className="card-base overflow-hidden flex flex-col">
-                <div className="aspect-video overflow-hidden">
-                  <img
-                    src={solution.image}
-                    alt={solution.title}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <div className="p-6 flex-1 flex flex-col">
-                  <div className="w-12 h-12 bg-[#D8F3DC] rounded-xl flex items-center justify-center mb-4">
-                    <solution.icon size={22} className="text-[#1B4332]" />
+          <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-8">
+            {solutions.map((solution, index) => {
+              // Top 3 cards span 2 columns (3x2=6), Bottom 2 cards span 3 columns (2x3=6) to balance
+              const spanClass = index < 3 ? "lg:col-span-2" : "lg:col-span-3";
+              return (
+                <div key={solution.title} className={`card-base overflow-hidden flex flex-col md:col-span-1 ${spanClass}`}>
+                  <div className="aspect-video overflow-hidden">
+                    <img
+                      src={solution.image}
+                      alt={solution.title}
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                    />
                   </div>
-                  <h3 className="font-semibold text-[#1B4332] text-lg mb-2">{solution.title}</h3>
-                  <p className="text-sm text-[#5C7A6B] mb-4">{solution.description}</p>
-                  <ul className="space-y-2 mb-6 flex-1">
-                    {solution.features.map((f) => (
-                      <li key={f} className="flex items-center gap-2 text-sm text-[#5C7A6B]">
-                        <CheckCircle size={14} className="text-[#52B788]" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="flex items-center justify-between pt-4 border-t border-[#D8E8DE]">
-                    <span className="font-bold text-[#1B4332]">{solution.price}</span>
-                    <button
-                      onClick={() => setConsultOpen(true)}
-                      className="text-sm text-[#52B788] font-medium hover:text-[#1B4332] transition-colors"
-                    >
-                      Подробнее →
-                    </button>
+                  <div className="p-6 flex-1 flex flex-col">
+                    <div className="w-12 h-12 bg-[#D8F3DC] rounded-xl flex items-center justify-center mb-4">
+                      <solution.icon size={22} className="text-[#1B4332]" />
+                    </div>
+                    <h3 className="font-semibold text-[#1B4332] text-lg mb-2">{solution.title}</h3>
+                    <p className="text-sm text-[#5C7A6B] mb-4 flex-1">{solution.description}</p>
+                    <ul className="space-y-2 mb-6 mt-auto">
+                      {solution.features.map((f) => (
+                        <li key={f} className="flex items-center gap-2 text-sm text-[#5C7A6B]">
+                          <CheckCircle size={14} className="text-[#52B788]" />
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="flex items-center justify-between pt-4 border-t border-[#D8E8DE]">
+                      <span className="font-bold text-[#1B4332]">{solution.price}</span>
+                      <button
+                        onClick={() => setConsultOpen(true)}
+                        className="text-sm text-[#52B788] font-medium hover:text-[#1B4332] transition-colors"
+                      >
+                        Подробнее →
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

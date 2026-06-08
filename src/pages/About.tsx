@@ -3,21 +3,24 @@ import { CheckCircle, Users, Briefcase, Clock, Shield, ArrowRight } from "lucide
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useState } from "react";
 import { submitToWhatsApp } from "../utils/whatsapp";
+import { motion, type Variants } from "framer-motion";
+import Marquee from "react-fast-marquee";
+import CountUp from "react-countup";
 
 const stats = [
-  { value: "20+", label: "лет опыта", icon: Clock },
-  { value: "500+", label: "выполненных проектов", icon: Briefcase },
-  { value: "2000+", label: "установленных приборов", icon: Shield },
-  { value: "24/7", label: "техническая поддержка", icon: Users },
+  { value: 20, suffix: "+", label: "лет опыта", icon: Clock },
+  { value: 500, suffix: "+", label: "выполненных проектов", icon: Briefcase },
+  { value: 2000, suffix: "+", label: "установленных приборов", icon: Shield },
+  { value: 24, suffix: "/7", label: "техническая поддержка", icon: Users },
 ];
 
 const partners = [
-  "АО «Матен петролеум»",
-  "АО «СНПС-Актобемунайгаз»",
-  "ТОО «Казахстан Темир Жолы»",
-  "АО «Самрук-Энерго»",
-  "ТОО «Астана ЭС»",
-  "АО «КазТрансОйл»",
+  { name: "АО «Матен петролеум»", img: "/images/partners/metron petrolium.png" },
+  { name: "АО «СНПС-Актобемунайгаз»", img: "/images/partners/cnpc.png" },
+  { name: "ТОО «Казахстан Темир Жолы»", img: "/images/partners/ktz.png" },
+  { name: "АО «Самрук-Энерго»", img: "/images/partners/samruk-energy.png" },
+  { name: "BI Group", img: "/images/partners/bi-group.png" },
+  { name: "АО «КазТрансОйл»", img: "/images/partners/kaztransoil.png" },
 ];
 
 const advantages = [
@@ -29,199 +32,337 @@ const advantages = [
   "Бесплатная консультация и выезд на объект",
 ];
 
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 }
+  }
+};
+
+const itemVariants: Variants = {
+  hidden: { y: 30, opacity: 0 },
+  visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: "easeOut" } }
+};
+
 export default function About() {
   const [consultOpen, setConsultOpen] = useState(false);
 
   return (
-    <div>
-      {/* Hero */}
-      <section className="bg-[#F8FBF9] py-12 md:py-20">
-        <div className="container-main">
-          <nav className="flex items-center gap-2 text-sm mb-8">
-            <Link to="/" className="text-[#8BA89B] hover:text-[#1B4332]">Главная</Link>
-            <span className="text-[#8BA89B]">/</span>
-            <span className="text-[#1B4332] font-medium">О компании</span>
-          </nav>
-          <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-[#1B4332] mb-6">
-              О компании
-            </h1>
-            <p className="text-lg text-[#5C7A6B] leading-relaxed">
-              IoT-Exponenta — ведущий интегратор IoT-решений для учета энергоресурсов
-              в Казахстане. Мы проектируем, внедряем и обслуживаем системы умного
-              учета воды, тепла и газа.
-            </p>
-          </div>
+    <div className="overflow-hidden">
+      {/* Dynamic Hero */}
+      <section className="relative bg-[#0d2119] py-24 md:py-32 flex items-center min-h-[60vh]">
+        {/* Animated Background Gradients */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <motion.div 
+            animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-[-20%] left-[-10%] w-[50%] h-[60%] bg-[#52B788] rounded-full blur-[120px] mix-blend-screen"
+          />
+          <motion.div 
+            animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-[#1B4332] rounded-full blur-[150px] mix-blend-screen"
+          />
+        </div>
+        
+        <div className="container-main relative z-10">
+          <motion.nav 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex items-center gap-2 text-sm mb-8 text-white/60"
+          >
+            <Link to="/" className="hover:text-white transition-colors">Главная</Link>
+            <span>/</span>
+            <span className="text-white font-medium">О компании</span>
+          </motion.nav>
+
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="max-w-4xl"
+          >
+            <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+              Формируем будущее <br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#52B788] to-[#95D5B2]">
+                умного учета
+              </span>
+            </motion.h1>
+            <motion.p variants={itemVariants} className="text-xl md:text-2xl text-[#8BA89B] leading-relaxed max-w-2xl">
+              Мы проектируем, внедряем и обслуживаем передовые IoT-решения для энергоресурсов, делая их прозрачными и эффективными.
+            </motion.p>
+          </motion.div>
         </div>
       </section>
 
-      {/* Description */}
+      {/* Bento Grid Description */}
       <section className="bg-white section-padding">
         <div className="container-main">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold text-[#1B4332] mb-6">
-                Инженерная компания с фокусом на IoT
-              </h2>
-              <p className="text-[#5C7A6B] mb-4 leading-relaxed">
-                С 2005 года мы специализируемся на создании комплексных решений для
-                автоматизации учета энергоресурсов. Наша команда объединяет опыт
-                инженеров-теплотехников, электронщиков и программистов для создания
-                надежных систем учета.
-              </p>
-              <p className="text-[#5C7A6B] mb-6 leading-relaxed">
-                Мы являемся официальными партнерами ведущих производителей
-                приборов учета в Казахстане и СНГ. Наши решения работают в более
-                чем 500 объектах по всей стране — от частных квартир до крупных
-                промышленных предприятий.
-              </p>
-              <ul className="space-y-3">
-                {advantages.slice(0, 4).map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <CheckCircle size={18} className="text-[#52B788] flex-shrink-0 mt-0.5" />
-                    <span className="text-[#5C7A6B]">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="rounded-2xl overflow-hidden shadow-lg">
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-auto"
+          >
+            {/* Block 1: Main Text */}
+            <motion.div variants={itemVariants} className="md:col-span-2 bg-[#F8FBF9] rounded-3xl p-8 md:p-12 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#D8F3DC] to-transparent rounded-full blur-3xl opacity-50 group-hover:opacity-80 transition-opacity"></div>
+              <div className="relative z-10">
+                <h2 className="text-3xl md:text-4xl font-bold text-[#1B4332] mb-6">
+                  Инженерная ДНК с фокусом на IoT
+                </h2>
+                <p className="text-lg text-[#5C7A6B] mb-6 leading-relaxed">
+                  С 2005 года мы специализируемся на создании комплексных решений для автоматизации учета энергоресурсов. Наша команда объединяет опыт инженеров-теплотехников, электронщиков и программистов для создания надежных систем учета.
+                </p>
+                <p className="text-lg text-[#5C7A6B] leading-relaxed">
+                  Мы являемся официальными партнерами ведущих производителей приборов учета в Казахстане и СНГ. Наши решения работают в более чем 500 объектах по всей стране.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Block 2: Image */}
+            <motion.div variants={itemVariants} className="md:col-span-1 rounded-3xl overflow-hidden relative shadow-sm group min-h-[300px]">
               <img
                 src="/images/about-office.jpg"
                 alt="Офис IoT-Exponenta"
-                className="w-full h-auto object-cover"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-            </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1B4332]/90 via-[#1B4332]/20 to-transparent"></div>
+              <div className="absolute bottom-6 left-6 right-6">
+                <h3 className="text-white text-xl font-bold mb-1">Наш офис</h3>
+                <p className="text-white/80 text-sm">Центр разработки и мониторинга</p>
+              </div>
+            </motion.div>
+
+            {/* Block 3: Advantages Marquee / List */}
+            <motion.div variants={itemVariants} className="md:col-span-3 bg-[#1B4332] rounded-3xl p-8 md:p-10 shadow-lg text-white">
+              <h3 className="text-2xl font-bold mb-8 text-center">Почему выбирают нас?</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                {advantages.map((item, index) => (
+                  <motion.div 
+                    key={index}
+                    whileHover={{ y: -5 }}
+                    className="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
+                  >
+                    <div className="bg-[#52B788]/20 p-2 rounded-lg flex-shrink-0">
+                      <CheckCircle size={24} className="text-[#52B788]" />
+                    </div>
+                    <span className="text-white/90 leading-snug">{item}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Statistics Interactive Counter */}
+      <section className="bg-white pb-20 relative z-10">
+        <div className="container-main">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {stats.map((stat, i) => (
+              <motion.div 
+                key={stat.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="bg-white border border-[#D8E8DE] rounded-3xl p-8 text-center shadow-sm hover:shadow-xl hover:border-[#52B788]/50 transition-all group"
+              >
+                <div className="w-16 h-16 bg-[#F8FBF9] group-hover:bg-[#52B788]/10 rounded-2xl flex items-center justify-center mx-auto mb-6 transition-colors">
+                  <stat.icon size={28} className="text-[#52B788]" />
+                </div>
+                <div className="text-4xl md:text-5xl font-bold text-[#1B4332] mb-3">
+                  <CountUp end={stat.value} suffix={stat.suffix} enableScrollSpy={true} scrollSpyOnce={true} duration={2.5} />
+                </div>
+                <div className="text-[#5C7A6B] font-medium">{stat.label}</div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Smart Metrix */}
-      <section className="bg-[#F8FBF9] section-padding">
+      {/* Smart Metrix Section (Glassmorphism & Float) */}
+      <section className="bg-[#F8FBF9] py-24 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-[#D8F3DC]/40 to-transparent rounded-full blur-[100px] -z-10 translate-x-1/3 -translate-y-1/3"></div>
         <div className="container-main">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="order-2 lg:order-1 rounded-2xl overflow-hidden shadow-lg">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="order-2 lg:order-1 relative perspective-1000"
+            >
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#52B788]/20 to-transparent rounded-3xl transform -rotate-3 scale-105 blur-lg z-0"></div>
               <img
                 src="/images/smart-dashboard.png"
                 alt="Smart Metrix Dashboard"
-                className="w-full h-auto object-cover"
+                className="w-full h-auto object-cover rounded-3xl shadow-2xl relative z-10 border border-white/50"
               />
-            </div>
-            <div className="order-1 lg:order-2">
-              <div className="inline-flex items-center gap-2 bg-[#D8F3DC] text-[#1B4332] px-3 py-1 rounded-full text-sm font-medium mb-4">
-                <span className="w-2 h-2 bg-[#52B788] rounded-full"></span>
+              {/* Floating element */}
+              <motion.div 
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -bottom-6 -right-6 bg-white/80 backdrop-blur-md p-6 rounded-2xl shadow-xl z-20 border border-white flex items-center gap-4"
+              >
+                <div className="bg-[#1B4332] w-12 h-12 rounded-full flex items-center justify-center">
+                  <Shield className="text-white" size={20} />
+                </div>
+                <div>
+                  <p className="text-sm text-[#5C7A6B] font-medium">Безопасность</p>
+                  <p className="text-[#1B4332] font-bold">RSA-2048 шифрование</p>
+                </div>
+              </motion.div>
+            </motion.div>
+            
+            <motion.div 
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="order-1 lg:order-2"
+            >
+              <div className="inline-flex items-center gap-2 bg-white text-[#1B4332] px-4 py-2 rounded-full text-sm font-bold mb-6 shadow-sm border border-[#D8E8DE]">
+                <span className="relative flex h-3 w-3">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#52B788] opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-[#52B788]"></span>
+                </span>
                 Наша платформа
               </div>
-              <h2 className="text-3xl font-bold text-[#1B4332] mb-6">
-                Smart Metrix — система диспетчеризации
+              <h2 className="text-4xl md:text-5xl font-bold text-[#1B4332] mb-6 leading-tight">
+                Smart Metrix <br/> <span className="text-[#8BA89B]">Система диспетчеризации</span>
               </h2>
-              <p className="text-[#5C7A6B] mb-4 leading-relaxed">
-                Smart Metrix — собственная разработка IoT-Exponenta, облачная
-                платформа для сбора, хранения и анализа данных с приборов учета.
-                Система позволяет в реальном времени мониторить потребление
-                ресурсов, выявлять аномалии и формировать отчеты.
+              <p className="text-lg text-[#5C7A6B] mb-8 leading-relaxed">
+                Собственная разработка IoT-Exponenta. Облачная платформа для сбора, хранения и анализа данных с приборов учета. В реальном времени мониторит потребление, выявляет аномалии и формирует отчеты.
               </p>
-              <div className="grid sm:grid-cols-2 gap-4 mb-6">
+              <div className="grid sm:grid-cols-2 gap-4 mb-8">
                 {[
                   "Сбор данных в реальном времени",
                   "Автоматические отчеты",
                   "Оповещения об утечках",
                   "API для интеграции",
                   "Мобильное приложение",
-                  "Экспорт в 1С и другие системы",
-                ].map((feature) => (
-                  <div key={feature} className="flex items-center gap-2">
-                    <CheckCircle size={16} className="text-[#52B788]" />
-                    <span className="text-sm text-[#5C7A6B]">{feature}</span>
-                  </div>
+                  "Экспорт в 1С и ERP",
+                ].map((feature, i) => (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    key={feature} 
+                    className="flex items-center gap-3 bg-white p-3 rounded-xl border border-[#D8E8DE] shadow-sm"
+                  >
+                    <CheckCircle size={18} className="text-[#52B788] flex-shrink-0" />
+                    <span className="text-sm font-medium text-[#1B4332]">{feature}</span>
+                  </motion.div>
                 ))}
               </div>
-              <Link to="/solutions" className="btn-primary gap-2">
-                Узнать больше <ArrowRight size={16} />
+              <Link to="/solutions" className="btn-primary gap-2 shadow-lg shadow-[#52B788]/30 hover:shadow-[#52B788]/50 transition-all text-lg px-8 py-4">
+                Узнать возможности <ArrowRight size={20} />
               </Link>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Statistics */}
-      <section className="bg-[#1B4332] py-16 md:py-20">
-        <div className="container-main">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <stat.icon size={24} className="text-[#52B788]" />
-                </div>
-                <div className="text-4xl md:text-5xl font-bold text-white mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-white/60 text-sm">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Partners / Clients */}
-      <section className="bg-white section-padding">
-        <div className="container-main">
-          <h2 className="text-3xl font-bold text-[#1B4332] text-center mb-4">
-            Нам доверяют
-          </h2>
-          <p className="text-[#5C7A6B] text-center mb-12 max-w-2xl mx-auto">
-            Среди наших клиентов — крупнейшие промышленные предприятия,
-            строительные компании и управляющие организации Казахстана
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {partners.map((partner) => (
-              <div
-                key={partner}
-                className="bg-[#F8FBF9] rounded-xl p-6 flex items-center justify-center h-24 border border-[#D8E8DE] hover:border-[#52B788] transition-colors"
-              >
-                <span className="text-[#8BA89B] text-sm font-medium text-center">
-                  {partner}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="bg-[#F8FBF9] section-padding">
-        <div className="container-main">
-          <div className="bg-[#1B4332] rounded-2xl p-8 md:p-12 text-center">
-            <h2 className="text-3xl font-bold text-white mb-4">
-              Готовы начать сотрудничество?
+      {/* Infinite Partners Marquee */}
+      <section className="bg-white py-20 border-t border-[#D8E8DE]">
+        <div className="container-main mb-10">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center max-w-2xl mx-auto"
+          >
+            <h2 className="text-3xl font-bold text-[#1B4332] mb-4">
+              Нам доверяют лидеры
             </h2>
-            <p className="text-white/70 mb-8 max-w-xl mx-auto">
-              Свяжитесь с нами для получения бесплатной консультации и
-              коммерческого предложения
+            <p className="text-[#5C7A6B]">
+              Крупнейшие промышленные предприятия, строительные компании и управляющие организации Казахстана выбирают нас.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <button onClick={() => setConsultOpen(true)} className="btn-primary bg-[#52B788] hover:bg-[#40916C] gap-2">
-                Получить консультацию <ArrowRight size={16} />
-              </button>
-              <Link to="/contacts" className="btn-secondary border-white text-white hover:bg-white hover:text-[#1B4332] gap-2">
-                Связаться с нами <ArrowRight size={16} />
-              </Link>
+          </motion.div>
+        </div>
+        
+        <Marquee speed={40} gradient={true} gradientColor="white" gradientWidth={100} className="py-4">
+          {partners.map((partner) => (
+            <div
+              key={partner.name}
+              className="mx-4 md:mx-8 bg-white rounded-2xl p-6 flex items-center justify-center w-[200px] h-[120px] border border-[#D8E8DE] hover:border-[#52B788] hover:shadow-xl transition-all duration-300 group cursor-pointer"
+              title={partner.name}
+            >
+              <img 
+                src={partner.img} 
+                alt={partner.name}
+                className="max-w-full max-h-full object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-110" 
+              />
             </div>
-          </div>
+          ))}
+        </Marquee>
+      </section>
+
+      {/* CTA / Contact Section */}
+      <section className="bg-[#F8FBF9] py-20">
+        <div className="container-main">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="bg-gradient-to-br from-[#1B4332] to-[#0A1F16] rounded-[40px] p-10 md:p-16 text-center relative overflow-hidden shadow-2xl"
+          >
+            <div className="absolute top-0 right-0 w-64 h-64 bg-[#52B788] rounded-full blur-[100px] opacity-30 mix-blend-screen"></div>
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#D8F3DC] rounded-full blur-[100px] opacity-10 mix-blend-screen"></div>
+            
+            <div className="relative z-10">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                Готовы начать сотрудничество?
+              </h2>
+              <p className="text-white/80 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
+                Оставьте заявку, и наши инженеры подготовят для вас оптимальное коммерческое предложение.
+              </p>
+              <div className="flex flex-col sm:flex-row justify-center gap-4">
+                <button 
+                  onClick={() => setConsultOpen(true)} 
+                  className="bg-[#52B788] hover:bg-[#40916C] text-white font-bold py-4 px-8 rounded-full flex items-center justify-center gap-3 transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-[#52B788]/30"
+                >
+                  Получить консультацию <ArrowRight size={20} />
+                </button>
+                <Link 
+                  to="/contacts" 
+                  className="bg-white/10 hover:bg-white text-white hover:text-[#1B4332] backdrop-blur-md border border-white/20 font-bold py-4 px-8 rounded-full flex items-center justify-center gap-3 transition-all hover:scale-105 active:scale-95"
+                >
+                  Связаться с нами
+                </Link>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
+      {/* Modal */}
       <Dialog open={consultOpen} onOpenChange={setConsultOpen}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle className="text-[#1B4332]">Получить консультацию</DialogTitle>
-          </DialogHeader>
-          <form className="space-y-4 pt-4" onSubmit={(e) => { setConsultOpen(false); submitToWhatsApp(e); }}>
-            <input type="text" name="Имя" required placeholder="Ваше имя" className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788]" />
-            <input type="tel" name="Телефон" required placeholder="Телефон" className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788]" />
-            <input type="email" name="Email" placeholder="Email" className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788]" />
-            <textarea name="Ваш вопрос" placeholder="Ваш вопрос" rows={3} className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788] resize-none" />
-            <button type="submit"  className="w-full btn-primary">Отправить</button>
-          </form>
+        <DialogContent className="sm:max-w-md rounded-3xl overflow-hidden p-0 border-none">
+          <div className="bg-[#1B4332] p-6 text-center">
+            <DialogHeader>
+              <DialogTitle className="text-white text-2xl font-bold">Оставьте заявку</DialogTitle>
+            </DialogHeader>
+            <p className="text-white/80 text-sm mt-2">Наш менеджер свяжется с вами в течение 15 минут.</p>
+          </div>
+          <div className="p-8 bg-white">
+            <form className="space-y-5" onSubmit={(e) => { setConsultOpen(false); submitToWhatsApp(e); }}>
+              <input type="text" name="Имя" required placeholder="Как к вам обращаться?" className="w-full bg-[#F8FBF9] border border-[#D8E8DE] rounded-xl px-5 py-4 focus:outline-none focus:border-[#52B788] focus:ring-2 focus:ring-[#52B788]/20 transition-all" />
+              <input type="tel" name="Телефон" required placeholder="Ваш номер телефона" className="w-full bg-[#F8FBF9] border border-[#D8E8DE] rounded-xl px-5 py-4 focus:outline-none focus:border-[#52B788] focus:ring-2 focus:ring-[#52B788]/20 transition-all" />
+              <input type="email" name="Email" placeholder="Email (необязательно)" className="w-full bg-[#F8FBF9] border border-[#D8E8DE] rounded-xl px-5 py-4 focus:outline-none focus:border-[#52B788] focus:ring-2 focus:ring-[#52B788]/20 transition-all" />
+              <textarea name="Ваш вопрос" placeholder="Опишите вашу задачу..." rows={3} className="w-full bg-[#F8FBF9] border border-[#D8E8DE] rounded-xl px-5 py-4 focus:outline-none focus:border-[#52B788] focus:ring-2 focus:ring-[#52B788]/20 transition-all resize-none" />
+              <button type="submit" className="w-full bg-[#52B788] hover:bg-[#40916C] text-white font-bold py-4 rounded-xl shadow-lg shadow-[#52B788]/30 transition-transform hover:-translate-y-1 active:translate-y-0">
+                Отправить заявку
+              </button>
+            </form>
+          </div>
         </DialogContent>
       </Dialog>
     </div>
