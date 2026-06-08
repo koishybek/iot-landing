@@ -23,6 +23,7 @@ const navItems = [
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const isHome = location.pathname === "/";
 
   return (
     <header className="sticky top-0 z-50">
@@ -30,13 +31,9 @@ export default function Header() {
       <div className="bg-[#1B4332] text-white text-sm py-2">
         <div className="container-main flex flex-wrap justify-between items-center gap-2">
           <div className="flex items-center gap-4 flex-wrap">
-            <a href="tel:+77472075179" className="flex items-center gap-1.5 hover:text-[#52B788] transition-colors">
+            <a href="tel:+7 707 313 4050" className="flex items-center gap-1.5 hover:text-[#52B788] transition-colors">
               <Phone size={14} />
-              <span>+7 747 207 51 79</span>
-            </a>
-            <a href="tel:+77057055051" className="flex items-center gap-1.5 hover:text-[#52B788] transition-colors">
-              <Phone size={14} />
-              <span>+7 705 705 50 51</span>
+              <span>+7 707 313 4050</span>
             </a>
           </div>
           <div className="flex items-center gap-4 flex-wrap">
@@ -53,7 +50,7 @@ export default function Header() {
       </div>
 
       {/* Main navbar */}
-      <div className="bg-white shadow-sm">
+      <div className={`transition-all duration-300 ${isHome ? "bg-[#F5F6F5]" : "bg-white shadow-sm border-b border-[#D8E8DE]"}`}>
         <div className="container-main py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
@@ -70,6 +67,8 @@ export default function Header() {
                   className={`px-3 py-2 rounded-lg text-[15px] font-medium transition-colors ${
                     location.pathname === item.path
                       ? "text-[#1B4332] bg-[#D8F3DC]"
+                      : isHome
+                      ? "text-[#1B4332] hover:bg-[#E5E7E5]"
                       : "text-[#1B4332] hover:bg-[#F8FBF9]"
                   }`}
                 >
@@ -80,7 +79,7 @@ export default function Header() {
 
             {/* Right side */}
             <div className="flex items-center gap-3">
-              <button className="hidden md:flex items-center justify-center w-10 h-10 rounded-lg hover:bg-[#F8FBF9] transition-colors text-[#1B4332]">
+              <button className={`hidden md:flex items-center justify-center w-10 h-10 rounded-lg transition-colors text-[#1B4332] ${isHome ? "hover:bg-[#E5E7E5]" : "hover:bg-[#F8FBF9]"}`}>
                 <Search size={20} />
               </button>
               <Link
@@ -90,7 +89,7 @@ export default function Header() {
                 Заказать звонок
               </Link>
               <button
-                className="lg:hidden w-10 h-10 flex items-center justify-center rounded-lg hover:bg-[#F8FBF9] transition-colors"
+                className={`lg:hidden w-10 h-10 flex items-center justify-center rounded-lg transition-colors ${isHome ? "hover:bg-[#E5E7E5]" : "hover:bg-[#F8FBF9]"}`}
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
                 {mobileMenuOpen ? (

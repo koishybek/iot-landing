@@ -12,12 +12,13 @@ import {
   ArrowRight,
   Navigation,
 } from "lucide-react";
+import { submitToWhatsApp } from "../utils/whatsapp";
 
 const offices = [
   {
     city: "Астана",
     address: "просп. Кабанбай батыра, 11, офис 305",
-    phone: "+7 747 207 51 79",
+    phone: "+7 707 313 4050",
     email: "astana@iot-exp.kz",
     hours: "Пн-Пт: 09:00 - 18:00",
     isMain: true,
@@ -25,7 +26,7 @@ const offices = [
   {
     city: "Алматы",
     address: "просп. Назарбаева, 50, офис 412",
-    phone: "+7 705 705 50 51",
+    phone: "+7 707 313 4050",
     email: "almaty@iot-exp.kz",
     hours: "Пн-Пт: 09:00 - 18:00",
     isMain: false,
@@ -58,7 +59,7 @@ const faqItems = [
   },
   {
     question: "Как связаться с техподдержкой?",
-    answer: "Техническая поддержка доступна круглосуточно по телефону +7 747 207 51 79 или через WhatsApp. Также можно написать на support@iot-exp.kz — среднее время ответа 30 минут.",
+    answer: "Техническая поддержка доступна круглосуточно по телефону +7 707 313 4050 или через WhatsApp. Также можно написать на support@iot-exp.kz — среднее время ответа 30 минут.",
   },
 ];
 
@@ -134,15 +135,15 @@ export default function Contacts() {
               <div className="text-center">
                 <Phone size={24} className="text-[#52B788] mx-auto mb-3" />
                 <div className="text-white/60 text-sm mb-1">Телефон (Астана)</div>
-                <a href="tel:+77472075179" className="text-white font-bold text-xl hover:text-[#52B788] transition-colors">
-                  +7 747 207 51 79
+                <a href="tel:+7 707 313 4050" className="text-white font-bold text-xl hover:text-[#52B788] transition-colors">
+                  +7 707 313 4050
                 </a>
               </div>
               <div className="text-center">
                 <Phone size={24} className="text-[#52B788] mx-auto mb-3" />
                 <div className="text-white/60 text-sm mb-1">Телефон (Алматы)</div>
-                <a href="tel:+77057055051" className="text-white font-bold text-xl hover:text-[#52B788] transition-colors">
-                  +7 705 705 50 51
+                <a href="tel:+7 707 313 4050" className="text-white font-bold text-xl hover:text-[#52B788] transition-colors">
+                  +7 707 313 4050
                 </a>
               </div>
               <div className="text-center">
@@ -207,12 +208,14 @@ export default function Contacts() {
               <p className="text-[#5C7A6B] mb-8">
                 Заполните форму и мы ответим в течение 30 минут
               </p>
-              <form className="space-y-4">
+              <form className="space-y-4" onSubmit={submitToWhatsApp}>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <label className="text-sm text-[#5C7A6B] mb-1 block">Имя *</label>
                     <input
                       type="text"
+                      name="Имя"
+                      required
                       placeholder="Ваше имя"
                       className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788]"
                     />
@@ -221,6 +224,8 @@ export default function Contacts() {
                     <label className="text-sm text-[#5C7A6B] mb-1 block">Телефон *</label>
                     <input
                       type="tel"
+                      name="Телефон"
+                      required
                       placeholder="+7 (___) ___-__-__"
                       className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788]"
                     />
@@ -230,13 +235,14 @@ export default function Contacts() {
                   <label className="text-sm text-[#5C7A6B] mb-1 block">Email</label>
                   <input
                     type="email"
+                    name="Email"
                     placeholder="example@mail.com"
                     className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788]"
                   />
                 </div>
                 <div>
                   <label className="text-sm text-[#5C7A6B] mb-1 block">Тема обращения</label>
-                  <select className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788]">
+                  <select name="Тема обращения" className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788]">
                     <option>Выберите тему</option>
                     <option>Заказать услугу</option>
                     <option>Запросить КП</option>
@@ -248,12 +254,13 @@ export default function Contacts() {
                 <div>
                   <label className="text-sm text-[#5C7A6B] mb-1 block">Сообщение</label>
                   <textarea
+                    name="Сообщение"
                     placeholder="Опишите ваш вопрос..."
                     rows={4}
                     className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788] resize-none"
                   />
                 </div>
-                <button type="button" className="w-full btn-primary py-3.5">
+                <button type="submit" className="w-full btn-primary py-3.5">
                   Отправить сообщение
                 </button>
                 <p className="text-xs text-[#8BA89B] text-center">

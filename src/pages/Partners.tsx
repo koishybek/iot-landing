@@ -10,6 +10,7 @@ import {
   Users,
   Factory,
 } from "lucide-react";
+import { submitToWhatsApp } from "../utils/whatsapp";
 
 const benefits = [
   {
@@ -195,12 +196,14 @@ export default function Partners() {
             <p className="text-[#5C7A6B] text-center mb-8">
               Заполните форму и мы свяжемся с вами в течение рабочего дня
             </p>
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={submitToWhatsApp}>
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label className="text-sm text-[#5C7A6B] mb-1 block">Имя *</label>
                   <input
                     type="text"
+                    name="Имя"
+                    required
                     placeholder="Ваше имя"
                     className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 bg-white focus:outline-none focus:border-[#52B788]"
                   />
@@ -209,6 +212,8 @@ export default function Partners() {
                   <label className="text-sm text-[#5C7A6B] mb-1 block">Телефон *</label>
                   <input
                     type="tel"
+                    name="Телефон"
+                    required
                     placeholder="+7 (___) ___-__-__"
                     className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 bg-white focus:outline-none focus:border-[#52B788]"
                   />
@@ -219,6 +224,8 @@ export default function Partners() {
                   <label className="text-sm text-[#5C7A6B] mb-1 block">Email *</label>
                   <input
                     type="email"
+                    name="Email"
+                    required
                     placeholder="example@mail.com"
                     className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 bg-white focus:outline-none focus:border-[#52B788]"
                   />
@@ -227,6 +234,7 @@ export default function Partners() {
                   <label className="text-sm text-[#5C7A6B] mb-1 block">Компания</label>
                   <input
                     type="text"
+                    name="Компания"
                     placeholder="Название компании"
                     className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 bg-white focus:outline-none focus:border-[#52B788]"
                   />
@@ -236,13 +244,14 @@ export default function Partners() {
                 <label className="text-sm text-[#5C7A6B] mb-1 block">Город</label>
                 <input
                   type="text"
+                  name="Город"
                   placeholder="Город"
                   className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 bg-white focus:outline-none focus:border-[#52B788]"
                 />
               </div>
               <div>
                 <label className="text-sm text-[#5C7A6B] mb-1 block">Тип партнерства</label>
-                <select className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 bg-white focus:outline-none focus:border-[#52B788]">
+                <select name="Тип партнерства" className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 bg-white focus:outline-none focus:border-[#52B788]">
                   <option>Дилер</option>
                   <option>Инсталлятор</option>
                   <option>Интегратор</option>
@@ -252,12 +261,13 @@ export default function Partners() {
               <div>
                 <label className="text-sm text-[#5C7A6B] mb-1 block">Комментарий</label>
                 <textarea
+                  name="Комментарий"
                   placeholder="Расскажите о вашей компании и планах..."
                   rows={4}
                   className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 bg-white focus:outline-none focus:border-[#52B788] resize-none"
                 />
               </div>
-              <button type="button" className="w-full btn-primary py-3.5">
+              <button type="submit" className="w-full btn-primary py-3.5">
                 Отправить заявку
               </button>
               <p className="text-xs text-[#8BA89B] text-center">

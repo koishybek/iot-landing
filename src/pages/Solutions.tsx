@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { submitToWhatsApp } from "../utils/whatsapp";
 import {
   Home,
   Building2,
@@ -220,8 +221,8 @@ export default function Solutions() {
             <button onClick={() => setConsultOpen(true)} className="btn-primary bg-[#52B788] hover:bg-[#40916C] gap-2">
               Получить консультацию <ArrowRight size={16} />
             </button>
-            <a href="tel:+77472075179" className="btn-secondary border-white text-white hover:bg-white hover:text-[#1B4332] gap-2">
-              <Phone size={16} /> +7 747 207 51 79
+            <a href="tel:+7 707 313 4050" className="btn-secondary border-white text-white hover:bg-white hover:text-[#1B4332] gap-2">
+              <Phone size={16} /> +7 707 313 4050
             </a>
           </div>
         </div>
@@ -231,13 +232,13 @@ export default function Solutions() {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setConsultOpen(false)}>
           <div className="bg-white rounded-2xl p-8 max-w-md w-full" onClick={(e) => e.stopPropagation()}>
             <h3 className="text-xl font-bold text-[#1B4332] mb-6">Получить консультацию</h3>
-            <div className="space-y-4">
-              <input type="text" placeholder="Ваше имя" className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788]" />
-              <input type="tel" placeholder="Телефон" className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788]" />
-              <input type="email" placeholder="Email" className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788]" />
-              <textarea placeholder="Опишите вашу задачу" rows={3} className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788] resize-none" />
-              <button onClick={() => setConsultOpen(false)} className="w-full btn-primary">Отправить заявку</button>
-            </div>
+            <form className="space-y-4" onSubmit={(e) => { setConsultOpen(false); submitToWhatsApp(e); }}>
+              <input type="text" name="Имя" required placeholder="Ваше имя" className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788]" />
+              <input type="tel" name="Телефон" required placeholder="Телефон" className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788]" />
+              <input type="email" name="Email" placeholder="Email" className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788]" />
+              <textarea name="Сообщение" placeholder="Опишите вашу задачу" rows={3} className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788] resize-none" />
+              <button type="submit" className="w-full btn-primary">Отправить заявку</button>
+            </form>
           </div>
         </div>
       )}

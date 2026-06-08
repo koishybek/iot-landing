@@ -1,35 +1,26 @@
 import { Link } from "react-router-dom";
 import {
   Wrench,
-  Shield,
   Clock,
-  MapPin,
   Home as HomeIcon,
   Building2,
   Factory,
   Users,
   ArrowRight,
   CheckCircle,
-  Flame,
-  Wifi,
   Settings,
   ChevronRight,
   Phone,
-  Thermometer,
-  Sparkles,
-  ClipboardList,
   Stethoscope,
-  MoreHorizontal,
+  ShieldCheck,
+  Router,
 } from "lucide-react";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { submitToWhatsApp } from "../utils/whatsapp";
 
-const trustPoints = [
-  { icon: Clock, text: "20+ лет опыта" },
-  { icon: Shield, text: "Сертифицированное оборудование" },
-  { icon: Settings, text: "Сервис 24/7" },
-  { icon: MapPin, text: "Работаем по всему Казахстану" },
-];
+
+
 
 const categories = [
   { icon: HomeIcon, title: "Частные клиенты", desc: "Установка и обслуживание счетчиков в квартирах и частных домах", link: "/solutions" },
@@ -42,12 +33,6 @@ const services = [
   { icon: Wrench, title: "Монтаж и установка приборов учета", desc: "Профессиональная установка счетчиков воды, тепла и газа любой сложности" },
   { icon: Stethoscope, title: "Поверка счетчиков воды и тепла", desc: "Официальная поверка приборов учета с выдачей документов" },
   { icon: Settings, title: "Техническое обслуживание", desc: "Регулярное ТО, диагностика и ремонт оборудования" },
-  { icon: Flame, title: "Монтаж АТП и теплопунктов", desc: "Проектирование и монтаж автоматизированных тепловых пунктов" },
-  { icon: Wifi, title: "Диспетчеризация и удаленный контроль", desc: "Удаленный сбор показаний и мониторинг в реальном времени" },
-  { icon: Thermometer, title: "Тепловизионные обследования", desc: "Выявление утечек тепла и оценка энергоэффективности" },
-  { icon: Sparkles, title: "Промывка теплообменников", desc: "Очистка теплообменного оборудования от накипи и загрязнений" },
-  { icon: ClipboardList, title: "Проектирование", desc: "Разработка проектной документации для систем учета" },
-  { icon: MoreHorizontal, title: "Еще услуги", desc: "Консультации, обучение, пусконаладочные работы" },
 ];
 
 const popularProducts = [
@@ -116,54 +101,133 @@ export default function Home() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-[#F8FBF9] overflow-hidden">
-        <div className="container-main py-12 md:py-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <section className="bg-[#F5F6F5] overflow-hidden">
+        <div className="container-main py-16 md:py-24">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Left: Text */}
             <div>
-              <h1 className="text-4xl md:text-5xl font-bold text-[#1B4332] leading-tight mb-6">
-                IoT-решения для учета воды, тепла, газа и диспетчеризации
+              <h1 className="text-[48px] md:text-[64px] font-bold leading-[1.05] mb-3 tracking-tight">
+                <span className="text-[#40916C]">Kazmeter —</span> <br />
+                <span className="text-[#1B4332]">счетчики будущего</span>
               </h1>
-              <p className="text-lg text-[#5C7A6B] mb-8 leading-relaxed">
-                Комплексные решения для точного учета, удаленного контроля и
-                автоматизации инженерных систем. От проекта до сервисного
-                обслуживания — работаем под ключ.
+              <p className="text-2xl md:text-[28px] font-bold text-[#1F2937] mb-3">
+                со встроенным модемом
               </p>
-              <div className="flex flex-wrap gap-4 mb-8">
-                <button onClick={() => setConsultOpen(true)} className="btn-primary gap-2">
-                  Получить консультацию
-                  <ArrowRight size={18} />
-                </button>
-                <Link to="/catalog" className="btn-secondary gap-2">
-                  Смотреть каталог
-                  <ChevronRight size={18} />
-                </Link>
+              <p className="text-base md:text-lg text-[#40916C] mb-10 font-semibold">
+                Автоматический учет данных
+              </p>
+
+              {/* Feature icons row */}
+              <div className="flex flex-wrap gap-x-8 gap-y-6 mb-12">
+                <div className="flex items-center gap-3.5">
+                  <Router size={32} className="text-[#374151] stroke-[1.5] flex-shrink-0" />
+                  <span className="text-sm text-[#374151] font-semibold leading-tight">
+                    Встроенный<br />NB-IoT модем
+                  </span>
+                </div>
+                <div className="flex items-center gap-3.5">
+                  <ShieldCheck size={32} className="text-[#374151] stroke-[1.5] flex-shrink-0" />
+                  <span className="text-sm text-[#374151] font-semibold leading-tight">
+                    Надежность<br />и точность
+                  </span>
+                </div>
+                <div className="flex items-center gap-3.5">
+                  <Clock size={32} className="text-[#374151] stroke-[1.5] flex-shrink-0" />
+                  <span className="text-sm text-[#374151] font-semibold leading-tight">
+                    Автоматическая<br />передача данных
+                  </span>
+                </div>
               </div>
-              <div className="flex items-center gap-2 mb-8">
-                <Phone size={18} className="text-[#52B788]" />
-                <a href="tel:+77472075179" className="text-[#1B4332] font-semibold text-lg hover:text-[#2D6A4F] transition-colors">
-                  +7 747 207 51 79
+
+              {/* CTA Buttons */}
+              <div className="flex flex-wrap gap-4">
+                <button
+                  onClick={() => setConsultOpen(true)}
+                  className="px-10 py-3.5 bg-[#1B4332] text-white font-semibold rounded-lg hover:bg-[#122E22] transition-colors text-base shadow-sm"
+                >
+                  Подробнее
+                </button>
+                <a
+                  href="https://kaspi.kz/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-10 py-3.5 bg-[#F14635] text-white font-semibold rounded-lg hover:bg-[#D93A2B] transition-colors text-base shadow-sm flex items-center justify-center"
+                >
+                  Заказать на Kaspi
                 </a>
               </div>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                {trustPoints.map((point) => (
-                  <div key={point.text} className="flex items-center gap-2">
-                    <point.icon size={18} className="text-[#52B788] flex-shrink-0" />
-                    <span className="text-sm text-[#5C7A6B] font-medium">{point.text}</span>
-                  </div>
-                ))}
-              </div>
             </div>
-            <div className="relative">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+
+            {/* Right: Product Image with Callouts */}
+            <div className="flex flex-col items-center">
+              <div className="relative w-full aspect-square max-w-[500px] flex items-center justify-center">
+                {/* Background glowing effects to fill empty space */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[75%] h-[75%] bg-[#52B788]/15 blur-3xl rounded-full z-0 pointer-events-none" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[45%] h-[45%] bg-[#1B4332]/10 blur-2xl rounded-full z-0 pointer-events-none" />
+
+                {/* Center Image */}
                 <img
-                  src="/images/hero-meter.jpg"
-                  alt="IoT счетчик воды"
-                  className="w-full h-auto object-cover"
+                  src="/images/kazmeter.png"
+                  alt="KAZMETER — счетчики будущего со встроенным модемом"
+                  className="w-[85%] h-[85%] object-contain z-10 relative drop-shadow-2xl"
                 />
-                <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm rounded-xl p-3 shadow-lg">
-                  <div className="text-xs text-[#8BA89B]">Расход воды</div>
-                  <div className="text-xl font-bold text-[#1B4332]">125.4 м³</div>
-                  <div className="text-xs text-[#52B788]">Статус: Онлайн</div>
+
+                {/* Interactive Dots & Lines - Desktop only */}
+                <div className="absolute inset-0 hidden md:block pointer-events-none z-20">
+                  <svg className="absolute inset-0 w-full h-full" viewBox="0 0 500 500" fill="none">
+                    {/* Line 1: Top-Left */}
+                    <path d="M 115 115 L 90 70 L 10 70" stroke="#52B788" strokeWidth="1.5" />
+                    {/* Line 2: Top-Right */}
+                    <path d="M 385 115 L 410 70 L 490 70" stroke="#52B788" strokeWidth="1.5" />
+                    {/* Line 3: Bottom-Right */}
+                    <path d="M 250 440 L 290 480 L 490 480" stroke="#52B788" strokeWidth="1.5" />
+                  </svg>
+
+                  {/* Hotspots */}
+                  <div className="absolute left-[23%] top-[23%] -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-[#52B788] rounded-full border-2 border-white shadow-md animate-pulse" />
+                  <div className="absolute left-[77%] top-[23%] -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-[#52B788] rounded-full border-2 border-white shadow-md animate-pulse" />
+                  <div className="absolute left-[50%] top-[88%] -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-[#52B788] rounded-full border-2 border-white shadow-md animate-pulse" />
+
+                  {/* Callout Texts */}
+                  <div className="absolute left-0 top-[15px] text-left max-w-[155px]">
+                    <h4 className="text-sm font-bold text-[#1B4332] mb-1">Быстрая установка</h4>
+                    <p className="text-[11px] text-[#5C7A6B] leading-tight">Монтаж за несколько минут без сложной настройки</p>
+                  </div>
+
+                  <div className="absolute right-0 top-[15px] text-left max-w-[155px]">
+                    <h4 className="text-sm font-bold text-[#1B4332] mb-1">Онлайн-интеграция</h4>
+                    <p className="text-[11px] text-[#5C7A6B] leading-tight">Передача показаний в систему учета и мобильное приложение</p>
+                  </div>
+
+                  <div className="absolute right-0 bottom-[-5px] text-left max-w-[155px]">
+                    <h4 className="text-sm font-bold text-[#1B4332] mb-1">Без лишних проводов</h4>
+                    <p className="text-[11px] text-[#5C7A6B] leading-tight">Встроенный NB-IoT модем работает через сеть оператора</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Mobile list of features */}
+              <div className="mt-6 grid grid-cols-1 gap-4 md:hidden w-full px-4">
+                <div className="p-4 bg-white rounded-xl border border-gray-100 shadow-sm flex items-start gap-3">
+                  <div className="w-2 h-2 rounded-full bg-[#52B788] mt-2 flex-shrink-0" />
+                  <div>
+                    <h4 className="text-sm font-bold text-[#1B4332]">Быстрая установка</h4>
+                    <p className="text-xs text-[#5C7A6B] mt-0.5">Монтаж за несколько минут без сложной настройки</p>
+                  </div>
+                </div>
+                <div className="p-4 bg-white rounded-xl border border-gray-100 shadow-sm flex items-start gap-3">
+                  <div className="w-2 h-2 rounded-full bg-[#52B788] mt-2 flex-shrink-0" />
+                  <div>
+                    <h4 className="text-sm font-bold text-[#1B4332]">Онлайн-интеграция</h4>
+                    <p className="text-xs text-[#5C7A6B] mt-0.5">Передача показаний в систему учета и мобильное приложение</p>
+                  </div>
+                </div>
+                <div className="p-4 bg-white rounded-xl border border-gray-100 shadow-sm flex items-start gap-3">
+                  <div className="w-2 h-2 rounded-full bg-[#52B788] mt-2 flex-shrink-0" />
+                  <div>
+                    <h4 className="text-sm font-bold text-[#1B4332]">Без лишних проводов</h4>
+                    <p className="text-xs text-[#5C7A6B] mt-0.5">Встроенный NB-IoT модем работает через сеть оператора</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -377,60 +441,66 @@ export default function Home() {
       </section>
 
       {/* CTA Form Section */}
-      <section className="bg-[#1B4332] py-16 md:py-24">
+      <section className="bg-white py-16 md:py-24 border-t border-[#D8E8DE]">
         <div className="container-main">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#1B4332] mb-4">
                 Получите инженерное решение под ваш объект
               </h2>
-              <p className="text-white/70 mb-6">
+              <p className="text-[#5C7A6B] mb-6 text-base leading-relaxed">
                 Оставьте заявку и наши специалисты подготовят коммерческое
                 предложение в течение 24 часов. Бесплатный выезд на объект.
               </p>
               <div className="flex items-center gap-3">
-                <Phone size={20} className="text-[#52B788]" />
-                <a href="tel:+77472075179" className="text-white font-semibold text-xl hover:text-[#52B788] transition-colors">
-                  +7 747 207 51 79
+                <Phone size={20} className="text-[#1B4332]" />
+                <a href="tel:+7 707 313 4050" className="text-[#1B4332] font-semibold text-xl hover:text-[#2D6A4F] transition-colors">
+                  +7 707 313 4050
                 </a>
               </div>
             </div>
-            <form className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+            <form className="bg-[#F8FBF9] rounded-2xl p-8 border border-[#D8E8DE] shadow-sm" onSubmit={submitToWhatsApp}>
               <div className="grid sm:grid-cols-2 gap-4 mb-4">
                 <div>
-                  <label className="text-white/70 text-sm mb-1 block">Имя</label>
+                  <label className="text-[#1B4332] text-sm font-semibold mb-1 block">Имя</label>
                   <input
                     type="text"
+                    name="Имя"
+                    required
                     placeholder="Ваше имя"
-                    className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/40 focus:outline-none focus:border-[#52B788]"
+                    className="w-full bg-white border border-[#D8E8DE] rounded-lg px-4 py-3 text-[#1B4332] placeholder:text-gray-400 focus:outline-none focus:border-[#1B4332] focus:ring-1 focus:ring-[#1B4332]"
                   />
                 </div>
                 <div>
-                  <label className="text-white/70 text-sm mb-1 block">Телефон</label>
+                  <label className="text-[#1B4332] text-sm font-semibold mb-1 block">Телефон</label>
                   <input
                     type="tel"
+                    name="Телефон"
+                    required
                     placeholder="+7 (___) ___-__-__"
-                    className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/40 focus:outline-none focus:border-[#52B788]"
+                    className="w-full bg-white border border-[#D8E8DE] rounded-lg px-4 py-3 text-[#1B4332] placeholder:text-gray-400 focus:outline-none focus:border-[#1B4332] focus:ring-1 focus:ring-[#1B4332]"
                   />
                 </div>
               </div>
               <div className="mb-4">
-                <label className="text-white/70 text-sm mb-1 block">Email</label>
+                <label className="text-[#1B4332] text-sm font-semibold mb-1 block">Email</label>
                 <input
                   type="email"
+                  name="Email"
                   placeholder="example@mail.com"
-                  className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/40 focus:outline-none focus:border-[#52B788]"
+                  className="w-full bg-white border border-[#D8E8DE] rounded-lg px-4 py-3 text-[#1B4332] placeholder:text-gray-400 focus:outline-none focus:border-[#1B4332] focus:ring-1 focus:ring-[#1B4332]"
                 />
               </div>
               <div className="mb-6">
-                <label className="text-white/70 text-sm mb-1 block">Сообщение</label>
+                <label className="text-[#1B4332] text-sm font-semibold mb-1 block">Сообщение</label>
                 <textarea
+                  name="Сообщение"
                   placeholder="Опишите вашу задачу..."
                   rows={4}
-                  className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/40 focus:outline-none focus:border-[#52B788] resize-none"
+                  className="w-full bg-white border border-[#D8E8DE] rounded-lg px-4 py-3 text-[#1B4332] placeholder:text-gray-400 focus:outline-none focus:border-[#1B4332] focus:ring-1 focus:ring-[#1B4332] resize-none"
                 />
               </div>
-              <button type="button" className="w-full btn-primary bg-[#52B788] hover:bg-[#40916C]">
+              <button type="submit" className="w-full py-3.5 bg-[#1B4332] hover:bg-[#122E22] text-white font-semibold rounded-lg transition-all duration-200 shadow-sm">
                 Отправить заявку
               </button>
             </form>
@@ -444,34 +514,40 @@ export default function Home() {
           <DialogHeader>
             <DialogTitle className="text-[#1B4332]">Получить консультацию</DialogTitle>
           </DialogHeader>
-          <div className="space-y-4 pt-4">
+          <form className="space-y-4 pt-4" onSubmit={(e) => { setConsultOpen(false); submitToWhatsApp(e); }}>
             <input
               type="text"
+              name="Имя"
+              required
               placeholder="Ваше имя"
               className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788]"
             />
             <input
               type="tel"
+              name="Телефон"
+              required
               placeholder="Телефон"
               className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788]"
             />
             <input
               type="email"
+              name="Email"
               placeholder="Email"
               className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788]"
             />
             <textarea
+              name="Вопрос"
               placeholder="Ваш вопрос"
               rows={3}
               className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788] resize-none"
             />
             <button
-              onClick={() => setConsultOpen(false)}
+              type="submit"
               className="w-full btn-primary"
             >
               Отправить
             </button>
-          </div>
+          </form>
         </DialogContent>
       </Dialog>
     </div>

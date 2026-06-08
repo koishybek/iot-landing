@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { CheckCircle, Users, Briefcase, Clock, Shield, ArrowRight } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useState } from "react";
+import { submitToWhatsApp } from "../utils/whatsapp";
 
 const stats = [
   { value: "20+", label: "лет опыта", icon: Clock },
@@ -214,13 +215,13 @@ export default function About() {
           <DialogHeader>
             <DialogTitle className="text-[#1B4332]">Получить консультацию</DialogTitle>
           </DialogHeader>
-          <div className="space-y-4 pt-4">
-            <input type="text" placeholder="Ваше имя" className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788]" />
-            <input type="tel" placeholder="Телефон" className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788]" />
-            <input type="email" placeholder="Email" className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788]" />
-            <textarea placeholder="Ваш вопрос" rows={3} className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788] resize-none" />
-            <button onClick={() => setConsultOpen(false)} className="w-full btn-primary">Отправить</button>
-          </div>
+          <form className="space-y-4 pt-4" onSubmit={(e) => { setConsultOpen(false); submitToWhatsApp(e); }}>
+            <input type="text" name="Имя" required placeholder="Ваше имя" className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788]" />
+            <input type="tel" name="Телефон" required placeholder="Телефон" className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788]" />
+            <input type="email" name="Email" placeholder="Email" className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788]" />
+            <textarea name="Ваш вопрос" placeholder="Ваш вопрос" rows={3} className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788] resize-none" />
+            <button type="submit"  className="w-full btn-primary">Отправить</button>
+          </form>
         </DialogContent>
       </Dialog>
     </div>
