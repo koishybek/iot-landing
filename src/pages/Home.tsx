@@ -14,6 +14,10 @@ import {
   Stethoscope,
   ShieldCheck,
   Router,
+  Radio,
+  Target,
+  BarChart2,
+  Shield,
 } from "lucide-react";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -106,6 +110,12 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left: Text */}
             <div>
+              {/* Warranty Badge */}
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#40916C]/10 border border-[#40916C]/20 rounded-full text-[#1B4332] font-semibold text-sm mb-6">
+                <ShieldCheck size={16} className="text-[#40916C]" />
+                <span>Гарантия на оборудование до 6 лет</span>
+              </div>
+
               <h1 className="text-[48px] md:text-[64px] font-bold leading-[1.05] mb-3 tracking-tight">
                 <span className="text-[#40916C]">Kazmeter —</span> <br />
                 <span className="text-[#1B4332]">счетчики будущего</span>
@@ -325,32 +335,88 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Benefits Section */}
+      {/* Advantages of Smart Meters Section */}
       <section className="bg-[#F8FBF9] section-padding">
         <div className="container-main">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1B4332] text-center mb-12">
-            С нами работать выгодно
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {benefits.map((benefit) => (
-              <div key={benefit.title} className="bg-white rounded-2xl p-8 shadow-sm">
-                <h3 className="font-semibold text-[#1B4332] text-lg mb-5">
-                  {benefit.title}
-                </h3>
-                <ul className="space-y-3">
-                  {benefit.items.map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <CheckCircle
-                        size={18}
-                        className="text-[#52B788] flex-shrink-0 mt-0.5"
-                      />
-                      <span className="text-[#5C7A6B] text-sm">{item}</span>
-                    </li>
-                  ))}
-                </ul>
+          
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6">
+            <div className="max-w-2xl">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white border border-[#D8E8DE] rounded-full text-[#40916C] font-medium text-sm mb-6 shadow-sm">
+                <Radio size={16} />
+                <span>Умный учёт</span>
               </div>
-            ))}
+              <h2 className="text-[32px] md:text-[42px] font-bold text-[#1B4332] leading-[1.1] mb-4">
+                Преимущества <br className="hidden md:block" />
+                счётчиков с радиомодулем
+              </h2>
+              <p className="text-[#5C7A6B] text-lg">
+                Автоматическая передача показаний, точный учёт<br className="hidden md:block" /> 
+                и удобный контроль расходов.
+              </p>
+            </div>
+            
+            <Link to="/catalog" className="shrink-0 self-start lg:self-auto px-6 py-3 bg-[#1B4332] hover:bg-[#122E22] text-white rounded-lg font-medium transition-colors inline-flex items-center gap-2 shadow-sm">
+              Подробнее <ArrowRight size={18} />
+            </Link>
           </div>
+
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            {/* Card 1 */}
+            <div className="bg-white rounded-[24px] overflow-hidden shadow-sm flex flex-col group hover:shadow-md transition-shadow">
+              <div className="aspect-[4/3] bg-gray-100 overflow-hidden relative">
+                <img src="/images/service-installation.jpg" alt="Экономия времени" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div className="p-8 flex-1 flex flex-col">
+                <div className="w-12 h-12 bg-[#F0FDF4] rounded-2xl flex items-center justify-center mb-6">
+                  <Clock className="text-[#40916C]" size={24} strokeWidth={1.5} />
+                </div>
+                <h3 className="text-xl font-bold text-[#1B4332] mb-3">Экономия времени</h3>
+                <p className="text-[#5C7A6B] text-sm leading-relaxed">
+                  Показания передаются автоматически — без ежемесячного обхода и ручной отправки данных.
+                </p>
+              </div>
+            </div>
+
+            {/* Card 2 */}
+            <div className="bg-white rounded-[24px] overflow-hidden shadow-sm flex flex-col group hover:shadow-md transition-shadow">
+              <div className="aspect-[4/3] bg-gray-100 overflow-hidden relative">
+                <img src="/images/product-kazmeter-15c.jpg" alt="Точные данные" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div className="p-8 flex-1 flex flex-col">
+                <div className="w-12 h-12 bg-[#F0FDF4] rounded-2xl flex items-center justify-center mb-6">
+                  <Target className="text-[#40916C]" size={24} strokeWidth={1.5} />
+                </div>
+                <h3 className="text-xl font-bold text-[#1B4332] mb-3">Точные данные</h3>
+                <p className="text-[#5C7A6B] text-sm leading-relaxed">
+                  Стабильный сбор показаний без ошибок и человеческого фактора.
+                </p>
+              </div>
+            </div>
+
+            {/* Card 3 */}
+            <div className="bg-white rounded-[24px] overflow-hidden shadow-sm flex flex-col group hover:shadow-md transition-shadow">
+              <div className="aspect-[4/3] bg-gray-100 overflow-hidden relative">
+                <img src="/images/solution-smart-home.jpg" alt="Контроль расходов" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div className="p-8 flex-1 flex flex-col">
+                <div className="w-12 h-12 bg-[#F0FDF4] rounded-2xl flex items-center justify-center mb-6">
+                  <BarChart2 className="text-[#40916C]" size={24} strokeWidth={1.5} />
+                </div>
+                <h3 className="text-xl font-bold text-[#1B4332] mb-3">Контроль расходов</h3>
+                <p className="text-[#5C7A6B] text-sm leading-relaxed">
+                  Легко отслеживайте потребление и быстрее замечайте перерасход ресурсов.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 text-sm font-medium text-[#5C7A6B] text-center sm:text-left">
+            <div className="w-10 h-10 bg-[#E8F5E9] rounded-full flex items-center justify-center shrink-0">
+              <Shield className="text-[#40916C]" size={20} strokeWidth={1.5} />
+            </div>
+            <span>Надёжная работа. Прозрачный учёт. Умные решения для дома и бизнеса.</span>
+          </div>
+
         </div>
       </section>
 
