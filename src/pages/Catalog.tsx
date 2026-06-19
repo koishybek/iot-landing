@@ -8,7 +8,10 @@ import {
   ChevronDown,
   X,
 } from "lucide-react";
+import productsData from "../data/products.json";
 
+// Type assertion to ensure TS knows the structure if needed, or just let it infer.
+const products = productsData as any[];
 const categories = [
   { id: "water", name: "Счетчики воды", count: 12 },
   { id: "heat", name: "Теплосчетчики", count: 8 },
@@ -32,129 +35,6 @@ const protocols = [
   { id: "pulse", name: "Импульсный выход" },
   { id: "mbus", name: "M-Bus" },
   { id: "rs485", name: "RS-485" },
-];
-
-const products = [
-  {
-    id: "kazmeter-15c",
-    name: "KAZMETER 15C",
-    price: 40000,
-    priceText: "40 000 ₸",
-    category: "water",
-    manufacturer: "kazmeter",
-    protocols: ["pulse"],
-    diameter: "DN15",
-    image: "/images/product-kazmeter-15c.jpg",
-    badge: "В наличии",
-  },
-  {
-    id: "kazmeter-15c-lrw",
-    name: "KAZMETER 15C-LRW",
-    price: null,
-    priceText: "Цена по запросу",
-    category: "water",
-    manufacturer: "kazmeter",
-    protocols: ["lorawan"],
-    diameter: "DN15",
-    image: "/images/product-kazmeter-lrw.jpg",
-    badge: "LoRaWAN",
-  },
-  {
-    id: "kazmeter-15n-lrw",
-    name: "KAZMETER 15Н-LRW",
-    price: null,
-    priceText: "Цена по запросу",
-    category: "water",
-    manufacturer: "kazmeter",
-    protocols: ["lorawan"],
-    diameter: "DN15",
-    image: "/images/product-kazmeter-lrw.jpg",
-    badge: "LoRaWAN",
-  },
-  {
-    id: "pulsar-iot-cw15",
-    name: "PULSAR IoT-CW15",
-    price: null,
-    priceText: "Цена по запросу",
-    category: "iot",
-    manufacturer: "pulsar",
-    protocols: ["nbiot", "lorawan"],
-    diameter: "DN15",
-    image: "/images/product-pulsar-cw15.jpg",
-    badge: "NB-IoT",
-  },
-  {
-    id: "pulsar-iot-uw15",
-    name: "PULSAR IoT-UW15",
-    price: null,
-    priceText: "Цена по запросу",
-    category: "iot",
-    manufacturer: "pulsar",
-    protocols: ["nbiot", "lorawan"],
-    diameter: "DN15",
-    image: "/images/product-pulsar-uw15.jpg",
-    badge: "NB-IoT",
-  },
-  {
-    id: "st17u-dn15",
-    name: "СТ-17У DN15-20",
-    price: null,
-    priceText: "Цена по запросу",
-    category: "heat",
-    manufacturer: "stv",
-    protocols: ["mbus", "pulse"],
-    diameter: "DN15-20",
-    image: "/images/product-st17u.jpg",
-    badge: "Тепло",
-  },
-  {
-    id: "st20",
-    name: "СТ-20",
-    price: null,
-    priceText: "Цена по запросу",
-    category: "water",
-    manufacturer: "stv",
-    protocols: ["pulse"],
-    diameter: "DN20",
-    image: "/images/product-st20.jpg",
-    badge: "В наличии",
-  },
-  {
-    id: "vvt-ip68",
-    name: "ВВТ IP68 Ду40–Ду200",
-    price: null,
-    priceText: "Цена по запросу",
-    category: "water",
-    manufacturer: "vvt",
-    protocols: ["pulse", "rs485"],
-    diameter: "DN40–200",
-    image: "/images/product-bvt.jpg",
-    badge: "Промышленный",
-  },
-  {
-    id: "mur-1001",
-    name: "МУР 1001.5 SmartOn EE1",
-    price: null,
-    priceText: "Цена по запросу",
-    category: "iot",
-    manufacturer: "mur",
-    protocols: ["lorawan", "nbiot"],
-    diameter: "DN15",
-    image: "/images/product-mur.jpg",
-    badge: "Smart",
-  },
-  {
-    id: "stvu",
-    name: "СТВУ",
-    price: null,
-    priceText: "Цена по запросу",
-    category: "heat",
-    manufacturer: "stv",
-    protocols: ["mbus"],
-    diameter: "DN15-25",
-    image: "/images/product-st17u.jpg",
-    badge: "Ультразвуковой",
-  },
 ];
 
 export default function Catalog() {
@@ -184,7 +64,7 @@ export default function Catalog() {
         return false;
       if (selectedManufacturers.length && !selectedManufacturers.includes(p.manufacturer))
         return false;
-      if (selectedProtocols.length && !p.protocols.some((pr) => selectedProtocols.includes(pr)))
+      if (selectedProtocols.length && !p.protocols.some((pr: string) => selectedProtocols.includes(pr)))
         return false;
       return true;
     })
@@ -386,7 +266,7 @@ export default function Catalog() {
                     </Link>
                     <div className="p-4">
                       <div className="text-xs text-[#8BA89B] mb-1">
-                        {product.protocols.map((p) => p.toUpperCase()).join(", ")} · {product.diameter}
+                        {product.protocols.map((p: string) => p.toUpperCase()).join(", ")} · {product.diameter}
                       </div>
                       <Link to={`/catalog/${product.id}`}>
                         <h3 className="font-semibold text-[#1B4332] mb-2 group-hover:text-[#2D6A4F] transition-colors">

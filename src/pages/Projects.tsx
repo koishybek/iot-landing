@@ -27,7 +27,7 @@ const projects = [
       "Автоматическая генерация отчетов",
     ],
     metrics: { devices: "150+", period: "3 мес.", savings: "25%", status: "Завершен" },
-    image: "/images/project-oil-refinery.jpg",
+    image: "images/project-oil-refinery.jpg",
     year: "2024",
   },
   {
@@ -42,7 +42,7 @@ const projects = [
       "Интеграция с учетной системой заказчика",
     ],
     metrics: { devices: "200+", period: "4 мес.", savings: "30%", status: "Завершен" },
-    image: "/images/service-thermal.jpg",
+    image: "images/service-thermal.jpg",
     year: "2024",
   },
   {
@@ -57,7 +57,7 @@ const projects = [
       "Мониторинг в реальном времени",
     ],
     metrics: { devices: "85", period: "2 мес.", savings: "18%", status: "Завершен" },
-    image: "/images/solution-building.jpg",
+    image: "images/solution-building.jpg",
     year: "2023",
   },
   {
@@ -72,7 +72,7 @@ const projects = [
       "Сокращение споров на 90%",
     ],
     metrics: { devices: "480", period: "5 мес.", savings: "22%", status: "Завершен" },
-    image: "/images/solution-smart-home.jpg",
+    image: "images/solution-smart-home.jpg",
     year: "2023",
   },
   {
@@ -87,7 +87,7 @@ const projects = [
       "Выявлены и устранены утечки",
     ],
     metrics: { devices: "45", period: "6 мес.", savings: "35%", status: "Завершен" },
-    image: "/images/solution-heat-point.jpg",
+    image: "images/solution-heat-point.jpg",
     year: "2023",
   },
   {
@@ -102,7 +102,7 @@ const projects = [
       "Прогнозное обслуживание",
     ],
     metrics: { devices: "120", period: "8 мес.", savings: "28%", status: "Завершен" },
-    image: "/images/solution-heat-point.jpg",
+    image: "images/solution-heat-point.jpg",
     year: "2022",
   },
 ];

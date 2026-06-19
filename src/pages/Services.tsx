@@ -31,13 +31,13 @@ const services = [
     icon: Wrench,
     title: "Монтаж и установка приборов учета",
     desc: "Профессиональный монтаж систем воды, тепла и газа под ключ.",
-    image: "/images/service-installation.jpg",
+    image: "images/service-installation.jpg",
   },
   {
     icon: Stethoscope,
     title: "Поверка счетчиков воды и тепла",
     desc: "Официальная поверка приборов учета с выдачей необходимых документов.",
-    image: "/images/product-kazmeter-15c.jpg",
+    image: "images/product-kazmeter-15c.jpg",
   },
   {
     icon: Settings,
@@ -55,13 +55,13 @@ const services = [
     icon: Wifi,
     title: "Диспетчеризация и удаленный контроль",
     desc: "Онлайн-мониторинг и управление системами учета в реальном времени.",
-    image: "/images/smart-dashboard.png",
+    image: "images/smart-dashboard.png",
   },
   {
     icon: Thermometer,
     title: "Тепловизионные обследования",
     desc: "Выявление утечек тепла, оценка энергоэффективности зданий и тепловых сетей с помощью тепловизоров.",
-    image: "/images/service-thermal.jpg",
+    image: "images/service-thermal.jpg",
   },
   {
     icon: Sparkles,
@@ -172,7 +172,7 @@ export default function Services() {
       <section className="relative bg-white pt-24 pb-12 md:pt-32 md:pb-20 flex items-center">
         {/* Background Overlay showing industrial theme fading into white */}
         <div className="absolute inset-0 z-0">
-          <img src="/images/service-installation.jpg" alt="Фон услуг" className="w-full h-full object-cover object-center" />
+          <img src="images/service-installation.jpg" alt="Фон услуг" className="w-full h-full object-cover object-center" />
           <div className="absolute inset-0 bg-white/90" />
         </div>
         

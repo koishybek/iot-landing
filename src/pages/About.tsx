@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { CheckCircle, Users, Briefcase, Clock, Shield, ArrowRight } from "lucide-react";
+import { CheckCircle, Users, Briefcase, Shield, ArrowRight } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useState } from "react";
 import { submitToWhatsApp } from "../utils/whatsapp";
@@ -8,19 +8,18 @@ import Marquee from "react-fast-marquee";
 import CountUp from "react-countup";
 
 const stats = [
-  { value: 20, suffix: "+", label: "лет опыта", icon: Clock },
   { value: 500, suffix: "+", label: "выполненных проектов", icon: Briefcase },
   { value: 2000, suffix: "+", label: "установленных приборов", icon: Shield },
   { value: 24, suffix: "/7", label: "техническая поддержка", icon: Users },
 ];
 
 const partners = [
-  { name: "АО «Матен петролеум»", img: "/images/partners/metron petrolium.png" },
-  { name: "АО «СНПС-Актобемунайгаз»", img: "/images/partners/cnpc.png" },
-  { name: "ТОО «Казахстан Темир Жолы»", img: "/images/partners/ktz.png" },
-  { name: "АО «Самрук-Энерго»", img: "/images/partners/samruk-energy.png" },
-  { name: "BI Group", img: "/images/partners/bi-group.png" },
-  { name: "АО «КазТрансОйл»", img: "/images/partners/kaztransoil.png" },
+  { name: "АО «Матен петролеум»", img: "images/partners/metron petrolium.png" },
+  { name: "АО «СНПС-Актобемунайгаз»", img: "images/partners/cnpc.png" },
+  { name: "ТОО «Казахстан Темир Жолы»", img: "images/partners/ktz.png" },
+  { name: "АО «Самрук-Энерго»", img: "images/partners/samruk-energy.png" },
+  { name: "BI Group", img: "images/partners/bi-group.png" },
+  { name: "АО «КазТрансОйл»", img: "images/partners/kaztransoil.png" },
 ];
 
 const advantages = [
@@ -112,13 +111,13 @@ export default function About() {
               <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#D8F3DC] to-transparent rounded-full blur-3xl opacity-50 group-hover:opacity-80 transition-opacity"></div>
               <div className="relative z-10">
                 <h2 className="text-3xl md:text-4xl font-bold text-[#1B4332] mb-6">
-                  Инженерная ДНК с фокусом на IoT
+                  Комплексные решения энергосбережения
                 </h2>
                 <p className="text-lg text-[#5C7A6B] mb-6 leading-relaxed">
-                  С 2005 года мы специализируемся на создании комплексных решений для автоматизации учета энергоресурсов. Наша команда объединяет опыт инженеров-теплотехников, электронщиков и программистов для создания надежных систем учета.
+                  С 2021 года наша компания является надежным партнером в сфере ресурсосбережения и автоматизации. Наш офис — это инженерный центр, где создаются передовые решения для инфраструктуры любого масштаба.
                 </p>
                 <p className="text-lg text-[#5C7A6B] leading-relaxed">
-                  Мы являемся официальными партнерами ведущих производителей приборов учета в Казахстане и СНГ. Наши решения работают в более чем 500 объектах по всей стране.
+                  Мы предлагаем полный спектр услуг и поставляем газовое оборудование, расходомеры, тепло- и водосчетчики, а также системы видеонаблюдения. Мы успешно внедряем технологии «умный дом», «умный город» и «умный завод», осуществляем комплексный КСК сервис (домофоны, сантехника и др.).
                 </p>
               </div>
             </motion.div>
@@ -126,7 +125,7 @@ export default function About() {
             {/* Block 2: Image */}
             <motion.div variants={itemVariants} className="md:col-span-1 rounded-3xl overflow-hidden relative shadow-sm group min-h-[300px]">
               <img
-                src="/images/about-office.jpg"
+                src="images/about-office.jpg"
                 alt="Офис IoT-Exponenta"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
@@ -162,7 +161,7 @@ export default function About() {
       {/* Statistics Interactive Counter */}
       <section className="bg-white pb-20 relative z-10">
         <div className="container-main">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {stats.map((stat, i) => (
               <motion.div 
                 key={stat.label}
@@ -199,7 +198,7 @@ export default function About() {
             >
               <div className="absolute inset-0 bg-gradient-to-tr from-[#52B788]/20 to-transparent rounded-3xl transform -rotate-3 scale-105 blur-lg z-0"></div>
               <img
-                src="/images/smart-dashboard.png"
+                src="images/smart-dashboard.png"
                 alt="Smart Metrix Dashboard"
                 className="w-full h-auto object-cover rounded-3xl shadow-2xl relative z-10 border border-white/50"
               />
@@ -297,7 +296,7 @@ export default function About() {
               <img 
                 src={partner.img} 
                 alt={partner.name}
-                className="max-w-full max-h-full object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-110" 
+                className="max-w-full max-h-full object-contain transition-all duration-500 transform group-hover:scale-110" 
               />
             </div>
           ))}

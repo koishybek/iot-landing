@@ -55,7 +55,7 @@ export default function Header() {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link to="/" className="flex items-center">
-              <img src="/images/logo.png" alt="IoT-Exponenta" className="h-10 w-auto object-contain" />
+              <img src="images/logo.png" alt="IoT-Exponenta" className="h-10 w-auto object-contain" />
             </Link>
 
             {/* Desktop Nav */}

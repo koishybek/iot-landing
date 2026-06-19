@@ -49,7 +49,7 @@ export default function Footer() {
           {/* Logo & description */}
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center mb-4">
-              <img src="/images/logo.png" alt="IoT-Exponenta" className="h-10 w-auto object-contain brightness-0 invert" />
+              <img src="images/logo.png" alt="IoT-Exponenta" className="h-10 w-auto object-contain brightness-0 invert" />
             </Link>
             <p className="text-white/60 text-sm leading-relaxed mb-6 max-w-xs">
               Комплексные IoT-решения для учета воды, тепла, газа и

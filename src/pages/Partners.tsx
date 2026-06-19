@@ -154,7 +154,7 @@ export default function Partners() {
             </div>
             <div className="rounded-2xl overflow-hidden shadow-lg">
               <img
-                src="/images/about-office.jpg"
+                src="images/about-office.jpg"
                 alt="Технические возможности"
                 className="w-full h-auto object-cover"
               />

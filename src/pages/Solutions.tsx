@@ -17,7 +17,7 @@ const solutions = [
     icon: Home,
     title: "Для частных клиентов",
     description: "Комплект умного учета для квартиры или частного дома. Установка IoT-счетчиков воды с удаленным снятием показаний.",
-    image: "/images/solution_private.png",
+    image: "images/solution_private.png",
     features: [
       "Ультразвуковые счетчики воды",
       "Автоматический сбор показаний",
@@ -31,7 +31,7 @@ const solutions = [
     icon: Building2,
     title: "Для строительных компаний",
     description: "Комплексное оснащение новостроек системами автоматического учета воды и тепла. Проектирование под ключ.",
-    image: "/images/solution_builders.png",
+    image: "images/solution_builders.png",
     features: [
       "Проектирование систем учета",
       "Поставка оборудования",
@@ -45,7 +45,7 @@ const solutions = [
     icon: Users,
     title: "Для КСК и управляющих компаний",
     description: "Автоматизация сбора показаний и диспетчеризация инженерных систем многоквартирных домов.",
-    image: "/images/solution_ksk.png",
+    image: "images/solution_ksk.png",
     features: [
       "Автоматический сбор показаний",
       "Веб-панель управления",
@@ -59,7 +59,7 @@ const solutions = [
     icon: Factory,
     title: "Тепловые пункты / АТП",
     description: "Модернизация и строительство индивидуальных тепловых пунктов с автоматизацией и диспетчеризацией.",
-    image: "/images/solution_heat_points.png",
+    image: "images/solution_heat_points.png",
     features: [
       "Проектирование ИТП",
       "Поставка оборудования",
@@ -73,7 +73,7 @@ const solutions = [
     icon: Wifi,
     title: "Диспетчеризация и Smart Metrix",
     description: "Внедрение облачной платформы Smart Metrix для удаленного мониторинга всех инженерных систем объекта.",
-    image: "/images/solution_smart_metrix.png",
+    image: "images/solution_smart_metrix.png",
     features: [
       "Облачная платформа",
       "Мониторинг 24/7",

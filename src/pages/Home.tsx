@@ -39,20 +39,19 @@ const services = [
   { icon: Settings, title: "Техническое обслуживание", desc: "Регулярное ТО, диагностика и ремонт оборудования" },
 ];
 
-const popularProducts = [
-  { name: "KAZMETER 15C", price: "40 000 ₸", image: "/images/product-kazmeter-15c.jpg" },
-  { name: "KAZMETER 15C-LRW", price: "Цена по запросу", image: "/images/product-kazmeter-lrw.jpg" },
-  { name: "KAZMETER 15Н-LRW", price: "Цена по запросу", image: "/images/product-kazmeter-lrw.jpg" },
-  { name: "PULSAR IoT-CW15", price: "Цена по запросу", image: "/images/product-pulsar-cw15.jpg" },
-  { name: "PULSAR IoT-UW15", price: "Цена по запросу", image: "/images/product-pulsar-uw15.jpg" },
-];
+import productsData from "../data/products.json";
+
+const popularProducts = productsData
+  .filter((p) => p.badge === "Популярно")
+  .concat(productsData.filter((p) => p.badge !== "Популярно"))
+  .slice(0, 5);
 
 
 const solutions = [
-  { title: "Умный учет воды", features: ["Ультразвуковые счетчики", "Автоматический сбор данных", "Мобильное приложение"], image: "/images/solution-smart-home.jpg" },
-  { title: "Учет тепла и тепловые пункты", features: ["Теплосчетчики", "АТП под ключ", "Энергоаудит"], image: "/images/solution-heat-point.jpg" },
-  { title: "Диспетчеризация", features: ["Smart Metrix", "Удаленный контроль", "Оповещения"], image: "/images/smart-dashboard.png" },
-  { title: "Решения для КСК", features: ["Автоматизация", "Снижение затрат", "Отчетность"], image: "/images/solution-building.jpg" },
+  { title: "Умный учет воды", features: ["Ультразвуковые счетчики", "Автоматический сбор данных", "Мобильное приложение"], image: "images/solution-smart-home.jpg" },
+  { title: "Учет тепла и тепловые пункты", features: ["Теплосчетчики", "АТП под ключ", "Энергоаудит"], image: "images/solution-heat-point.jpg" },
+  { title: "Диспетчеризация", features: ["Smart Metrix", "Удаленный контроль", "Оповещения"], image: "images/smart-dashboard.png" },
+  { title: "Решения для КСК", features: ["Автоматизация", "Снижение затрат", "Отчетность"], image: "images/solution-building.jpg" },
 ];
 
 const projects = [
@@ -60,13 +59,13 @@ const projects = [
     name: "АО «Матен петролеум»",
     description: "Внедрение системы IoT-учета воды и тепла на промышленном объекте. Установка 150+ приборов учета с удаленным сбором показаний.",
     metrics: { devices: "150+", savings: "25%", period: "3 мес." },
-    image: "/images/project-oil-refinery.jpg",
+    image: "images/project-oil-refinery.jpg",
   },
   {
     name: "АО «СНПС-Актобемунайгаз»",
     description: "Комплексная модернизация системы учета энергоресурсов. Диспетчеризация и автоматический контроль потребления.",
     metrics: { devices: "200+", savings: "30%", period: "4 мес." },
-    image: "/images/service-thermal.jpg",
+    image: "images/service-thermal.jpg",
   },
 ];
 
@@ -148,9 +147,9 @@ export default function Home() {
 
                 {/* Center Image */}
                 <img
-                  src="/images/kazmeter.png"
+                  src="images/kazmeter-new (2).png"
                   alt="KAZMETER — счетчики будущего со встроенным модемом"
-                  className="w-[85%] h-[85%] object-contain z-10 relative drop-shadow-2xl"
+                  className="w-[85%] h-[85%] object-contain z-10 relative drop-shadow-2xl scale-[1.3]"
                 />
 
                 {/* Interactive Dots & Lines - Desktop only */}
@@ -281,23 +280,28 @@ export default function Home() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {popularProducts.map((product) => (
               <Link
-                key={product.name}
-                to={`/catalog/${product.name.toLowerCase().replace(/\s+/g, "-")}`}
-                className="card-base overflow-hidden group"
+                key={product.id}
+                to={`/catalog/${product.id}`}
+                className="card-base overflow-hidden group relative"
               >
-                <div className="bg-[#F8FBF9] p-4 flex items-center justify-center aspect-square">
+                {product.badge && (
+                  <div className="absolute top-2 right-2 bg-[#F14635] text-white text-[10px] uppercase font-bold px-2 py-1 rounded z-10 shadow-sm">
+                    {product.badge}
+                  </div>
+                )}
+                <div className="bg-[#F8FBF9] p-4 flex items-center justify-center aspect-square relative">
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 relative z-0"
                   />
                 </div>
                 <div className="p-4">
-                  <h3 className="font-semibold text-[#1B4332] text-sm mb-1 group-hover:text-[#2D6A4F] transition-colors">
+                  <h3 className="font-semibold text-[#1B4332] text-sm mb-1 group-hover:text-[#2D6A4F] transition-colors line-clamp-2" title={product.name}>
                     {product.name}
                   </h3>
                   <p className="text-[#52B788] font-bold text-sm">
-                    {product.price}
+                    {product.priceText || product.price || "Цена по запросу"}
                   </p>
                 </div>
               </Link>
@@ -335,7 +339,7 @@ export default function Home() {
             {/* Card 1 */}
             <div className="bg-white rounded-[24px] overflow-hidden shadow-sm flex flex-col group hover:shadow-md transition-shadow">
               <div className="aspect-[4/3] bg-gray-100 overflow-hidden relative">
-                <img src="/images/service-installation.jpg" alt="Экономия времени" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img src="images/service-installation.jpg" alt="Экономия времени" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
               <div className="p-8 flex-1 flex flex-col">
                 <div className="w-12 h-12 bg-[#F0FDF4] rounded-2xl flex items-center justify-center mb-6">
@@ -351,7 +355,7 @@ export default function Home() {
             {/* Card 2 */}
             <div className="bg-white rounded-[24px] overflow-hidden shadow-sm flex flex-col group hover:shadow-md transition-shadow">
               <div className="aspect-[4/3] bg-gray-100 overflow-hidden relative">
-                <img src="/images/product-kazmeter-15c.jpg" alt="Точные данные" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img src="images/product-kazmeter-15c.jpg" alt="Точные данные" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
               <div className="p-8 flex-1 flex flex-col">
                 <div className="w-12 h-12 bg-[#F0FDF4] rounded-2xl flex items-center justify-center mb-6">
@@ -367,7 +371,7 @@ export default function Home() {
             {/* Card 3 */}
             <div className="bg-white rounded-[24px] overflow-hidden shadow-sm flex flex-col group hover:shadow-md transition-shadow">
               <div className="aspect-[4/3] bg-gray-100 overflow-hidden relative">
-                <img src="/images/solution-smart-home.jpg" alt="Контроль расходов" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img src="images/solution-smart-home.jpg" alt="Контроль расходов" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
               <div className="p-8 flex-1 flex flex-col">
                 <div className="w-12 h-12 bg-[#F0FDF4] rounded-2xl flex items-center justify-center mb-6">
