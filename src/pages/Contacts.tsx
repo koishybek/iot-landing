@@ -17,17 +17,17 @@ import { submitToWhatsApp } from "../utils/whatsapp";
 const offices = [
   {
     city: "Астана",
-    address: "просп. Кабанбай батыра, 11, офис 305",
-    phone: "+7 707 313 4050",
-    email: "astana@iot-exp.kz",
+    address: "ул. Петрова, 18/1",
+    phones: ["+7 707 313 4050"],
+    email: "info@iot-exp.kz",
     hours: "Пн-Пт: 09:00 - 18:00",
     isMain: true,
   },
   {
     city: "Алматы",
     address: "просп. Назарбаева, 50, офис 412",
-    phone: "+7 707 313 4050",
-    email: "almaty@iot-exp.kz",
+    phones: ["+7 707 313 4050", "+7 705 705 5051"],
+    email: "info@iot-exp.kz",
     hours: "Пн-Пт: 09:00 - 18:00",
     isMain: false,
   },
@@ -59,7 +59,7 @@ const faqItems = [
   },
   {
     question: "Как связаться с техподдержкой?",
-    answer: "Техническая поддержка доступна круглосуточно по телефону +7 707 313 4050 или через WhatsApp. Также можно написать на support@iot-exp.kz — среднее время ответа 30 минут.",
+    answer: "Техническая поддержка доступна круглосуточно по телефону +7 707 313 4050 или через WhatsApp. Также можно написать на info@iot-exp.kz — среднее время ответа 30 минут.",
   },
 ];
 
@@ -104,11 +104,15 @@ export default function Contacts() {
                     <MapPin size={20} className="text-[#52B788] flex-shrink-0 mt-0.5" />
                     <span className="text-[#5C7A6B]">{office.address}</span>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <Phone size={20} className="text-[#52B788] flex-shrink-0" />
-                    <a href={`tel:${office.phone.replace(/\s/g, "")}`} className="text-[#1B4332] font-medium hover:text-[#52B788] transition-colors">
-                      {office.phone}
-                    </a>
+                  <div className="space-y-2">
+                    {office.phones.map((phoneNum) => (
+                      <div key={phoneNum} className="flex items-center gap-3">
+                        <Phone size={20} className="text-[#52B788] flex-shrink-0" />
+                        <a href={`tel:${phoneNum.replace(/\s/g, "")}`} className="text-[#1B4332] font-medium hover:text-[#52B788] transition-colors">
+                          {phoneNum}
+                        </a>
+                      </div>
+                    ))}
                   </div>
                   <div className="flex items-center gap-3">
                     <Mail size={20} className="text-[#52B788] flex-shrink-0" />
@@ -127,45 +131,7 @@ export default function Contacts() {
         </div>
       </section>
 
-      {/* Phone Numbers */}
-      <section className="bg-[#F8FBF9] py-12">
-        <div className="container-main">
-          <div className="bg-[#1B4332] rounded-2xl p-8 md:p-12">
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <Phone size={24} className="text-[#52B788] mx-auto mb-3" />
-                <div className="text-white/60 text-sm mb-1">Телефон (Астана)</div>
-                <a href="tel:+7 707 313 4050" className="text-white font-bold text-xl hover:text-[#52B788] transition-colors">
-                  +7 707 313 4050
-                </a>
-              </div>
-              <div className="text-center">
-                <Phone size={24} className="text-[#52B788] mx-auto mb-3" />
-                <div className="text-white/60 text-sm mb-1">Телефон (Алматы)</div>
-                <a href="tel:+7 707 313 4050" className="text-white font-bold text-xl hover:text-[#52B788] transition-colors">
-                  +7 707 313 4050
-                </a>
-              </div>
-              <div className="text-center">
-                <Mail size={24} className="text-[#52B788] mx-auto mb-3" />
-                <div className="text-white/60 text-sm mb-1">Email</div>
-                <a href="mailto:info@iot-exp.kz" className="text-white font-bold text-xl hover:text-[#52B788] transition-colors">
-                  info@iot-exp.kz
-                </a>
-              </div>
-            </div>
-            <div className="text-center mt-8 pt-8 border-t border-white/10">
-              <a
-                href="https://wa.me/77472075179"
-                className="inline-flex items-center gap-2 text-[#52B788] hover:text-white transition-colors"
-              >
-                <MessageSquare size={20} />
-                <span className="font-medium">Написать в WhatsApp</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       {/* Inquiry Type Cards */}
       <section className="bg-white section-padding">
@@ -276,10 +242,10 @@ export default function Contacts() {
                   <Navigation size={48} className="text-[#52B788] mb-4" />
                   <p className="text-[#1B4332] font-semibold mb-2">IoT-Exponenta</p>
                   <p className="text-[#5C7A6B] text-sm text-center max-w-xs">
-                    г. Астана, просп. Кабанбай батыра, 11, офис 305
+                    г. Астана, ул. Петрова, 18/1
                   </p>
                   <a
-                    href="https://2gis.kz/astana/search/%D0%9A%D0%B0%D0%B1%D0%B0%D0%BD%D0%B1%D0%B0%D0%B9%20%D0%B1%D0%B0%D1%82%D1%8B%D1%80%D0%B0%2011"
+                    href="https://2gis.kz/astana/search/ул.%20Петрова%2018%2F1"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-4 btn-secondary text-sm gap-1"

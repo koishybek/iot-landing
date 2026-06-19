@@ -39,7 +39,7 @@ export default function Header() {
           <div className="flex items-center gap-4 flex-wrap">
             <span className="flex items-center gap-1.5 text-white/80">
               <MapPin size={14} />
-              <span>г. Астана, ул. Кабанбай батыра, 11</span>
+              <span>г. Астана, ул. Петрова, 18/1</span>
             </span>
             <a href="mailto:info@iot-exp.kz" className="flex items-center gap-1.5 hover:text-[#52B788] transition-colors">
               <Mail size={14} />

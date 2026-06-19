@@ -14,12 +14,15 @@ const stats = [
 ];
 
 const partners = [
-  { name: "АО «Матен петролеум»", img: "images/partners/metron petrolium.png" },
-  { name: "АО «СНПС-Актобемунайгаз»", img: "images/partners/cnpc.png" },
-  { name: "ТОО «Казахстан Темир Жолы»", img: "images/partners/ktz.png" },
-  { name: "АО «Самрук-Энерго»", img: "images/partners/samruk-energy.png" },
+  { name: "Partner 1", img: "images/partners/1024_2dc41f67ac666a9c92f2f84c1e6f841a.png" },
   { name: "BI Group", img: "images/partners/bi-group.png" },
-  { name: "АО «КазТрансОйл»", img: "images/partners/kaztransoil.png" },
+  { name: "Partner 2", img: "images/partners/images (1).jpg" },
+  { name: "Partner 3", img: "images/partners/images (1).png" },
+  { name: "Partner 4", img: "images/partners/images (2).png" },
+  { name: "Partner 5", img: "images/partners/images.jpg" },
+  { name: "Partner 6", img: "images/partners/images.png" },
+  { name: "Partner 7", img: "images/partners/images1.png" },
+  { name: "Partner 8", img: "images/partners/Без названия.jpg" },
 ];
 
 const advantages = [
@@ -106,35 +109,7 @@ export default function About() {
             viewport={{ once: true, margin: "-100px" }}
             className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-auto"
           >
-            {/* Block 1: Main Text */}
-            <motion.div variants={itemVariants} className="md:col-span-2 bg-[#F8FBF9] rounded-3xl p-8 md:p-12 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#D8F3DC] to-transparent rounded-full blur-3xl opacity-50 group-hover:opacity-80 transition-opacity"></div>
-              <div className="relative z-10">
-                <h2 className="text-3xl md:text-4xl font-bold text-[#1B4332] mb-6">
-                  Комплексные решения энергосбережения
-                </h2>
-                <p className="text-lg text-[#5C7A6B] mb-6 leading-relaxed">
-                  С 2021 года наша компания является надежным партнером в сфере ресурсосбережения и автоматизации. Наш офис — это инженерный центр, где создаются передовые решения для инфраструктуры любого масштаба.
-                </p>
-                <p className="text-lg text-[#5C7A6B] leading-relaxed">
-                  Мы предлагаем полный спектр услуг и поставляем газовое оборудование, расходомеры, тепло- и водосчетчики, а также системы видеонаблюдения. Мы успешно внедряем технологии «умный дом», «умный город» и «умный завод», осуществляем комплексный КСК сервис (домофоны, сантехника и др.).
-                </p>
-              </div>
-            </motion.div>
 
-            {/* Block 2: Image */}
-            <motion.div variants={itemVariants} className="md:col-span-1 rounded-3xl overflow-hidden relative shadow-sm group min-h-[300px]">
-              <img
-                src="images/about-office.jpg"
-                alt="Офис IoT-Exponenta"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1B4332]/90 via-[#1B4332]/20 to-transparent"></div>
-              <div className="absolute bottom-6 left-6 right-6">
-                <h3 className="text-white text-xl font-bold mb-1">Наш офис</h3>
-                <p className="text-white/80 text-sm">Центр разработки и мониторинга</p>
-              </div>
-            </motion.div>
 
             {/* Block 3: Advantages Marquee / List */}
             <motion.div variants={itemVariants} className="md:col-span-3 bg-[#1B4332] rounded-3xl p-8 md:p-10 shadow-lg text-white">
@@ -202,20 +177,7 @@ export default function About() {
                 alt="Smart Metrix Dashboard"
                 className="w-full h-auto object-cover rounded-3xl shadow-2xl relative z-10 border border-white/50"
               />
-              {/* Floating element */}
-              <motion.div 
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-6 -right-6 bg-white/80 backdrop-blur-md p-6 rounded-2xl shadow-xl z-20 border border-white flex items-center gap-4"
-              >
-                <div className="bg-[#1B4332] w-12 h-12 rounded-full flex items-center justify-center">
-                  <Shield className="text-white" size={20} />
-                </div>
-                <div>
-                  <p className="text-sm text-[#5C7A6B] font-medium">Безопасность</p>
-                  <p className="text-[#1B4332] font-bold">RSA-2048 шифрование</p>
-                </div>
-              </motion.div>
+              {/* Floating element removed */}
             </motion.div>
             
             <motion.div 

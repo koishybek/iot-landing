@@ -137,7 +137,7 @@ export default function Footer() {
             </div>
             <div>
               <div className="text-white/50 text-xs">Адрес</div>
-              <span className="text-white">г. Астана, ул. Кабанбай батыра, 11</span>
+              <span className="text-white">г. Астана, ул. Петрова, 18/1</span>
             </div>
           </div>
         </div>
