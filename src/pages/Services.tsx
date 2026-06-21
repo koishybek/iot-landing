@@ -55,7 +55,7 @@ const services = [
     icon: Wifi,
     title: "Диспетчеризация и удаленный контроль",
     desc: "Онлайн-мониторинг и управление системами учета в реальном времени.",
-    image: "images/smart-dashboard.png",
+    image: "images/solution_smart_metrix.png",
   },
   {
     icon: Thermometer,
@@ -350,8 +350,8 @@ export default function Services() {
                 <button onClick={() => setConsultOpen(true)} className="bg-[#52B788] hover:bg-[#40916C] text-white font-bold py-4 px-8 rounded-full flex items-center justify-center gap-2 transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-[#52B788]/30">
                   Оставить заявку <ArrowRight size={18} />
                 </button>
-                <a href="tel:+77073134050" className="bg-white/10 hover:bg-white border border-white/20 text-white hover:text-[#1B4332] font-bold py-4 px-8 rounded-full flex items-center justify-center gap-2 transition-all hover:scale-105 active:scale-95">
-                  <Phone size={18} /> +7 707 313 4050
+                <a href="tel:87711731722" className="bg-white/10 hover:bg-white border border-white/20 text-white hover:text-[#1B4332] font-bold py-4 px-8 rounded-full flex items-center justify-center gap-2 transition-all hover:scale-105 active:scale-95">
+                  <Phone size={18} /> 8 771 173 1722
                 </a>
               </div>
             </motion.div>
@@ -394,6 +394,17 @@ export default function Services() {
             <form className="space-y-5" onSubmit={(e) => { setConsultOpen(false); submitToWhatsApp(e); }}>
               <input type="text" name="Имя" required placeholder="Ваше имя" className="w-full bg-[#F8FBF9] border border-[#D8E8DE] rounded-xl px-5 py-4 focus:outline-none focus:border-[#52B788] focus:ring-2 focus:ring-[#52B788]/20 transition-all" />
               <input type="tel" name="Телефон" required placeholder="Номер телефона" className="w-full bg-[#F8FBF9] border border-[#D8E8DE] rounded-xl px-5 py-4 focus:outline-none focus:border-[#52B788] focus:ring-2 focus:ring-[#52B788]/20 transition-all" />
+              <select
+                name="Город"
+                required
+                className="w-full bg-[#F8FBF9] border border-[#D8E8DE] rounded-xl px-5 py-4 focus:outline-none focus:border-[#52B788] focus:ring-2 focus:ring-[#52B788]/20 transition-all text-gray-700"
+              >
+                <option value="Астана">Астана</option>
+                <option value="Алматы">Алматы</option>
+                <option value="Шымкент">Шымкент</option>
+                <option value="Туркестан">Туркестан</option>
+                <option value="Другой">Другой</option>
+              </select>
               <input type="email" name="Email" placeholder="Email (необязательно)" className="w-full bg-[#F8FBF9] border border-[#D8E8DE] rounded-xl px-5 py-4 focus:outline-none focus:border-[#52B788] focus:ring-2 focus:ring-[#52B788]/20 transition-all" />
               <textarea name="Сообщение" placeholder="Какая услуга вас интересует?" rows={3} className="w-full bg-[#F8FBF9] border border-[#D8E8DE] rounded-xl px-5 py-4 focus:outline-none focus:border-[#52B788] focus:ring-2 focus:ring-[#52B788]/20 transition-all resize-none" />
               <button type="submit" className="w-full bg-[#52B788] hover:bg-[#40916C] text-white font-bold py-4 rounded-xl shadow-lg shadow-[#52B788]/30 transition-transform hover:-translate-y-1 active:translate-y-0">

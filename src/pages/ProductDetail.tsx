@@ -10,16 +10,23 @@ import {
   Shield,
   Clock,
   Truck,
+  ShoppingCart,
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { submitToWhatsApp } from "../utils/whatsapp";
 import productsData from "../data/products.json";
+import { useCart } from "../context/CartContext";
 
 const allProducts = productsData as any[];
 
 export default function ProductDetail() {
   const { productId } = useParams<{ productId: string }>();
+  const { addToCart } = useCart();
   const [favorite, setFavorite] = useState(false);
   const [compare, setCompare] = useState(false);
+  const [selectedDiameter, setSelectedDiameter] = useState("");
+  const [consultOpen, setConsultOpen] = useState(false);
 
   const product = allProducts.find((p) => p.id === productId);
 
@@ -35,6 +42,11 @@ export default function ProductDetail() {
   const relatedProducts = allProducts
     .filter((p) => p.category === product.category && p.id !== product.id)
     .slice(0, 4);
+
+  const variants = product.variants as any[] | undefined;
+  const displayPrice = selectedDiameter && variants
+    ? variants.find((v) => v.diameter === selectedDiameter)?.price || "Запросить цену"
+    : "Запросить цену";
 
   return (
     <div>
@@ -76,7 +88,27 @@ export default function ProductDetail() {
                 ))}
               </div>
               <h1 className="text-3xl font-bold text-[#1B4332] mb-4">{product.name}</h1>
-              <p className="text-2xl font-bold text-[#52B788] mb-6">{product.priceText}</p>
+              <p className="text-2xl font-bold text-[#52B788] mb-6">{displayPrice}</p>
+              
+              {/* Diameter selection */}
+              {variants && variants.length > 0 && (
+                <div className="mb-6 bg-[#F8FBF9] p-4 rounded-xl border border-[#D8E8DE]">
+                  <label className="text-sm font-semibold text-[#1B4332] block mb-2">Выберите диаметр:</label>
+                  <select
+                    value={selectedDiameter}
+                    onChange={(e) => setSelectedDiameter(e.target.value)}
+                    className="w-full max-w-xs border border-[#D8E8DE] rounded-lg px-4 py-2.5 focus:outline-none focus:border-[#52B788] bg-white text-sm text-[#1B4332]"
+                  >
+                    <option value="">Выберите диаметр</option>
+                    {variants.map((v) => (
+                      <option key={v.diameter} value={v.diameter}>
+                        {v.diameter}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
+
               <p className="text-[#5C7A6B] mb-8 leading-relaxed whitespace-pre-wrap">{product.description}</p>
 
               {/* Delivery info */}
@@ -99,30 +131,60 @@ export default function ProductDetail() {
               </div>
 
               {/* Actions */}
-              <div className="flex gap-3">
-                <Link to="/contacts" className="flex-1 btn-primary text-center py-3.5">
-                  Запросить цену
-                </Link>
-                <button
-                  onClick={() => setCompare(!compare)}
-                  className={`w-12 h-12 rounded-lg border flex items-center justify-center transition-colors ${
-                    compare
-                      ? "border-[#1B4332] bg-[#1B4332] text-white"
-                      : "border-[#D8E8DE] text-[#8BA89B] hover:border-[#1B4332]"
-                  }`}
-                >
-                  <ArrowRightLeft size={18} />
-                </button>
-                <button
-                  onClick={() => setFavorite(!favorite)}
-                  className={`w-12 h-12 rounded-lg border flex items-center justify-center transition-colors ${
-                    favorite
-                      ? "border-red-400 bg-red-50 text-red-500"
-                      : "border-[#D8E8DE] text-[#8BA89B] hover:border-red-400"
-                  }`}
-                >
-                  <Heart size={18} fill={favorite ? "currentColor" : "none"} />
-                </button>
+              <div className="flex flex-col gap-4">
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <button
+                    onClick={() => {
+                      if (variants && variants.length > 0 && !selectedDiameter) {
+                        alert("Пожалуйста, выберите диаметр прибора перед добавлением в корзину!");
+                        return;
+                      }
+                      addToCart(product, selectedDiameter);
+                    }}
+                    className="flex-1 btn-primary flex items-center justify-center gap-2 text-center py-3.5"
+                  >
+                    <ShoppingCart size={18} />
+                    Добавить в корзину
+                  </button>
+                  <button
+                    onClick={() => setConsultOpen(true)}
+                    className="flex-1 border border-[#D8E8DE] text-[#1B4332] hover:border-[#1B4332] font-semibold rounded-lg flex items-center justify-center gap-2 transition-colors py-3.5"
+                  >
+                    Получить консультацию
+                  </button>
+                </div>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <a
+                    href={`https://wa.me/77711731722?text=${encodeURIComponent(`Здравствуйте! Меня интересует прибор: ${product.name}${selectedDiameter ? ` (Диаметр: ${selectedDiameter})` : ''}`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 bg-[#25D366] hover:bg-[#20BA56] text-white font-semibold rounded-lg flex items-center justify-center gap-2 transition-colors py-3.5 shadow-sm text-center"
+                  >
+                    Связаться через WhatsApp
+                  </a>
+                </div>
+                <div className="flex gap-3">
+                  <button
+                    onClick={() => setCompare(!compare)}
+                    className={`flex-1 h-12 rounded-lg border flex items-center justify-center gap-2 transition-colors text-sm font-medium ${
+                      compare
+                        ? "border-[#1B4332] bg-[#1B4332] text-white"
+                        : "border-[#D8E8DE] text-[#8BA89B] hover:border-[#1B4332]"
+                    }`}
+                  >
+                    <ArrowRightLeft size={16} /> Сравнить
+                  </button>
+                  <button
+                    onClick={() => setFavorite(!favorite)}
+                    className={`flex-1 h-12 rounded-lg border flex items-center justify-center gap-2 transition-colors text-sm font-medium ${
+                      favorite
+                        ? "border-red-400 bg-red-50 text-red-500"
+                        : "border-[#D8E8DE] text-[#8BA89B] hover:border-red-400"
+                    }`}
+                  >
+                    <Heart size={16} fill={favorite ? "currentColor" : "none"} /> В избранное
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -252,6 +314,49 @@ export default function ProductDetail() {
           </div>
         </section>
       )}
+
+      {/* Consultation Dialog */}
+      <Dialog open={consultOpen} onOpenChange={setConsultOpen}>
+        <DialogContent className="sm:max-w-md rounded-3xl overflow-hidden p-0 border-none">
+          <div className="bg-[#1B4332] p-6 text-center">
+            <DialogHeader>
+              <DialogTitle className="text-white text-2xl font-bold">Получить консультацию</DialogTitle>
+            </DialogHeader>
+            <p className="text-white/80 text-sm mt-2">Заполните форму и мы свяжемся с вами в ближайшее время.</p>
+          </div>
+          <div className="p-8 bg-white">
+            <form className="space-y-5" onSubmit={(e) => { setConsultOpen(false); submitToWhatsApp(e); }}>
+              <input type="hidden" name="Товар" value={product.name + (selectedDiameter ? ` (Диаметр: ${selectedDiameter})` : '')} />
+              <div>
+                <label className="text-sm text-[#5C7A6B] mb-1 block">Имя *</label>
+                <input type="text" name="Имя" required placeholder="Как к вам обращаться?" className="w-full bg-[#F8FBF9] border border-[#D8E8DE] rounded-xl px-5 py-4 focus:outline-none focus:border-[#52B788] focus:ring-2 focus:ring-[#52B788]/20 transition-all" />
+              </div>
+              <div>
+                <label className="text-sm text-[#5C7A6B] mb-1 block">Телефон *</label>
+                <input type="tel" name="Телефон" required placeholder="Ваш номер телефона" className="w-full bg-[#F8FBF9] border border-[#D8E8DE] rounded-xl px-5 py-4 focus:outline-none focus:border-[#52B788] focus:ring-2 focus:ring-[#52B788]/20 transition-all" />
+              </div>
+              <div>
+                <label className="text-sm text-[#5C7A6B] mb-1 block">Город *</label>
+                <select name="Город" required className="w-full bg-[#F8FBF9] border border-[#D8E8DE] rounded-xl px-5 py-4 focus:outline-none focus:border-[#52B788] focus:ring-2 focus:ring-[#52B788]/20 transition-all">
+                  <option value="Астана">Астана</option>
+                  <option value="Алматы">Алматы</option>
+                  <option value="Шымкент">Шымкент</option>
+                  <option value="Туркестан">Туркестан</option>
+                  <option value="Другой">Другой</option>
+                </select>
+              </div>
+              <div>
+                <label className="text-sm text-[#5C7A6B] mb-1 block">Сообщение</label>
+                <textarea name="Ваш вопрос" placeholder="Задайте ваш вопрос по прибору..." rows={3} className="w-full bg-[#F8FBF9] border border-[#D8E8DE] rounded-xl px-5 py-4 focus:outline-none focus:border-[#52B788] focus:ring-2 focus:ring-[#52B788]/20 transition-all resize-none" />
+              </div>
+              <button type="submit" className="w-full bg-[#52B788] hover:bg-[#40916C] text-white font-bold py-4 rounded-xl shadow-lg shadow-[#52B788]/30 transition-transform hover:-translate-y-1 active:translate-y-0">
+                Отправить заявку
+              </button>
+            </form>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
+

@@ -11,28 +11,33 @@ import Solutions from "./pages/Solutions";
 import Projects from "./pages/Projects";
 import Partners from "./pages/Partners";
 import Contacts from "./pages/Contacts";
+import { CartProvider } from "./context/CartContext";
+import CartDrawer from "./components/CartDrawer";
 
 function App() {
   return (
     <HashRouter>
-      <ScrollToTop />
-      <div className="min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-1">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/catalog" element={<Catalog />} />
-            <Route path="/catalog/:productId" element={<ProductDetail />} />
-            <Route path="/solutions" element={<Solutions />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/partners" element={<Partners />} />
-            <Route path="/contacts" element={<Contacts />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
+      <CartProvider>
+        <ScrollToTop />
+        <CartDrawer />
+        <div className="min-h-screen flex flex-col">
+          <Header />
+          <main className="flex-1">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/catalog" element={<Catalog />} />
+              <Route path="/catalog/:productId" element={<ProductDetail />} />
+              <Route path="/solutions" element={<Solutions />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/partners" element={<Partners />} />
+              <Route path="/contacts" element={<Contacts />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </CartProvider>
     </HashRouter>
   );
 }

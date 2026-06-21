@@ -241,13 +241,19 @@ export default function Partners() {
                 </div>
               </div>
               <div>
-                <label className="text-sm text-[#5C7A6B] mb-1 block">Город</label>
-                <input
-                  type="text"
+                <label className="text-sm text-[#5C7A6B] mb-1 block">Город *</label>
+                <select
                   name="Город"
-                  placeholder="Город"
+                  required
                   className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 bg-white focus:outline-none focus:border-[#52B788]"
-                />
+                >
+                  <option value="">Выберите город *</option>
+                  <option value="Астана">Астана</option>
+                  <option value="Алматы">Алматы</option>
+                  <option value="Шымкент">Шымкент</option>
+                  <option value="Туркестан">Туркестан</option>
+                  <option value="Другой">Другой</option>
+                </select>
               </div>
               <div>
                 <label className="text-sm text-[#5C7A6B] mb-1 block">Тип партнерства</label>

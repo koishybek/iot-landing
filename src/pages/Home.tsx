@@ -2,10 +2,8 @@ import { Link } from "react-router-dom";
 import {
   Wrench,
   Clock,
-  Home as HomeIcon,
   Building2,
   Factory,
-  Users,
   ArrowRight,
   CheckCircle,
   Settings,
@@ -18,6 +16,8 @@ import {
   Target,
   BarChart2,
   Shield,
+  HardHat,
+  User,
 } from "lucide-react";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -27,9 +27,9 @@ import { submitToWhatsApp } from "../utils/whatsapp";
 
 
 const categories = [
-  { icon: HomeIcon, title: "Частные клиенты", desc: "Установка и обслуживание счетчиков в квартирах и частных домах", link: "/solutions" },
-  { icon: Building2, title: "Строительные компании", desc: "Комплексное оснащение новостроек системами учета", link: "/solutions" },
-  { icon: Users, title: "КСК и управляющие компании", desc: "Автоматизация сбора показаний и диспетчеризация", link: "/solutions" },
+  { icon: User, title: "Частные клиенты", desc: "Установка и обслуживание счетчиков в квартирах и частных домах", link: "/solutions" },
+  { icon: HardHat, title: "Строительные компании", desc: "Комплексное оснащение новостроек системами учета", link: "/solutions" },
+  { icon: Building2, title: "КСК и управляющие компании", desc: "Автоматизация сбора показаний и диспетчеризация", link: "/solutions" },
   { icon: Factory, title: "Промышленные предприятия", desc: "Промышленные системы учета и мониторинга", link: "/solutions" },
 ];
 
@@ -48,9 +48,9 @@ const popularProducts = productsData
 
 
 const solutions = [
-  { title: "Умный учет воды", features: ["Ультразвуковые счетчики", "Автоматический сбор данных", "Мобильное приложение"], image: "images/solution-smart-home.jpg" },
+  { title: "Интеллектуальный учет воды", features: ["Ультразвуковые приборы учета", "Автоматический сбор данных", "Мобильное приложение"], image: "images/solution-smart-home.jpg" },
   { title: "Учет тепла и тепловые пункты", features: ["Теплосчетчики", "АТП под ключ", "Энергоаудит"], image: "images/solution-heat-point.jpg" },
-  { title: "Диспетчеризация", features: ["Smart Metrix", "Удаленный контроль", "Оповещения"], image: "images/smart-dashboard.png" },
+  { title: "Диспетчеризация", features: ["Smart Metrix", "Удаленный контроль", "Оповещения"], image: "images/solution_smart_metrix.png" },
   { title: "Решения для КСК", features: ["Автоматизация", "Снижение затрат", "Отчетность"], image: "images/solution-building.jpg" },
 ];
 
@@ -93,8 +93,8 @@ export default function Home() {
               <p className="text-2xl md:text-[28px] font-bold text-[#1F2937] mb-3">
                 со встроенным модемом
               </p>
-              <p className="text-base md:text-lg text-[#40916C] mb-10 font-semibold">
-                Автоматический учет данных
+              <p className="text-base md:text-lg text-[#5C7A6B] mb-10 max-w-xl leading-relaxed">
+                Проектируем, поставляем и внедряем системы автоматизированного учета и диспетчеризации электроэнергии, тепла и воды. Обеспечиваем полный цикл работ: от подбора оборудования и монтажа до ввода системы в эксплуатацию и технической поддержки.
               </p>
 
               {/* Feature icons row */}
@@ -228,8 +228,8 @@ export default function Home() {
                 to={cat.link}
                 className="card-base p-8 text-center group hover:-translate-y-1"
               >
-                <div className="w-16 h-16 bg-[#F8FBF9] rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-[#D8F3DC] transition-colors">
-                  <cat.icon size={28} className="text-[#1B4332]" />
+                <div className="w-16 h-16 bg-[#E8F7ED] rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-[#52B788] transition-all duration-300 shadow-sm">
+                  <cat.icon size={28} className="text-[#52B788] group-hover:text-white transition-colors" />
                 </div>
                 <h3 className="font-semibold text-[#1B4332] mb-2">{cat.title}</h3>
                 <p className="text-sm text-[#5C7A6B]">{cat.desc}</p>
@@ -318,7 +318,7 @@ export default function Home() {
             <div className="max-w-2xl">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white border border-[#D8E8DE] rounded-full text-[#40916C] font-medium text-sm mb-6 shadow-sm">
                 <Radio size={16} />
-                <span>Умный учёт</span>
+                <span>Интеллектуальный учёт</span>
               </div>
               <h2 className="text-[32px] md:text-[42px] font-bold text-[#1B4332] leading-[1.1] mb-4">
                 Преимущества <br className="hidden md:block" />
@@ -495,8 +495,8 @@ export default function Home() {
               </p>
               <div className="flex items-center gap-3">
                 <Phone size={20} className="text-[#1B4332]" />
-                <a href="tel:+7 707 313 4050" className="text-[#1B4332] font-semibold text-xl hover:text-[#2D6A4F] transition-colors">
-                  +7 707 313 4050
+                <a href="tel:87711731722" className="text-[#1B4332] font-semibold text-xl hover:text-[#2D6A4F] transition-colors">
+                  8 771 173 1722
                 </a>
               </div>
             </div>
@@ -523,14 +523,30 @@ export default function Home() {
                   />
                 </div>
               </div>
-              <div className="mb-4">
-                <label className="text-[#1B4332] text-sm font-semibold mb-1 block">Email</label>
-                <input
-                  type="email"
-                  name="Email"
-                  placeholder="example@mail.com"
-                  className="w-full bg-white border border-[#D8E8DE] rounded-lg px-4 py-3 text-[#1B4332] placeholder:text-gray-400 focus:outline-none focus:border-[#1B4332] focus:ring-1 focus:ring-[#1B4332]"
-                />
+              <div className="grid sm:grid-cols-2 gap-4 mb-4">
+                <div>
+                  <label className="text-[#1B4332] text-sm font-semibold mb-1 block">Город</label>
+                  <select
+                    name="Город"
+                    required
+                    className="w-full bg-white border border-[#D8E8DE] rounded-lg px-4 py-3 text-[#1B4332] focus:outline-none focus:border-[#1B4332] focus:ring-1 focus:ring-[#1B4332]"
+                  >
+                    <option value="Астана">Астана</option>
+                    <option value="Алматы">Алматы</option>
+                    <option value="Шымкент">Шымкент</option>
+                    <option value="Туркестан">Туркестан</option>
+                    <option value="Другой">Другой</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="text-[#1B4332] text-sm font-semibold mb-1 block">Email</label>
+                  <input
+                    type="email"
+                    name="Email"
+                    placeholder="example@mail.com"
+                    className="w-full bg-white border border-[#D8E8DE] rounded-lg px-4 py-3 text-[#1B4332] placeholder:text-gray-400 focus:outline-none focus:border-[#1B4332] focus:ring-1 focus:ring-[#1B4332]"
+                  />
+                </div>
               </div>
               <div className="mb-6">
                 <label className="text-[#1B4332] text-sm font-semibold mb-1 block">Сообщение</label>
@@ -570,6 +586,17 @@ export default function Home() {
               placeholder="Телефон"
               className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788]"
             />
+            <select
+              name="Город"
+              required
+              className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 bg-white focus:outline-none focus:border-[#52B788] text-sm text-gray-700"
+            >
+              <option value="Астана">Астана</option>
+              <option value="Алматы">Алматы</option>
+              <option value="Шымкент">Шымкент</option>
+              <option value="Туркестан">Туркестан</option>
+              <option value="Другой">Другой</option>
+            </select>
             <input
               type="email"
               name="Email"

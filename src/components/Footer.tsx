@@ -109,35 +109,60 @@ export default function Footer() {
 
         {/* Contact info */}
         <div className="mt-12 pt-8 border-t border-white/10 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center">
+          <div className="flex items-start gap-3">
+            <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0">
               <Phone size={18} className="text-[#52B788]" />
             </div>
             <div>
-              <div className="text-white/50 text-xs">Телефон</div>
-              <a href="tel:+7 707 313 4050" className="text-white hover:text-[#52B788] transition-colors">
-                +7 707 313 4050
-              </a>
+              <div className="text-white/50 text-xs mb-1">Телефон</div>
+              <div className="space-y-2">
+                <div>
+                  <span className="text-white/40 text-xs block">Астана:</span>
+                  <a href="tel:87711731722" className="text-white hover:text-[#52B788] transition-colors text-sm font-medium">
+                    8 771 173 1722
+                  </a>
+                </div>
+                <div>
+                  <span className="text-white/40 text-xs block">Алматы:</span>
+                  <div className="flex flex-col">
+                    <a href="tel:+77073134050" className="text-white hover:text-[#52B788] transition-colors text-sm font-medium">
+                      +7 707 313 4050
+                    </a>
+                    <a href="tel:+77057055051" className="text-white hover:text-[#52B788] transition-colors text-sm font-medium">
+                      +7 705 705 5051
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center">
+          <div className="flex items-start gap-3">
+            <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0">
               <Mail size={18} className="text-[#52B788]" />
             </div>
             <div>
-              <div className="text-white/50 text-xs">Email</div>
-              <a href="mailto:info@iot-exp.kz" className="text-white hover:text-[#52B788] transition-colors">
+              <div className="text-white/50 text-xs mb-1">Email</div>
+              <a href="mailto:info@iot-exp.kz" className="text-white hover:text-[#52B788] transition-colors text-sm font-medium">
                 info@iot-exp.kz
               </a>
             </div>
           </div>
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center">
+          <div className="flex items-start gap-3">
+            <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0">
               <MapPin size={18} className="text-[#52B788]" />
             </div>
             <div>
-              <div className="text-white/50 text-xs">Адрес</div>
-              <span className="text-white">г. Астана, ул. Петрова, 18/1</span>
+              <div className="text-white/50 text-xs mb-1">Адрес</div>
+              <div className="space-y-2 text-sm text-white">
+                <div>
+                  <span className="text-white/40 text-xs block">Астана:</span>
+                  <span>ул. Петрова, 18/1</span>
+                </div>
+                <div>
+                  <span className="text-white/40 text-xs block">Алматы:</span>
+                  <span>просп. Назарбаева, 50, офис 412</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

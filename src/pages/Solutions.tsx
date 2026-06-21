@@ -16,10 +16,10 @@ const solutions = [
   {
     icon: Home,
     title: "Для частных клиентов",
-    description: "Комплект умного учета для квартиры или частного дома. Установка IoT-счетчиков воды с удаленным снятием показаний.",
+    description: "Комплект интеллектуального учета для квартиры или частного дома. Установка интеллектуальных приборов учета воды с дистанционной передачей данных.",
     image: "images/solution_private.png",
     features: [
-      "Ультразвуковые счетчики воды",
+      "Ультразвуковые приборы учета воды с дистанционной передачей данных",
       "Автоматический сбор показаний",
       "Мобильное приложение",
       "Оповещения об утечках",
@@ -224,8 +224,8 @@ export default function Solutions() {
             <button onClick={() => setConsultOpen(true)} className="btn-primary bg-[#52B788] hover:bg-[#40916C] gap-2">
               Получить консультацию <ArrowRight size={16} />
             </button>
-            <a href="tel:+7 707 313 4050" className="btn-secondary border-white text-white hover:bg-white hover:text-[#1B4332] gap-2">
-              <Phone size={16} /> +7 707 313 4050
+            <a href="tel:87711731722" className="btn-secondary border-white text-white hover:bg-white hover:text-[#1B4332] gap-2">
+              <Phone size={16} /> 8 771 173 1722
             </a>
           </div>
         </div>
@@ -238,6 +238,14 @@ export default function Solutions() {
             <form className="space-y-4" onSubmit={(e) => { setConsultOpen(false); submitToWhatsApp(e); }}>
               <input type="text" name="Имя" required placeholder="Ваше имя" className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788]" />
               <input type="tel" name="Телефон" required placeholder="Телефон" className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788]" />
+              <select name="Город" required className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788] bg-white">
+                <option value="">Выберите город *</option>
+                <option value="Астана">Астана</option>
+                <option value="Алматы">Алматы</option>
+                <option value="Шымкент">Шымкент</option>
+                <option value="Туркестан">Туркестан</option>
+                <option value="Другой">Другой</option>
+              </select>
               <input type="email" name="Email" placeholder="Email" className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788]" />
               <textarea name="Сообщение" placeholder="Опишите вашу задачу" rows={3} className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788] resize-none" />
               <button type="submit" className="w-full btn-primary">Отправить заявку</button>

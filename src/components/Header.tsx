@@ -7,7 +7,9 @@ import {
   Menu,
   X,
   Search,
+  ShoppingCart,
 } from "lucide-react";
+import { useCart } from "../context/CartContext";
 
 const navItems = [
   { label: "Главная", path: "/" },
@@ -24,6 +26,8 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === "/";
+  const { cart, setCartOpen } = useCart();
+  const totalItems = cart.reduce((sum, item) => sum + item.count, 0);
 
   return (
     <header className="sticky top-0 z-50">
@@ -31,9 +35,9 @@ export default function Header() {
       <div className="bg-[#1B4332] text-white text-sm py-2">
         <div className="container-main flex flex-wrap justify-between items-center gap-2">
           <div className="flex items-center gap-4 flex-wrap">
-            <a href="tel:+7 707 313 4050" className="flex items-center gap-1.5 hover:text-[#52B788] transition-colors">
+            <a href="tel:87711731722" className="flex items-center gap-1.5 hover:text-[#52B788] transition-colors">
               <Phone size={14} />
-              <span>+7 707 313 4050</span>
+              <span>8 771 173 1722</span>
             </a>
           </div>
           <div className="flex items-center gap-4 flex-wrap">
@@ -82,6 +86,20 @@ export default function Header() {
               <button className={`hidden md:flex items-center justify-center w-10 h-10 rounded-lg transition-colors text-[#1B4332] ${isHome ? "hover:bg-[#E5E7E5]" : "hover:bg-[#F8FBF9]"}`}>
                 <Search size={20} />
               </button>
+              
+              <button
+                onClick={() => setCartOpen(true)}
+                className={`relative flex items-center justify-center w-10 h-10 rounded-lg transition-colors text-[#1B4332] ${isHome ? "hover:bg-[#E5E7E5]" : "hover:bg-[#F8FBF9]"}`}
+                title="Корзина"
+              >
+                <ShoppingCart size={20} />
+                {totalItems > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border border-white shadow-sm">
+                    {totalItems}
+                  </span>
+                )}
+              </button>
+
               <Link
                 to="/contacts"
                 className="hidden md:inline-flex btn-outline-green text-sm"

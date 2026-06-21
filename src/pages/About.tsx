@@ -14,15 +14,10 @@ const stats = [
 ];
 
 const partners = [
-  { name: "Partner 1", img: "images/partners/1024_2dc41f67ac666a9c92f2f84c1e6f841a.png" },
   { name: "BI Group", img: "images/partners/bi-group.png" },
-  { name: "Partner 2", img: "images/partners/images (1).jpg" },
-  { name: "Partner 3", img: "images/partners/images (1).png" },
-  { name: "Partner 4", img: "images/partners/images (2).png" },
-  { name: "Partner 5", img: "images/partners/images.jpg" },
-  { name: "Partner 6", img: "images/partners/images.png" },
-  { name: "Partner 7", img: "images/partners/images1.png" },
-  { name: "Partner 8", img: "images/partners/Без названия.jpg" },
+  { name: "ТОО «Сат НС»", img: "images/partners/images (1).png" },
+  { name: "ТОО «Sensata Group»", img: "images/partners/images.png" },
+  { name: "ТОО «Свой дом»", img: "images/partners/Без названия.jpg" }
 ];
 
 const advantages = [
@@ -89,7 +84,7 @@ export default function About() {
             <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
               Формируем будущее <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#52B788] to-[#95D5B2]">
-                умного учета
+                интеллектуального учета
               </span>
             </motion.h1>
             <motion.p variants={itemVariants} className="text-xl md:text-2xl text-[#8BA89B] leading-relaxed max-w-2xl">
@@ -173,7 +168,7 @@ export default function About() {
             >
               <div className="absolute inset-0 bg-gradient-to-tr from-[#52B788]/20 to-transparent rounded-3xl transform -rotate-3 scale-105 blur-lg z-0"></div>
               <img
-                src="images/smart-dashboard.png"
+                src="images/solution_smart_metrix.png"
                 alt="Smart Metrix Dashboard"
                 className="w-full h-auto object-cover rounded-3xl shadow-2xl relative z-10 border border-white/50"
               />
@@ -317,6 +312,17 @@ export default function About() {
             <form className="space-y-5" onSubmit={(e) => { setConsultOpen(false); submitToWhatsApp(e); }}>
               <input type="text" name="Имя" required placeholder="Как к вам обращаться?" className="w-full bg-[#F8FBF9] border border-[#D8E8DE] rounded-xl px-5 py-4 focus:outline-none focus:border-[#52B788] focus:ring-2 focus:ring-[#52B788]/20 transition-all" />
               <input type="tel" name="Телефон" required placeholder="Ваш номер телефона" className="w-full bg-[#F8FBF9] border border-[#D8E8DE] rounded-xl px-5 py-4 focus:outline-none focus:border-[#52B788] focus:ring-2 focus:ring-[#52B788]/20 transition-all" />
+              <select
+                name="Город"
+                required
+                className="w-full bg-[#F8FBF9] border border-[#D8E8DE] rounded-xl px-5 py-4 focus:outline-none focus:border-[#52B788] focus:ring-2 focus:ring-[#52B788]/20 transition-all text-gray-700"
+              >
+                <option value="Астана">Астана</option>
+                <option value="Алматы">Алматы</option>
+                <option value="Шымкент">Шымкент</option>
+                <option value="Туркестан">Туркестан</option>
+                <option value="Другой">Другой</option>
+              </select>
               <input type="email" name="Email" placeholder="Email (необязательно)" className="w-full bg-[#F8FBF9] border border-[#D8E8DE] rounded-xl px-5 py-4 focus:outline-none focus:border-[#52B788] focus:ring-2 focus:ring-[#52B788]/20 transition-all" />
               <textarea name="Ваш вопрос" placeholder="Опишите вашу задачу..." rows={3} className="w-full bg-[#F8FBF9] border border-[#D8E8DE] rounded-xl px-5 py-4 focus:outline-none focus:border-[#52B788] focus:ring-2 focus:ring-[#52B788]/20 transition-all resize-none" />
               <button type="submit" className="w-full bg-[#52B788] hover:bg-[#40916C] text-white font-bold py-4 rounded-xl shadow-lg shadow-[#52B788]/30 transition-transform hover:-translate-y-1 active:translate-y-0">

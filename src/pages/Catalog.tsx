@@ -13,20 +13,21 @@ import productsData from "../data/products.json";
 // Type assertion to ensure TS knows the structure if needed, or just let it infer.
 const products = productsData as any[];
 const categories = [
-  { id: "water", name: "Счетчики воды", count: 12 },
-  { id: "heat", name: "Теплосчетчики", count: 8 },
-  { id: "iot", name: "IoT устройства", count: 15 },
-  { id: "pulse", name: "Импульсные", count: 6 },
-  { id: "lora", name: "LoRaWAN", count: 9 },
-  { id: "nbiot", name: "NB-IoT", count: 5 },
+  { id: "water", name: "Счетчики воды" },
+  { id: "heat", name: "Теплосчетчики" },
+  { id: "iot", name: "IoT устройства" },
+  { id: "pulse", name: "Импульсные" },
+  { id: "lora", name: "LoRaWAN" },
+  { id: "nbiot", name: "NB-IoT" },
 ];
 
 const manufacturers = [
-  { id: "kazmeter", name: "KAZMETER", count: 6 },
-  { id: "pulsar", name: "PULSAR", count: 8 },
-  { id: "vvt", name: "ВВТ", count: 4 },
-  { id: "mur", name: "МУР", count: 3 },
-  { id: "stv", name: "СТВУ", count: 2 },
+  { id: "kazmeter", name: "KAZMETER" },
+  { id: "pulsar", name: "PULSAR" },
+  { id: "vvt", name: "ВВТ" },
+  { id: "mur", name: "МУР" },
+  { id: "stv", name: "СТВУ" },
+  { id: "other", name: "Другие" },
 ];
 
 const protocols = [
@@ -54,6 +55,23 @@ export default function Catalog() {
     setter((prev) =>
       prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]
     );
+  };
+
+  const getCategoryCount = (catId: string) => {
+    if (catId === "water" || catId === "heat" || catId === "iot") {
+      return products.filter(p => p.category === catId).length;
+    }
+    const protoMap: { [key: string]: string } = {
+      lora: "lorawan",
+      nbiot: "nbiot",
+      pulse: "pulse"
+    };
+    const targetProto = protoMap[catId] || catId;
+    return products.filter(p => p.protocols.includes(targetProto)).length;
+  };
+
+  const getManufacturerCount = (mId: string) => {
+    return products.filter(p => p.manufacturer === mId).length;
   };
 
   const filteredProducts = products
@@ -101,7 +119,7 @@ export default function Catalog() {
               <span className="text-sm text-[#5C7A6B] group-hover:text-[#1B4332] transition-colors">
                 {cat.name}
               </span>
-              <span className="text-xs text-[#8BA89B] ml-auto">{cat.count}</span>
+              <span className="text-xs text-[#8BA89B] ml-auto">{getCategoryCount(cat.id)}</span>
             </label>
           ))}
         </div>
@@ -122,7 +140,7 @@ export default function Catalog() {
               <span className="text-sm text-[#5C7A6B] group-hover:text-[#1B4332] transition-colors">
                 {m.name}
               </span>
-              <span className="text-xs text-[#8BA89B] ml-auto">{m.count}</span>
+              <span className="text-xs text-[#8BA89B] ml-auto">{getManufacturerCount(m.id)}</span>
             </label>
           ))}
         </div>
@@ -269,19 +287,28 @@ export default function Catalog() {
                         {product.protocols.map((p: string) => p.toUpperCase()).join(", ")} · {product.diameter}
                       </div>
                       <Link to={`/catalog/${product.id}`}>
-                        <h3 className="font-semibold text-[#1B4332] mb-2 group-hover:text-[#2D6A4F] transition-colors">
+                        <h3 className="font-semibold text-[#1B4332] mb-1 group-hover:text-[#2D6A4F] transition-colors leading-tight">
                           {product.name}
                         </h3>
                       </Link>
+                      {product.variants && product.variants.length > 0 && (
+                        <div className="flex flex-wrap gap-1 mb-2 mt-1.5">
+                          {product.variants.map((v: any) => (
+                            <span key={v.diameter} className="bg-[#E8F7ED] text-[#1B4332] text-[10px] font-semibold px-2 py-0.5 rounded border border-[#D8E8DE]">
+                              {v.diameter}
+                            </span>
+                          ))}
+                        </div>
+                      )}
                       <p className="text-[#52B788] font-bold mb-4">
                         {product.priceText}
                       </p>
                       <div className="flex gap-2">
                         <Link
-                          to="/contacts"
+                          to={`/catalog/${product.id}`}
                           className="flex-1 btn-primary text-sm py-2.5 text-center"
                         >
-                          Запросить цену
+                          Подробнее
                         </Link>
                         <button
                           onClick={() => toggleCompare(product.id)}

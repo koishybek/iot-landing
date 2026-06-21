@@ -18,7 +18,7 @@ const offices = [
   {
     city: "Астана",
     address: "ул. Петрова, 18/1",
-    phones: ["+7 707 313 4050"],
+    phones: ["8 771 173 1722"],
     email: "info@iot-exp.kz",
     hours: "Пн-Пт: 09:00 - 18:00",
     isMain: true,
@@ -59,7 +59,7 @@ const faqItems = [
   },
   {
     question: "Как связаться с техподдержкой?",
-    answer: "Техническая поддержка доступна круглосуточно по телефону +7 707 313 4050 или через WhatsApp. Также можно написать на info@iot-exp.kz — среднее время ответа 30 минут.",
+    answer: "Техническая поддержка доступна круглосуточно по телефону 8 771 173 1722 или через WhatsApp. Также можно написать на info@iot-exp.kz — среднее время ответа 30 минут.",
   },
 ];
 
@@ -77,6 +77,40 @@ export default function Contacts() {
             Свяжитесь с нами удобным способом. Мы всегда на связи и готовы
             ответить на все ваши вопросы.
           </p>
+        </div>
+      </section>
+
+      {/* Telegram Support Banner */}
+      <section className="bg-white py-12 border-b border-[#D8E8DE]">
+        <div className="container-main">
+          <div className="bg-gradient-to-br from-[#1B4332] to-[#0A1F16] rounded-3xl p-8 md:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden shadow-xl">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-[#52B788]/20 rounded-full blur-[80px] pointer-events-none" />
+            <div className="relative z-10 max-w-2xl">
+              <span className="inline-block bg-[#52B788]/20 text-[#52B788] text-xs font-semibold px-3.5 py-1.5 rounded-full mb-4 uppercase tracking-wider">
+                Сервисная поддержка
+              </span>
+              <h2 className="text-3xl font-bold mb-4">Техническая поддержка и консультации</h2>
+              <p className="text-white/80 mb-8 text-lg leading-relaxed">
+                В Telegram отвечает сервисный бот и специалисты компании.
+              </p>
+              <a
+                href="https://t.me/iot_exponenta_bot"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-[#52B788] hover:bg-[#40916C] text-white font-bold rounded-xl transition-all shadow-lg shadow-[#52B788]/20 hover:scale-105 active:scale-95"
+              >
+                Открыть Telegram
+              </a>
+            </div>
+            <div className="relative z-10 flex flex-col items-center bg-white p-6 rounded-2xl border border-white/10 shadow-lg shrink-0">
+              <img
+                src="images/telegram_qr.png"
+                alt="Telegram QR Code"
+                className="w-36 h-36 object-contain"
+              />
+              <span className="text-xs text-[#1B4332] font-semibold mt-3">@iot_exponenta_bot</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -206,17 +240,34 @@ export default function Contacts() {
                     className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788]"
                   />
                 </div>
-                <div>
-                  <label className="text-sm text-[#5C7A6B] mb-1 block">Тема обращения</label>
-                  <select name="Тема обращения" className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788]">
-                    <option>Выберите тему</option>
-                    <option>Заказать услугу</option>
-                    <option>Запросить КП</option>
-                    <option>Стать партнером</option>
-                    <option>Техподдержка</option>
-                    <option>Другое</option>
-                  </select>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-sm text-[#5C7A6B] mb-1 block">Город *</label>
+                    <select
+                      name="Город"
+                      required
+                      className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 bg-white focus:outline-none focus:border-[#52B788]"
+                    >
+                      <option value="Астана">Астана</option>
+                      <option value="Алматы">Алматы</option>
+                      <option value="Шымкент">Шымкент</option>
+                      <option value="Туркестан">Туркестан</option>
+                      <option value="Другой">Другой</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="text-sm text-[#5C7A6B] mb-1 block">Тема обращения</label>
+                    <select name="Тема обращения" className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 bg-white focus:outline-none focus:border-[#52B788]">
+                      <option>Выберите тему</option>
+                      <option>Заказать услугу</option>
+                      <option>Запросить КП</option>
+                      <option>Стать партнером</option>
+                      <option>Техподдержка</option>
+                      <option>Другое</option>
+                    </select>
+                  </div>
                 </div>
+
                 <div>
                   <label className="text-sm text-[#5C7A6B] mb-1 block">Сообщение</label>
                   <textarea
