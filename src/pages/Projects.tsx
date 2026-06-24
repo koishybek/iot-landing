@@ -369,8 +369,8 @@ export default function Projects() {
               <button onClick={() => setConsultOpen(true)} className="btn-primary bg-[#52B788] hover:bg-[#40916C] gap-2">
                 Обсудить проект <ArrowRight size={16} />
               </button>
-              <a href="tel:87711731722" className="btn-secondary border-white text-white hover:bg-white hover:text-[#1B4332] gap-2">
-                <Phone size={16} /> 8 771 173 1722
+              <a href="tel:+77711731722" className="btn-secondary border-white text-white hover:bg-white hover:text-[#1B4332] gap-2">
+                <Phone size={16} /> +7 771 173 1722
               </a>
             </div>
           </div>

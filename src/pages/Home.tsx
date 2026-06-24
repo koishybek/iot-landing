@@ -226,10 +226,10 @@ export default function Home() {
               <Link
                 key={cat.title}
                 to={cat.link}
-                className="card-base p-8 text-center group hover:-translate-y-1"
+                className="card-base p-8 text-center"
               >
-                <div className="w-16 h-16 bg-[#E8F7ED] rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-[#52B788] transition-all duration-300 shadow-sm">
-                  <cat.icon size={28} className="text-[#52B788] group-hover:text-white transition-colors" />
+                <div className="w-16 h-16 bg-[#52B788] rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm">
+                  <cat.icon size={28} className="text-white" />
                 </div>
                 <h3 className="font-semibold text-[#1B4332] mb-2">{cat.title}</h3>
                 <p className="text-sm text-[#5C7A6B]">{cat.desc}</p>
@@ -495,8 +495,8 @@ export default function Home() {
               </p>
               <div className="flex items-center gap-3">
                 <Phone size={20} className="text-[#1B4332]" />
-                <a href="tel:87711731722" className="text-[#1B4332] font-semibold text-xl hover:text-[#2D6A4F] transition-colors">
-                  8 771 173 1722
+                <a href="tel:+77711731722" className="text-[#1B4332] font-semibold text-xl hover:text-[#2D6A4F] transition-colors">
+                  +7 771 173 1722
                 </a>
               </div>
             </div>

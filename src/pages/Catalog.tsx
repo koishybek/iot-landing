@@ -15,15 +15,16 @@ const products = productsData as any[];
 const categories = [
   { id: "water", name: "Счетчики воды" },
   { id: "heat", name: "Теплосчетчики" },
+  { id: "electricity", name: "Электросчетчики" },
   { id: "iot", name: "IoT устройства" },
   { id: "pulse", name: "Импульсные" },
   { id: "lora", name: "LoRaWAN" },
   { id: "nbiot", name: "NB-IoT" },
+  { id: "nbiot_kazmeter", name: "Связь нб казметр" },
 ];
 
 const manufacturers = [
   { id: "kazmeter", name: "KAZMETER" },
-  { id: "pulsar", name: "PULSAR" },
   { id: "vvt", name: "ВВТ" },
   { id: "mur", name: "МУР" },
   { id: "stv", name: "СТВУ" },
@@ -33,6 +34,7 @@ const manufacturers = [
 const protocols = [
   { id: "lorawan", name: "LoRaWAN" },
   { id: "nbiot", name: "NB-IoT" },
+  { id: "nbiot_kazmeter", name: "Связь нб казметр" },
   { id: "pulse", name: "Импульсный выход" },
   { id: "mbus", name: "M-Bus" },
   { id: "rs485", name: "RS-485" },
@@ -58,7 +60,7 @@ export default function Catalog() {
   };
 
   const getCategoryCount = (catId: string) => {
-    if (catId === "water" || catId === "heat" || catId === "iot") {
+    if (catId === "water" || catId === "heat" || catId === "iot" || catId === "electricity") {
       return products.filter(p => p.category === catId).length;
     }
     const protoMap: { [key: string]: string } = {

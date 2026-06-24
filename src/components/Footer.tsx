@@ -26,7 +26,6 @@ const footerColumns = [
       { label: "Счетчики воды", path: "/catalog" },
       { label: "Теплосчетчики", path: "/catalog" },
       { label: "IoT устройства", path: "/catalog" },
-      { label: "Пульсар", path: "/catalog" },
     ],
   },
   {
@@ -118,8 +117,8 @@ export default function Footer() {
               <div className="space-y-2">
                 <div>
                   <span className="text-white/40 text-xs block">Астана:</span>
-                  <a href="tel:87711731722" className="text-white hover:text-[#52B788] transition-colors text-sm font-medium">
-                    8 771 173 1722
+                  <a href="tel:+77711731722" className="text-white hover:text-[#52B788] transition-colors text-sm font-medium">
+                    +7 771 173 1722
                   </a>
                 </div>
                 <div>

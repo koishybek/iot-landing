@@ -17,7 +17,12 @@ const partners = [
   { name: "BI Group", img: "images/partners/bi-group.png" },
   { name: "ТОО «Сат НС»", img: "images/partners/images (1).png" },
   { name: "ТОО «Sensata Group»", img: "images/partners/images.png" },
-  { name: "ТОО «Свой дом»", img: "images/partners/Без названия.jpg" }
+  { name: "ТОО «Свой дом»", img: "images/partners/Без названия.jpg" },
+  { name: "ТОО «SAT-NS» (JPG)", img: "images/partners/images (1).jpg" },
+  { name: "Sensata Group (JPG)", img: "images/partners/images.jpg" },
+  { name: "Orda Invest", img: "images/partners/images (2).png" },
+  { name: "BAZIS-A", img: "images/partners/images1.png" },
+  { name: "Sembol Construction", img: "images/partners/1024_2dc41f67ac666a9c92f2f84c1e6f841a.png" },
 ];
 
 const advantages = [
@@ -244,9 +249,9 @@ export default function About() {
         </div>
         
         <Marquee speed={40} gradient={true} gradientColor="white" gradientWidth={100} className="py-4">
-          {partners.map((partner) => (
+          {[...partners, ...partners, ...partners, ...partners].map((partner, index) => (
             <div
-              key={partner.name}
+              key={`${partner.name}-${index}`}
               className="mx-4 md:mx-8 bg-white rounded-2xl p-6 flex items-center justify-center w-[200px] h-[120px] border border-[#D8E8DE] hover:border-[#52B788] hover:shadow-xl transition-all duration-300 group cursor-pointer"
               title={partner.name}
             >

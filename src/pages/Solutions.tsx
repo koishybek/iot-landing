@@ -110,7 +110,7 @@ export default function Solutions() {
             Готовые решения
           </h1>
           <p className="text-lg text-[#5C7A6B] max-w-3xl">
-            Создаем надежную интеллектуальную инфраструктуру для автоматизации, мониторинга и сбережения ресурсов — от умных домов до масштабных промышленных предприятий.
+            Предлагаем современные решения для автоматизированного учета и мониторинга электроэнергии, тепла и водопотребления. Реализуем проекты любой сложности — от квартир и жилых комплексов до бизнес-центров и промышленных предприятий.
           </p>
         </div>
       </section>
@@ -224,8 +224,8 @@ export default function Solutions() {
             <button onClick={() => setConsultOpen(true)} className="btn-primary bg-[#52B788] hover:bg-[#40916C] gap-2">
               Получить консультацию <ArrowRight size={16} />
             </button>
-            <a href="tel:87711731722" className="btn-secondary border-white text-white hover:bg-white hover:text-[#1B4332] gap-2">
-              <Phone size={16} /> 8 771 173 1722
+            <a href="tel:+77711731722" className="btn-secondary border-white text-white hover:bg-white hover:text-[#1B4332] gap-2">
+              <Phone size={16} /> +7 771 173 1722
             </a>
           </div>
         </div>

@@ -35,9 +35,9 @@ export default function Header() {
       <div className="bg-[#1B4332] text-white text-sm py-2">
         <div className="container-main flex flex-wrap justify-between items-center gap-2">
           <div className="flex items-center gap-4 flex-wrap">
-            <a href="tel:87711731722" className="flex items-center gap-1.5 hover:text-[#52B788] transition-colors">
+            <a href="tel:+77711731722" className="flex items-center gap-1.5 hover:text-[#52B788] transition-colors">
               <Phone size={14} />
-              <span>8 771 173 1722</span>
+              <span>+7 771 173 1722</span>
             </a>
           </div>
           <div className="flex items-center gap-4 flex-wrap">

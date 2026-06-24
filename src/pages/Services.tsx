@@ -350,9 +350,9 @@ export default function Services() {
                 <button onClick={() => setConsultOpen(true)} className="bg-[#52B788] hover:bg-[#40916C] text-white font-bold py-4 px-8 rounded-full flex items-center justify-center gap-2 transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-[#52B788]/30">
                   Оставить заявку <ArrowRight size={18} />
                 </button>
-                <a href="tel:87711731722" className="bg-white/10 hover:bg-white border border-white/20 text-white hover:text-[#1B4332] font-bold py-4 px-8 rounded-full flex items-center justify-center gap-2 transition-all hover:scale-105 active:scale-95">
-                  <Phone size={18} /> 8 771 173 1722
-                </a>
+                 <a href="tel:+77711731722" className="bg-white/10 hover:bg-white border border-white/20 text-white hover:text-[#1B4332] font-bold py-4 px-8 rounded-full flex items-center justify-center gap-2 transition-all hover:scale-105 active:scale-95">
+                   <Phone size={18} /> +7 771 173 1722
+                 </a>
               </div>
             </motion.div>
             
