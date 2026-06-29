@@ -181,7 +181,7 @@ const projects = [
       "Интеграция с городскими коммунальными службами"
     ],
     metrics: { devices: "450+", period: "5 мес.", savings: "19%", status: "Завершен" },
-    image: "images/about-office.jpg",
+    image: "images/projects/otau_shymkent.png",
     year: "2023"
   },
   // Туркестан

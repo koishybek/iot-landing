@@ -51,7 +51,7 @@ export default function Footer() {
               <img src="images/logo.png" alt="IoT-Exponenta" className="h-10 w-auto object-contain brightness-0 invert" />
             </Link>
             <p className="text-white/60 text-sm leading-relaxed mb-6 max-w-xs">
-              Комплексные IoT-решения для учета воды, тепла, газа и
+              Комплексные IoT-решения для учета электроэнергии, воды, тепла, газа и
               диспетчеризации инженерных систем в Казахстане.
             </p>
             <div className="flex items-center gap-3">
@@ -174,7 +174,7 @@ export default function Footer() {
             © 2025 IoT-Exponenta. Все права защищены.
           </p>
           <p className="text-white/40 text-xs">
-            IoT-решения для учета воды, тепла, газа и диспетчеризации
+            IoT-решения для учета электроэнергии, воды, тепла, газа и диспетчеризации
           </p>
         </div>
       </div>
