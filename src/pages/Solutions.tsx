@@ -71,7 +71,7 @@ const solutions = [
   },
   {
     icon: Wifi,
-    title: "Диспетчеризация и Smart Metrix",
+    title: "Диспетчеризация Smart Metrix",
     description: "Внедрение облачной платформы Smart Metrix для удаленного мониторинга всех инженерных систем объекта.",
     image: "images/solution_smart_metrix.png",
     features: [

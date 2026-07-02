@@ -26,7 +26,7 @@ const offices = [
   {
     city: "Алматы",
     address: "просп. Назарбаева, 50, офис 412",
-    phones: ["+7 707 313 4050", "+7 705 705 5051"],
+    phones: ["+7 707 313 40 50", "+7 702 291 20 78"],
     email: "info@iot-exp.kz",
     hours: "Пн-Пт: 09:00 - 18:00",
     isMain: false,
@@ -102,14 +102,7 @@ export default function Contacts() {
                 Открыть Telegram
               </a>
             </div>
-            <div className="relative z-10 flex flex-col items-center bg-white p-6 rounded-2xl border border-white/10 shadow-lg shrink-0">
-              <img
-                src="images/telegram_qr.png"
-                alt="Telegram QR Code"
-                className="w-36 h-36 object-contain"
-              />
-              <span className="text-xs text-[#1B4332] font-semibold mt-3">@iot_exponenta_bot</span>
-            </div>
+
           </div>
         </div>
       </section>

@@ -3,10 +3,8 @@ import {
   Wrench,
   Stethoscope,
   Settings,
-  Flame,
   Wifi,
   Thermometer,
-  Sparkles,
   ClipboardList,
   MoreHorizontal,
   ArrowRight,
@@ -46,12 +44,6 @@ const services = [
     image: "",
   },
   {
-    icon: Flame,
-    title: "Монтаж АТП и теплопунктов",
-    desc: "Проектирование и монтаж автоматизированных тепловых пунктов любой сложности.",
-    image: "",
-  },
-  {
     icon: Wifi,
     title: "Диспетчеризация и удаленный контроль",
     desc: "Онлайн-мониторинг и управление системами учета в реальном времени.",
@@ -62,18 +54,6 @@ const services = [
     title: "Тепловизионные обследования",
     desc: "Выявление утечек тепла, оценка энергоэффективности зданий и тепловых сетей с помощью тепловизоров.",
     image: "images/service-thermal.jpg",
-  },
-  {
-    icon: Sparkles,
-    title: "Промывка теплообменников",
-    desc: "Очистка и восстановление работоспособности теплообменного оборудования.",
-    image: "",
-  },
-  {
-    icon: ClipboardList,
-    title: "Проектирование",
-    desc: "Разработка проектной документации для систем учета и теплопотребления.",
-    image: "",
   },
   {
     icon: MoreHorizontal,
@@ -156,14 +136,11 @@ const IconCard = ({ service, className = "", onClick }: { service: any, classNam
 export default function Services() {
   const [consultOpen, setConsultOpen] = useState(false);
 
-  const topImageServices = [services[0], services[1], services[4]]; // Монтаж, Поверка, Диспетчеризация
+  const topImageServices = [services[0], services[1], services[3]]; // Монтаж, Поверка, Диспетчеризация
   const bottomIconServices = [
     services[2], // ТО
-    services[3], // Монтаж АТП
-    services[6], // Промывка
-    services[7], // Проектирование
-    services[5], // Тепловизионные обследования
-    services[8], // Доп. услуги
+    services[4], // Тепловизионные обследования
+    services[5], // Доп. услуги
   ];
 
   return (

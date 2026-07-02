@@ -125,10 +125,10 @@ export default function Footer() {
                   <span className="text-white/40 text-xs block">Алматы:</span>
                   <div className="flex flex-col">
                     <a href="tel:+77073134050" className="text-white hover:text-[#52B788] transition-colors text-sm font-medium">
-                      +7 707 313 4050
+                      +7 707 313 40 50
                     </a>
-                    <a href="tel:+77057055051" className="text-white hover:text-[#52B788] transition-colors text-sm font-medium">
-                      +7 705 705 5051
+                    <a href="tel:+77022912078" className="text-white hover:text-[#52B788] transition-colors text-sm font-medium">
+                      +7 702 291 20 78
                     </a>
                   </div>
                 </div>

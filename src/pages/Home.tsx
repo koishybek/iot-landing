@@ -102,7 +102,7 @@ export default function Home() {
                 <div className="flex items-center gap-3.5">
                   <Router size={32} className="text-[#374151] stroke-[1.5] flex-shrink-0" />
                   <span className="text-sm text-[#374151] font-semibold leading-tight">
-                    Встроенный<br />NB-IoT модем
+                    LRW, GSM модем
                   </span>
                 </div>
                 <div className="flex items-center gap-3.5">
@@ -181,7 +181,7 @@ export default function Home() {
 
                   <div className="absolute right-0 bottom-[-5px] text-left max-w-[155px]">
                     <h4 className="text-sm font-bold text-[#1B4332] mb-1">Без лишних проводов</h4>
-                    <p className="text-[11px] text-[#5C7A6B] leading-tight">Встроенный NB-IoT модем работает через сеть оператора</p>
+                    <p className="text-[11px] text-[#5C7A6B] leading-tight">LRW, GSM модем работает через сеть оператора</p>
                   </div>
                 </div>
               </div>
@@ -206,7 +206,7 @@ export default function Home() {
                   <div className="w-2 h-2 rounded-full bg-[#52B788] mt-2 flex-shrink-0" />
                   <div>
                     <h4 className="text-sm font-bold text-[#1B4332]">Без лишних проводов</h4>
-                    <p className="text-xs text-[#5C7A6B] mt-0.5">Встроенный NB-IoT модем работает через сеть оператора</p>
+                    <p className="text-xs text-[#5C7A6B] mt-0.5">LRW, GSM модем работает через сеть оператора</p>
                   </div>
                 </div>
               </div>

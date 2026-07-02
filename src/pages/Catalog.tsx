@@ -42,7 +42,7 @@ const protocols = [
 
 export default function Catalog() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [sortBy, setSortBy] = useState("name");
+  const [sortBy, setSortBy] = useState("default");
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedManufacturers, setSelectedManufacturers] = useState<string[]>([]);
   const [selectedProtocols, setSelectedProtocols] = useState<string[]>([]);
@@ -76,6 +76,25 @@ export default function Catalog() {
     return products.filter(p => p.manufacturer === mId).length;
   };
 
+  const getProductWeight = (p: any) => {
+    const nameLower = p.name.toLowerCase();
+    
+    // 1. Kazmeter counters and modems (highest priority)
+    const isKazmeter = nameLower.includes("kazmeter") || p.manufacturer === "kazmeter";
+    if (isKazmeter) {
+      return 1;
+    }
+    
+    // 3. Sensors (lowest priority)
+    const isSensor = nameLower.includes("датчик") || p.category === "sensor" || nameLower.includes("sensor");
+    if (isSensor) {
+      return 3;
+    }
+    
+    // 2. Others (middle priority)
+    return 2;
+  };
+
   const filteredProducts = products
     .filter((p) => {
       if (searchQuery && !p.name.toLowerCase().includes(searchQuery.toLowerCase()))
@@ -89,6 +108,12 @@ export default function Catalog() {
       return true;
     })
     .sort((a, b) => {
+      const weightA = getProductWeight(a);
+      const weightB = getProductWeight(b);
+      if (weightA !== weightB) {
+        return weightA - weightB;
+      }
+      
       if (sortBy === "name") return a.name.localeCompare(b.name);
       if (sortBy === "price") return (a.price || 0) - (b.price || 0);
       return 0;
@@ -227,6 +252,7 @@ export default function Catalog() {
                   onChange={(e) => setSortBy(e.target.value)}
                   className="appearance-none border border-[#D8E8DE] rounded-lg px-4 py-3 pr-10 bg-white focus:outline-none focus:border-[#52B788] text-sm"
                 >
+                  <option value="default">По умолчанию</option>
                   <option value="name">По названию</option>
                   <option value="price">По цене</option>
                 </select>

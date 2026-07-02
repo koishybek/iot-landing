@@ -93,13 +93,17 @@ export default function ProductDetail() {
               {/* Diameter selection */}
               {variants && variants.length > 0 && (
                 <div className="mb-6 bg-[#F8FBF9] p-4 rounded-xl border border-[#D8E8DE]">
-                  <label className="text-sm font-semibold text-[#1B4332] block mb-2">Выберите диаметр:</label>
+                  <label className="text-sm font-semibold text-[#1B4332] block mb-2">
+                    {variants[0].diameter?.includes("канал") ? "Выберите количество каналов:" : "Выберите диаметр:"}
+                  </label>
                   <select
                     value={selectedDiameter}
                     onChange={(e) => setSelectedDiameter(e.target.value)}
                     className="w-full max-w-xs border border-[#D8E8DE] rounded-lg px-4 py-2.5 focus:outline-none focus:border-[#52B788] bg-white text-sm text-[#1B4332]"
                   >
-                    <option value="">Выберите диаметр</option>
+                    <option value="">
+                      {variants[0].diameter?.includes("канал") ? "Выберите количество каналов" : "Выберите диаметр"}
+                    </option>
                     {variants.map((v) => (
                       <option key={v.diameter} value={v.diameter}>
                         {v.diameter}
@@ -135,8 +139,13 @@ export default function ProductDetail() {
                 <div className="flex flex-col sm:flex-row gap-3">
                   <button
                     onClick={() => {
+                      const isChannel = variants && variants.some(v => v.diameter?.includes("канал"));
                       if (variants && variants.length > 0 && !selectedDiameter) {
-                        alert("Пожалуйста, выберите диаметр прибора перед добавлением в корзину!");
+                        alert(
+                          isChannel
+                            ? "Пожалуйста, выберите количество каналов перед добавлением в корзину!"
+                            : "Пожалуйста, выберите диаметр прибора перед добавлением в корзину!"
+                        );
                         return;
                       }
                       addToCart(product, selectedDiameter);

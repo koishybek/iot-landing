@@ -22,13 +22,13 @@ export function submitToWhatsApp(e: any) {
 
   let phoneNo = '77711731722'; // default: Astana service department
   if (city === 'алматы') {
-    // Alternate between Nursultan (77073134050) and Alexandr (77057055051)
+    // Alternate between Nursultan (77073134050) and Alexandr (77022912078)
     const currentAlt = localStorage.getItem('wa_almaty_alt');
     if (currentAlt === 'alexandr') {
       phoneNo = '77073134050'; // Nursultan
       localStorage.setItem('wa_almaty_alt', 'nursultan');
     } else {
-      phoneNo = '77057055051'; // Alexandr
+      phoneNo = '77022912078'; // Alexandr
       localStorage.setItem('wa_almaty_alt', 'alexandr');
     }
   } else if (city === 'астана') {

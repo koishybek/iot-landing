@@ -69,7 +69,8 @@ export default function CartDrawer() {
 
     cart.forEach((item, index) => {
       text += `${index + 1}. *${item.name}*\n`;
-      text += `   📐 Диаметр: ${item.diameter}\n`;
+      const variantLabel = item.diameter.includes("канал") ? "Каналы" : "Диаметр";
+      text += `   📐 ${variantLabel}: ${item.diameter}\n`;
       text += `   🔢 Кол-во: ${item.count} шт.\n`;
       text += `   💵 Цена: ${item.price}\n\n`;
     });
@@ -183,7 +184,7 @@ export default function CartDrawer() {
                         {item.name}
                       </h4>
                       <p className="text-xs text-[#8BA89B] mb-1">
-                        Диаметр: <span className="text-[#1B4332] font-medium">{item.diameter}</span>
+                        {item.diameter.includes("канал") ? "Каналы" : "Диаметр"}: <span className="text-[#1B4332] font-medium">{item.diameter}</span>
                       </p>
                       <p className="text-xs text-[#8BA89B]">
                         Кол-во: <span className="text-[#1B4332] font-medium">{item.count} шт.</span>
