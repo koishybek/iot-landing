@@ -80,12 +80,6 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left: Text */}
             <div>
-              {/* Warranty Badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#40916C]/10 border border-[#40916C]/20 rounded-full text-[#1B4332] font-semibold text-sm mb-6">
-                <ShieldCheck size={16} className="text-[#40916C]" />
-                <span>Гарантия на оборудование до 6 лет</span>
-              </div>
-
               <h1 className="text-[48px] md:text-[64px] font-bold leading-[1.05] mb-3 tracking-tight">
                 <span className="text-[#40916C]">Kazmeter —</span> <br />
                 <span className="text-[#1B4332]">счетчики будущего</span>
