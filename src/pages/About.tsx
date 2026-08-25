@@ -14,15 +14,15 @@ const stats = [
 ];
 
 const partners = [
-  { name: "BI Group", img: "images/partners/bi-group.png" },
-  { name: "ТОО «Сат НС»", img: "images/partners/images (1).png" },
-  { name: "ТОО «Sensata Group»", img: "images/partners/images.png" },
-  { name: "ТОО «Свой дом»", img: "images/partners/Без названия.jpg" },
-  { name: "ТОО «SAT-NS» (JPG)", img: "images/partners/images (1).jpg" },
-  { name: "Sensata Group (JPG)", img: "images/partners/images.jpg" },
-  { name: "Orda Invest", img: "images/partners/images (2).png" },
-  { name: "BAZIS-A", img: "images/partners/images1.png" },
-  { name: "Sembol Construction", img: "images/partners/1024_2dc41f67ac666a9c92f2f84c1e6f841a.png" },
+  { name: "BI Group", img: "/images/partners/bi-group.png" },
+  { name: "ТОО «Сат НС»", img: "/images/partners/images (1).png" },
+  { name: "ТОО «Sensata Group»", img: "/images/partners/images.png" },
+  { name: "ТОО «Свой дом»", img: "/images/partners/Без названия.jpg" },
+  { name: "ТОО «SAT-NS» (JPG)", img: "/images/partners/images (1).jpg" },
+  { name: "Sensata Group (JPG)", img: "/images/partners/images.jpg" },
+  { name: "Orda Invest", img: "/images/partners/images (2).png" },
+  { name: "BAZIS-A", img: "/images/partners/images1.png" },
+  { name: "Sembol Construction", img: "/images/partners/1024_2dc41f67ac666a9c92f2f84c1e6f841a.png" },
 ];
 
 const advantages = [
@@ -173,7 +173,7 @@ export default function About() {
             >
               <div className="absolute inset-0 bg-gradient-to-tr from-[#52B788]/20 to-transparent rounded-3xl transform -rotate-3 scale-105 blur-lg z-0"></div>
               <img
-                src="images/solution_smart_metrix.png"
+                src="/images/solution_smart_metrix.png"
                 alt="Smart Metrix Dashboard"
                 className="w-full h-auto object-cover rounded-3xl shadow-2xl relative z-10 border border-white/50"
               />

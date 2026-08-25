@@ -48,10 +48,10 @@ const popularProducts = productsData
 
 
 const solutions = [
-  { title: "Интеллектуальный учет воды", features: ["Ультразвуковые приборы учета", "Автоматический сбор данных", "Мобильное приложение"], image: "images/solution-smart-home.jpg" },
-  { title: "Учет тепла и тепловые пункты", features: ["Теплосчетчики", "АТП под ключ", "Энергоаудит"], image: "images/solution-heat-point.jpg" },
-  { title: "Диспетчеризация", features: ["Smart Metrix", "Удаленный контроль", "Оповещения"], image: "images/solution_smart_metrix.png" },
-  { title: "Решения для КСК", features: ["Автоматизация", "Снижение затрат", "Отчетность"], image: "images/solution-building.jpg" },
+  { title: "Интеллектуальный учет воды", features: ["Ультразвуковые приборы учета", "Автоматический сбор данных", "Мобильное приложение"], image: "/images/solution-smart-home.jpg" },
+  { title: "Учет тепла и тепловые пункты", features: ["Теплосчетчики", "АТП под ключ", "Энергоаудит"], image: "/images/solution-heat-point.jpg" },
+  { title: "Диспетчеризация", features: ["Smart Metrix", "Удаленный контроль", "Оповещения"], image: "/images/solution_smart_metrix.png" },
+  { title: "Решения для КСК", features: ["Автоматизация", "Снижение затрат", "Отчетность"], image: "/images/solution-building.jpg" },
 ];
 
 const projects = [
@@ -59,13 +59,13 @@ const projects = [
     name: "АО «Матен петролеум»",
     description: "Внедрение системы IoT-учета воды и тепла на промышленном объекте. Установка 150+ приборов учета с удаленным сбором показаний.",
     metrics: { devices: "150+", savings: "25%", period: "3 мес." },
-    image: "images/project-oil-refinery.jpg",
+    image: "/images/project-oil-refinery.jpg",
   },
   {
     name: "АО «СНПС-Актобемунайгаз»",
     description: "Комплексная модернизация системы учета энергоресурсов. Диспетчеризация и автоматический контроль потребления.",
     metrics: { devices: "200+", savings: "30%", period: "4 мес." },
-    image: "images/service-thermal.jpg",
+    image: "/images/service-thermal.jpg",
   },
 ];
 
@@ -141,7 +141,7 @@ export default function Home() {
 
                 {/* Center Image */}
                 <img
-                  src="images/kazmeter-new (2).png"
+                  src="/images/kazmeter-new (2).png"
                   alt="KAZMETER — счетчики будущего со встроенным модемом"
                   className="w-[85%] h-[85%] object-contain z-10 relative drop-shadow-2xl scale-[1.3]"
                 />
@@ -333,7 +333,7 @@ export default function Home() {
             {/* Card 1 */}
             <div className="bg-white rounded-[24px] overflow-hidden shadow-sm flex flex-col group hover:shadow-md transition-shadow">
               <div className="aspect-[4/3] bg-gray-100 overflow-hidden relative">
-                <img src="images/service-installation.jpg" alt="Экономия времени" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img src="/images/service-installation.jpg" alt="Экономия времени" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
               <div className="p-8 flex-1 flex flex-col">
                 <div className="w-12 h-12 bg-[#F0FDF4] rounded-2xl flex items-center justify-center mb-6">
@@ -349,7 +349,7 @@ export default function Home() {
             {/* Card 2 */}
             <div className="bg-white rounded-[24px] overflow-hidden shadow-sm flex flex-col group hover:shadow-md transition-shadow">
               <div className="aspect-[4/3] bg-gray-100 overflow-hidden relative">
-                <img src="images/product-kazmeter-15c.jpg" alt="Точные данные" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img src="/images/product-kazmeter-15c.jpg" alt="Точные данные" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
               <div className="p-8 flex-1 flex flex-col">
                 <div className="w-12 h-12 bg-[#F0FDF4] rounded-2xl flex items-center justify-center mb-6">
@@ -365,7 +365,7 @@ export default function Home() {
             {/* Card 3 */}
             <div className="bg-white rounded-[24px] overflow-hidden shadow-sm flex flex-col group hover:shadow-md transition-shadow">
               <div className="aspect-[4/3] bg-gray-100 overflow-hidden relative">
-                <img src="images/solution-smart-home.jpg" alt="Контроль расходов" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img src="/images/solution-smart-home.jpg" alt="Контроль расходов" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
               <div className="p-8 flex-1 flex flex-col">
                 <div className="w-12 h-12 bg-[#F0FDF4] rounded-2xl flex items-center justify-center mb-6">

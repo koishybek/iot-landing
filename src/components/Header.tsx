@@ -59,7 +59,7 @@ export default function Header() {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2 shrink-0">
-              <img src="images/logo-mark.png" alt="" className="h-10 w-10 object-contain shrink-0" />
+              <img src="/images/logo-mark.png" alt="" className="h-10 w-10 object-contain shrink-0" />
               <span className="text-[16px] font-bold tracking-tight text-[#1B4332] leading-none whitespace-nowrap">
                 IoT-Exponenta
               </span>

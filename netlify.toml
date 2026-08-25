@@ -4,3 +4,10 @@
 
 [build.environment]
   NPM_FLAGS = "--no-audit --no-fund --prefer-offline"
+
+# SPA: отдаём index.html на любой маршрут, чтобы BrowserRouter отработал на прямом заходе.
+# Должно идти последним — конкретные правила выше имеют приоритет.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

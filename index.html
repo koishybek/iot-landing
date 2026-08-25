@@ -1,12 +1,39 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script>
+      // Переезд с HashRouter: старые адреса /#/catalog/xxx уводим на /catalog/xxx.
+      // Выполняется до загрузки бандла, поэтому пользователь не видит промежуточный экран.
+      (function () {
+        var h = window.location.hash;
+        if (h.length > 2 && h.charAt(1) === "/") {
+          var path = h.slice(1);
+          if (path.indexOf("?") === -1) path += window.location.search;
+          window.location.replace(path);
+        }
+      })();
+    </script>
+
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <title>IoT-Exponenta</title>
+
+    <title>IoT-Exponenta — счётчики воды, тепла и электроэнергии в Астане</title>
+    <meta name="description" content="Поставка и монтаж приборов учёта воды, тепла и электроэнергии с дистанционной передачей показаний. Проектирование и диспетчеризация под ключ в Астане." />
+    <link rel="canonical" href="https://iot-exp.kz/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="IoT-Exponenta" />
+    <meta property="og:locale" content="ru_KZ" />
+    <meta property="og:title" content="IoT-Exponenta — счётчики воды, тепла и электроэнергии в Астане" />
+    <meta property="og:description" content="Поставка и монтаж приборов учёта воды, тепла и электроэнергии с дистанционной передачей показаний. Проектирование и диспетчеризация под ключ в Астане." />
+    <meta property="og:url" content="https://iot-exp.kz/" />
+    <meta property="og:image" content="https://iot-exp.kz/images/logo.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://iot-exp.kz/images/logo.png" />
   </head>
   <body>
     <div id="root"></div>

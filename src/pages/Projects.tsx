@@ -29,7 +29,7 @@ const projects = [
       "Автоматическая передача данных в сервисный центр"
     ],
     metrics: { devices: "250+", period: "3 мес.", savings: "20%", status: "Завершен" },
-    image: "images/projects/muz_tau.png",
+    image: "/images/projects/muz_tau.png",
     year: "2024"
   },
   {
@@ -44,7 +44,7 @@ const projects = [
       "Мобильное приложение для жителей дома"
     ],
     metrics: { devices: "320+", period: "4 мес.", savings: "22%", status: "Завершен" },
-    image: "images/projects/iunar_tau.png",
+    image: "/images/projects/iunar_tau.png",
     year: "2024"
   },
   {
@@ -59,7 +59,7 @@ const projects = [
       "Мониторинг параметров в реальном времени"
     ],
     metrics: { devices: "400+", period: "5 мес.", savings: "25%", status: "Завершен" },
-    image: "images/solution-smart-home.jpg",
+    image: "/images/solution-smart-home.jpg",
     year: "2023"
   },
   {
@@ -74,7 +74,7 @@ const projects = [
       "Высокая степень защиты IP68"
     ],
     metrics: { devices: "180+", period: "3 мес.", savings: "18%", status: "Завершен" },
-    image: "images/solution-building.jpg",
+    image: "/images/solution-building.jpg",
     year: "2023"
   },
   // Астана
@@ -90,7 +90,7 @@ const projects = [
       "Своевременное оповещение об утечках"
     ],
     metrics: { devices: "520+", period: "5 мес.", savings: "24%", status: "Завершен" },
-    image: "images/projects/kemenger.png",
+    image: "/images/projects/kemenger.png",
     year: "2024"
   },
   {
@@ -105,7 +105,7 @@ const projects = [
       "Высокая стабильность связи"
     ],
     metrics: { devices: "380+", period: "4 мес.", savings: "20%", status: "Завершен" },
-    image: "images/projects/daulpaz.png",
+    image: "/images/projects/daulpaz.png",
     year: "2024"
   },
   {
@@ -120,7 +120,7 @@ const projects = [
       "Интеграция с биллингом"
     ],
     metrics: { devices: "290+", period: "3 мес.", savings: "28%", status: "Завершен" },
-    image: "images/solution_builders.png",
+    image: "/images/solution_builders.png",
     year: "2023"
   },
   {
@@ -135,7 +135,7 @@ const projects = [
       "Снижение эксплуатационных потерь"
     ],
     metrics: { devices: "120+", period: "2 мес.", savings: "15%", status: "Завершен" },
-    image: "images/solution_ksk.png",
+    image: "/images/solution_ksk.png",
     year: "2023"
   },
   // Шымкент
@@ -151,7 +151,7 @@ const projects = [
       "Полный контроль баланса потребления"
     ],
     metrics: { devices: "600+", period: "6 мес.", savings: "25%", status: "Завершен" },
-    image: "images/projects/shymkent_city.png",
+    image: "/images/projects/shymkent_city.png",
     year: "2024"
   },
   {
@@ -166,7 +166,7 @@ const projects = [
       "Высокая степень защиты IP68"
     ],
     metrics: { devices: "210+", period: "3 мес.", savings: "21%", status: "Завершен" },
-    image: "images/service-installation.jpg",
+    image: "/images/service-installation.jpg",
     year: "2024"
   },
   {
@@ -181,7 +181,7 @@ const projects = [
       "Интеграция с городскими коммунальными службами"
     ],
     metrics: { devices: "450+", period: "5 мес.", savings: "19%", status: "Завершен" },
-    image: "images/projects/otau_shymkent.png",
+    image: "/images/projects/otau_shymkent.png",
     year: "2023"
   },
   // Туркестан
@@ -197,7 +197,7 @@ const projects = [
       "Защита от внешних воздействий и магнитных полей"
     ],
     metrics: { devices: "340+", period: "4 мес.", savings: "23%", status: "Завершен" },
-    image: "images/projects/turkestan_arena.png",
+    image: "/images/projects/turkestan_arena.png",
     year: "2024"
   },
   {
@@ -212,7 +212,7 @@ const projects = [
       "Высокая энергоэффективность приборов"
     ],
     metrics: { devices: "280+", period: "3 мес.", savings: "25%", status: "Завершен" },
-    image: "images/service-thermal.jpg",
+    image: "/images/service-thermal.jpg",
     year: "2024"
   },
   {
@@ -227,7 +227,7 @@ const projects = [
       "Межповерочный интервал 6 лет"
     ],
     metrics: { devices: "190+", period: "3 мес.", savings: "22%", status: "Завершен" },
-    image: "images/solution_private.png",
+    image: "/images/solution_private.png",
     year: "2023"
   }
 ];

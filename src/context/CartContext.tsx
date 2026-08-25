@@ -22,13 +22,24 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [cart, setCart] = useState<CartItem[]>(() => {
-    const saved = localStorage.getItem("cart");
-    return saved ? JSON.parse(saved) : [];
+    // Читаем при первом рендере, поэтому нужны обе защиты: хранилища нет при
+    // пререндере в Node, и оно бросает исключение в приватном режиме браузера.
+    if (typeof window === "undefined") return [];
+    try {
+      const saved = window.localStorage.getItem("cart");
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
   });
   const [cartOpen, setCartOpen] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
+    try {
+      window.localStorage.setItem("cart", JSON.stringify(cart));
+    } catch {
+      // Приватный режим или переполненное хранилище: корзина живёт только в памяти.
+    }
   }, [cart]);
 
   const addToCart = (product: any, diameter: string) => {

@@ -1,5 +1,6 @@
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
+import Seo from "./components/Seo";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -14,31 +15,44 @@ import Contacts from "./pages/Contacts";
 import { CartProvider } from "./context/CartContext";
 import CartDrawer from "./components/CartDrawer";
 
+/**
+ * Всё содержимое приложения без роутера.
+ *
+ * Вынесено отдельно, чтобы пререндер при сборке мог обернуть это в StaticRouter,
+ * а браузер — в BrowserRouter. См. src/entry-ssr.tsx.
+ */
+export function AppShell() {
+  return (
+    <CartProvider>
+      <Seo />
+      <ScrollToTop />
+      <CartDrawer />
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        <main className="flex-1">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/catalog" element={<Catalog />} />
+            <Route path="/catalog/:productId" element={<ProductDetail />} />
+            <Route path="/solutions" element={<Solutions />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/partners" element={<Partners />} />
+            <Route path="/contacts" element={<Contacts />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </CartProvider>
+  );
+}
+
 function App() {
   return (
-    <HashRouter>
-      <CartProvider>
-        <ScrollToTop />
-        <CartDrawer />
-        <div className="min-h-screen flex flex-col">
-          <Header />
-          <main className="flex-1">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/catalog" element={<Catalog />} />
-              <Route path="/catalog/:productId" element={<ProductDetail />} />
-              <Route path="/solutions" element={<Solutions />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/partners" element={<Partners />} />
-              <Route path="/contacts" element={<Contacts />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </CartProvider>
-    </HashRouter>
+    <BrowserRouter>
+      <AppShell />
+    </BrowserRouter>
   );
 }
 
