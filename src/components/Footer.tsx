@@ -155,7 +155,7 @@ export default function Footer() {
               <div className="space-y-2 text-sm text-white">
                 <div>
                   <span className="text-white/40 text-xs block">Астана:</span>
-                  <span>ул. Петрова, 18/1</span>
+                  <span>ул. Алексея Петрова, 18/1</span>
                 </div>
                 <div>
                   <span className="text-white/40 text-xs block">Алматы:</span>

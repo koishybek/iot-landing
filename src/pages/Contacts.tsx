@@ -17,7 +17,7 @@ import { submitToWhatsApp } from "../utils/whatsapp";
 const offices = [
   {
     city: "Астана",
-    address: "ул. Петрова, 18/1",
+    address: "ул. Алексея Петрова, 18/1",
     phones: ["+7 771 173 1722"],
     email: "info@iot-exp.kz",
     hours: "Пн-Пт: 09:00 - 18:00",
@@ -286,10 +286,10 @@ export default function Contacts() {
                   <Navigation size={48} className="text-[#52B788] mb-4" />
                   <p className="text-[#1B4332] font-semibold mb-2">IoT-Exponenta</p>
                   <p className="text-[#5C7A6B] text-sm text-center max-w-xs">
-                    г. Астана, ул. Петрова, 18/1
+                    г. Астана, ул. Алексея Петрова, 18/1
                   </p>
                   <a
-                    href="https://2gis.kz/astana/search/ул.%20Петрова%2018%2F1"
+                    href="https://2gis.kz/astana/firm/70000001117123870"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-4 btn-secondary text-sm gap-1"

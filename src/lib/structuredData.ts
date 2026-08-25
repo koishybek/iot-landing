@@ -23,6 +23,15 @@ const products = productsData as ProductLike[];
 
 const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 
+/**
+ * Карточка организации в справочниках.
+ *
+ * sameAs связывает сайт с уже существующей записью в 2ГИС: поисковик понимает,
+ * что это одна и та же организация, и переносит доверие с карточки на сайт.
+ * Появятся Google Business Profile и Яндекс.Бизнес — добавить их сюда же.
+ */
+const SAME_AS = ["https://2gis.kz/astana/firm/70000001117123870"];
+
 /** Телефон в формате E.164 — его ждёт Schema.org. */
 const PHONE = "+77711731722";
 
@@ -39,6 +48,7 @@ const ORGANIZATION = {
     alternateName: BRAND_CYRILLIC,
   },
   url: SITE_URL,
+  sameAs: SAME_AS,
   logo: `${SITE_URL}/images/logo.png`,
   image: `${SITE_URL}/images/logo.png`,
   email: "info@iot-exp.kz",
@@ -47,8 +57,11 @@ const ORGANIZATION = {
     "Поставка, монтаж и диспетчеризация приборов учёта воды, тепла, газа и электроэнергии в Астане и по Казахстану.",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "ул. Петрова, 18/1",
+    // Официальное написание — такое же, как в карточке 2ГИС. Расхождение
+    // «Петрова» / «Алексея Петрова» поисковик читает как два разных адреса.
+    streetAddress: "улица Алексея Петрова, 18/1",
     addressLocality: "Астана",
+    postalCode: "Z00T5H2",
     addressCountry: "KZ",
   },
   openingHoursSpecification: [
