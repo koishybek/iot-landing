@@ -9,7 +9,14 @@ import { COLLECTIONS, getCollection } from "./collections";
  * к window/document — только чистые данные.
  */
 
-export const SITE_URL = "https://iot-exp.kz";
+/**
+ * Основной домен — с www: апекс iot-exp.kz отдаёт 308 на www.iot-exp.kz.
+ * Канонические адреса, карта сайта и микроразметка должны указывать на тот
+ * адрес, который реально отвечает, иначе Search Console помечает страницы
+ * как «страница с редиректом», а сигналы размываются между двумя версиями.
+ * Если основным доменом в Netlify сделают апекс — поменять здесь.
+ */
+export const SITE_URL = "https://www.iot-exp.kz";
 export const SITE_NAME = "IoT-Exponenta";
 /**
  * Собственная марка приборов. Кириллическое написание обязательно: в Казахстане
