@@ -42,7 +42,7 @@
     "price": "Запросить цену",
     "image": "/images/kazmeter-c.png",
     "priceText": "Запросить цену",
-    "category": "all",
+    "category": "water",
     "manufacturer": "other",
     "protocols": [
       "lorawan"
@@ -128,7 +128,7 @@
     "price": "Запросить цену",
     "image": "/images/kazmeter-h.png",
     "priceText": "Запросить цену",
-    "category": "all",
+    "category": "water",
     "manufacturer": "other",
     "protocols": [
       "lorawan"

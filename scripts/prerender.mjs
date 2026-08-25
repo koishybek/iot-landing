@@ -141,6 +141,15 @@ async function main() {
 
   const routes = getAllRoutes();
 
+  // Подборки и карточки товаров делят пространство /catalog/*. Совпадение
+  // slug подборки с id товара сделало бы карточку недостижимой — и заметить
+  // это по внешнему виду сайта нельзя, поэтому проверяем на сборке.
+  const seen = new Set();
+  const clashes = routes.filter((r) => (seen.has(r) ? true : (seen.add(r), false)));
+  if (clashes.length) {
+    throw new Error(`адреса конфликтуют друг с другом: ${[...new Set(clashes)].join(", ")}`);
+  }
+
   for (const route of routes) {
     const seo = getPageSeo(route);
 

@@ -9,6 +9,7 @@ import {
   X,
 } from "lucide-react";
 import productsData from "../data/products.json";
+import { COLLECTIONS } from "../lib/collections";
 
 // Type assertion to ensure TS knows the structure if needed, or just let it infer.
 const products = productsData as any[];
@@ -218,6 +219,21 @@ export default function Catalog() {
           <p className="text-lg text-[#5C7A6B]">
             IoT-счетчики электроэнергии, воды, тепла и газа от ведущих производителей
           </p>
+
+          {/* Подборки: постоянные адреса под конкретные запросы. Фильтры ниже
+              удобны человеку, но своей страницы не создают — ссылки нужны,
+              чтобы поисковик вообще нашёл эти разделы. */}
+          <nav className="flex flex-wrap gap-2 mt-7" aria-label="Подборки каталога">
+            {COLLECTIONS.map((c) => (
+              <Link
+                key={c.slug}
+                to={`/catalog/${c.slug}`}
+                className="bg-white border border-[#D8E8DE] text-[#1B4332] text-sm font-medium px-4 py-2 rounded-full hover:border-[#52B788] hover:text-[#2D6A4F] transition-colors"
+              >
+                {c.h1}
+              </Link>
+            ))}
+          </nav>
         </div>
       </section>
 

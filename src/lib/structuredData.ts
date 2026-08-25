@@ -1,5 +1,6 @@
 import productsData from "../data/products.json";
 import { SITE_URL, SITE_NAME, BRAND, BRAND_CYRILLIC, normalizePath } from "./seo";
+import { getCollection, getCollectionProducts } from "./collections";
 
 /**
  * Микроразметка Schema.org.
@@ -116,6 +117,34 @@ function breadcrumb(items: { name: string; path: string }[]) {
 export function getStructuredData(pathname: string): object | null {
   const path = normalizePath(pathname);
   const graph: object[] = [ORGANIZATION];
+
+  const slugMatch = path.match(/^\/catalog\/(.+)$/);
+  const collection = slugMatch ? getCollection(slugMatch[1]) : undefined;
+
+  if (collection) {
+    // ItemList перечисляет товары подборки: поисковик видит, что за страницей
+    // стоит реальный набор позиций, а не просто текст.
+    graph.push({
+      "@type": "ItemList",
+      name: collection.h1,
+      description: collection.description,
+      numberOfItems: getCollectionProducts(collection).length,
+      itemListElement: getCollectionProducts(collection).map((product, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: product.name,
+        url: `${SITE_URL}/catalog/${product.id}`,
+      })),
+    });
+    graph.push(
+      breadcrumb([
+        { name: "Главная", path: "/" },
+        { name: "Каталог", path: "/catalog" },
+        { name: collection.h1, path },
+      ]),
+    );
+    return { "@context": "https://schema.org", "@graph": graph };
+  }
 
   const productMatch = path.match(/^\/catalog\/(.+)$/);
   if (productMatch) {

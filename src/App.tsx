@@ -8,6 +8,8 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import Catalog from "./pages/Catalog";
 import ProductDetail from "./pages/ProductDetail";
+import Collection from "./pages/Collection";
+import { COLLECTIONS } from "./lib/collections";
 import Solutions from "./pages/Solutions";
 import Projects from "./pages/Projects";
 import Partners from "./pages/Partners";
@@ -35,6 +37,15 @@ export function AppShell() {
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/catalog" element={<Catalog />} />
+            {/* Подборки объявлены статическими адресами, поэтому выигрывают
+                у динамического /catalog/:productId при совпадении сегмента. */}
+            {COLLECTIONS.map((c) => (
+              <Route
+                key={c.slug}
+                path={`/catalog/${c.slug}`}
+                element={<Collection slug={c.slug} />}
+              />
+            ))}
             <Route path="/catalog/:productId" element={<ProductDetail />} />
             <Route path="/solutions" element={<Solutions />} />
             <Route path="/projects" element={<Projects />} />

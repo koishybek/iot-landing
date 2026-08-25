@@ -1,4 +1,5 @@
 import productsData from "../data/products.json";
+import { COLLECTIONS, getCollection } from "./collections";
 
 /**
  * Единственный источник правды по метаданным страниц.
@@ -103,6 +104,19 @@ export function getPageSeo(pathname: string): PageSeo {
   const path = normalizePath(pathname);
   const canonical = `${SITE_URL}${path === "/" ? "/" : path}`;
 
+  const collectionMatch = path.match(/^\/catalog\/(.+)$/);
+  if (collectionMatch) {
+    const collection = getCollection(collectionMatch[1]);
+    if (collection) {
+      return {
+        title: collection.title,
+        description: collection.description,
+        canonical,
+        image: DEFAULT_IMAGE,
+      };
+    }
+  }
+
   const productMatch = path.match(/^\/catalog\/(.+)$/);
   if (productMatch) {
     const product = products.find((p) => p.id === productMatch[1]);
@@ -131,5 +145,9 @@ export function getPageSeo(pathname: string): PageSeo {
 
 /** Все адреса сайта — для карты сайта и пререндера. */
 export function getAllRoutes(): string[] {
-  return [...Object.keys(STATIC_PAGES), ...products.map((p) => `/catalog/${p.id}`)];
+  return [
+    ...Object.keys(STATIC_PAGES),
+    ...COLLECTIONS.map((c) => `/catalog/${c.slug}`),
+    ...products.map((p) => `/catalog/${p.id}`),
+  ];
 }
