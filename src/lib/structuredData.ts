@@ -42,7 +42,17 @@ const ORGANIZATION = {
   name: SITE_NAME,
   // Все написания, которыми компанию и её марку ищут. Без кириллического
   // «Казметер» запрос «казметер» не связывается с этим сайтом.
-  alternateName: [BRAND, BRAND_CYRILLIC, "КазМетер", "IoT Exponenta", "Ай-Оу-Ти Экспонента"],
+  alternateName: [
+    BRAND,
+    BRAND_CYRILLIC,
+    "КазМетер",
+    // Частые написания без «е» — их набирают на слух
+    "Казметр",
+    "Kazmetr",
+    "KazMeter",
+    "IoT Exponenta",
+    "Айоти Экспонента",
+  ],
   brand: {
     "@type": "Brand",
     name: BRAND,

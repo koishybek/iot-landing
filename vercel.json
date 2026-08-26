@@ -1,0 +1,63 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/index.php",
+      "has": [{ "type": "query", "key": "route", "value": "common/home" }],
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index.php",
+      "has": [{ "type": "query", "key": "route", "value": "information/contact" }],
+      "destination": "/contacts",
+      "permanent": true
+    },
+    {
+      "source": "/index.php",
+      "has": [{ "type": "query", "key": "route", "value": "information/information" }],
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/index.php",
+      "has": [{ "type": "query", "key": "route", "value": "information/sitemap" }],
+      "destination": "/catalog",
+      "permanent": true
+    },
+    {
+      "source": "/index.php",
+      "has": [{ "type": "query", "key": "route", "value": "product/product" }],
+      "destination": "/catalog",
+      "permanent": true
+    },
+    {
+      "source": "/index.php",
+      "has": [{ "type": "query", "key": "route", "value": "product/quick_view" }],
+      "destination": "/catalog",
+      "permanent": true
+    },
+    {
+      "source": "/index.php",
+      "has": [{ "type": "query", "key": "route", "value": "product/category" }],
+      "destination": "/catalog",
+      "permanent": true
+    },
+    {
+      "source": "/index.php",
+      "has": [{ "type": "query", "key": "route", "value": "product/special" }],
+      "destination": "/catalog",
+      "permanent": true
+    },
+    {
+      "source": "/index.php",
+      "has": [{ "type": "query", "key": "route", "value": "product/compare" }],
+      "destination": "/catalog",
+      "permanent": true
+    },
+    { "source": "/index.php", "destination": "/", "permanent": true },
+    { "source": "/admin", "destination": "/", "permanent": true },
+    { "source": "/admin/:path*", "destination": "/", "permanent": true },
+    { "source": "/image/:path*", "destination": "/catalog", "permanent": true }
+  ]
+}
