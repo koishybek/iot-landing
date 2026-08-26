@@ -5,7 +5,6 @@ import {
   ArrowRightLeft,
   CheckCircle,
   ChevronRight,
-  Download,
   FileText,
   Shield,
   Clock,
@@ -203,7 +202,7 @@ export default function ProductDetail() {
       {/* Tabs */}
       <section className="bg-[#F8FBF9] section-padding">
         <div className="container-main">
-          <Tabs defaultValue="specs" className="max-w-4xl">
+          <Tabs defaultValue={product.specs?.length ? "specs" : "description"} className="max-w-4xl">
             <TabsList className="bg-white border border-[#D8E8DE] p-1 rounded-xl mb-8">
               <TabsTrigger
                 value="description"
@@ -211,37 +210,47 @@ export default function ProductDetail() {
               >
                 Описание
               </TabsTrigger>
-              <TabsTrigger
-                value="specs"
-                className="rounded-lg px-6 py-2.5 data-[state=active]:bg-[#1B4332] data-[state=active]:text-white"
-              >
-                Характеристики
-              </TabsTrigger>
-              <TabsTrigger
-                value="compatibility"
-                className="rounded-lg px-6 py-2.5 data-[state=active]:bg-[#1B4332] data-[state=active]:text-white"
-              >
-                Совместимость
-              </TabsTrigger>
-              <TabsTrigger
-                value="docs"
-                className="rounded-lg px-6 py-2.5 data-[state=active]:bg-[#1B4332] data-[state=active]:text-white"
-              >
-                Документы
-              </TabsTrigger>
+              {product.specs?.length ? (
+                <TabsTrigger
+                  value="specs"
+                  className="rounded-lg px-6 py-2.5 data-[state=active]:bg-[#1B4332] data-[state=active]:text-white"
+                >
+                  Характеристики
+                </TabsTrigger>
+              ) : null}
+              {product.compatibility?.length ? (
+                <TabsTrigger
+                  value="compatibility"
+                  className="rounded-lg px-6 py-2.5 data-[state=active]:bg-[#1B4332] data-[state=active]:text-white"
+                >
+                  Совместимость
+                </TabsTrigger>
+              ) : null}
+              {product.docs?.length ? (
+                <TabsTrigger
+                  value="docs"
+                  className="rounded-lg px-6 py-2.5 data-[state=active]:bg-[#1B4332] data-[state=active]:text-white"
+                >
+                  Документы
+                </TabsTrigger>
+              ) : null}
             </TabsList>
 
-            <TabsContent value="description" className="bg-white rounded-2xl p-8 border border-[#D8E8DE]">
+            <TabsContent forceMount value="description" className="bg-white rounded-2xl p-8 border border-[#D8E8DE]">
               <p className="text-[#5C7A6B] leading-relaxed whitespace-pre-wrap">{product.description}</p>
               <div className="mt-6 grid sm:grid-cols-2 gap-4">
-                <div className="flex items-center gap-3 p-4 bg-[#F8FBF9] rounded-xl">
-                  <CheckCircle size={20} className="text-[#52B788]" />
-                  <span className="text-sm text-[#5C7A6B]">Сертифицирован в РК</span>
-                </div>
-                <div className="flex items-center gap-3 p-4 bg-[#F8FBF9] rounded-xl">
-                  <CheckCircle size={20} className="text-[#52B788]" />
-                  <span className="text-sm text-[#5C7A6B]">Госреестр РК</span>
-                </div>
+                {product.category !== "iot" && (
+                  <>
+                    <div className="flex items-center gap-3 p-4 bg-[#F8FBF9] rounded-xl">
+                      <CheckCircle size={20} className="text-[#52B788]" />
+                      <span className="text-sm text-[#5C7A6B]">Сертифицирован в РК</span>
+                    </div>
+                    <div className="flex items-center gap-3 p-4 bg-[#F8FBF9] rounded-xl">
+                      <CheckCircle size={20} className="text-[#52B788]" />
+                      <span className="text-sm text-[#5C7A6B]">Госреестр РК</span>
+                    </div>
+                  </>
+                )}
                 <div className="flex items-center gap-3 p-4 bg-[#F8FBF9] rounded-xl">
                   <CheckCircle size={20} className="text-[#52B788]" />
                   <span className="text-sm text-[#5C7A6B]">Техническая поддержка</span>
@@ -253,7 +262,7 @@ export default function ProductDetail() {
               </div>
             </TabsContent>
 
-            <TabsContent value="specs" className="bg-white rounded-2xl border border-[#D8E8DE] overflow-hidden">
+            <TabsContent forceMount value="specs" className="bg-white rounded-2xl border border-[#D8E8DE] overflow-hidden">
               <table className="w-full">
                 <tbody>
                   {product.specs?.map((spec: any, idx: number) => (
@@ -269,7 +278,7 @@ export default function ProductDetail() {
               </table>
             </TabsContent>
 
-            <TabsContent value="compatibility" className="bg-white rounded-2xl p-8 border border-[#D8E8DE]">
+            {product.compatibility?.length ? <TabsContent forceMount value="compatibility" className="bg-white rounded-2xl p-8 border border-[#D8E8DE]">
               <p className="text-[#5C7A6B] mb-6">Прибор совместим со следующими системами диспетчеризации и учета:</p>
               <div className="flex flex-wrap gap-3">
                 {product.compatibility?.map((sys: string) => (
@@ -278,9 +287,9 @@ export default function ProductDetail() {
                   </span>
                 ))}
               </div>
-            </TabsContent>
+            </TabsContent> : null}
 
-            <TabsContent value="docs" className="bg-white rounded-2xl border border-[#D8E8DE] overflow-hidden">
+            {product.docs?.length ? <TabsContent forceMount value="docs" className="bg-white rounded-2xl border border-[#D8E8DE] overflow-hidden">
               <div className="divide-y divide-[#D8E8DE]">
                 {product.docs?.map((doc: any) => (
                   <div key={doc.name} className="flex items-center justify-between px-6 py-4 hover:bg-[#F8FBF9] transition-colors">
@@ -290,14 +299,18 @@ export default function ProductDetail() {
                     </div>
                     <div className="flex items-center gap-4">
                       <span className="text-xs text-[#8BA89B]">{doc.size}</span>
-                      <button className="text-[#52B788] hover:text-[#1B4332] transition-colors">
-                        <Download size={18} />
+                      <button
+                        onClick={() => setConsultOpen(true)}
+                        className="text-[#52B788] hover:text-[#1B4332] transition-colors text-sm font-medium"
+                        aria-label={`Запросить документ: ${doc.name}`}
+                      >
+                        Запросить
                       </button>
                     </div>
                   </div>
                 ))}
               </div>
-            </TabsContent>
+            </TabsContent> : null}
           </Tabs>
         </div>
       </section>

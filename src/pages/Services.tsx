@@ -294,7 +294,7 @@ export default function Services() {
                   <AccordionTrigger className="text-left text-[#1B4332] font-semibold hover:no-underline py-5">
                     {item.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-[#5C7A6B] pb-5 leading-relaxed">
+                  <AccordionContent forceMount className="text-[#5C7A6B] pb-5 leading-relaxed">
                     {item.answer}
                   </AccordionContent>
                 </AccordionItem>

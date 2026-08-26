@@ -339,11 +339,15 @@ export default function Contacts() {
                     }`}
                   />
                 </button>
-                {openFaq === idx && (
-                  <div className="px-6 pb-4">
-                    <p className="text-[#5C7A6B] text-sm leading-relaxed">{item.answer}</p>
-                  </div>
-                )}
+                {/* Ответ рендерится всегда и сворачивается стилями: при условном
+                    рендере его не было в HTML, и поисковик видел вопросы без ответов. */}
+                <div
+                  className={`px-6 overflow-hidden transition-all duration-200 ${
+                    openFaq === idx ? "max-h-96 pb-4" : "max-h-0"
+                  }`}
+                >
+                  <p className="text-[#5C7A6B] text-sm leading-relaxed">{item.answer}</p>
+                </div>
               </div>
             ))}
           </div>
