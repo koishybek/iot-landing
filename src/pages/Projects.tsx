@@ -305,7 +305,7 @@ export default function Projects() {
               <div key={project.id} className="card-base overflow-hidden group flex flex-col justify-between">
                 <div>
                   <div className="aspect-video overflow-hidden relative bg-[#F8FBF9]">
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={project.image}
                       alt={project.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"

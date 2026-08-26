@@ -40,6 +40,7 @@ const services = [
 ];
 
 import productsData from "../data/products.json";
+import { COLLECTIONS } from "../lib/collections";
 
 const popularProducts = productsData
   .filter((p) => p.badge === "Популярно")
@@ -140,7 +141,7 @@ export default function Home() {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[45%] h-[45%] bg-[#1B4332]/10 blur-2xl rounded-full z-0 pointer-events-none" />
 
                 {/* Center Image */}
-                <img
+                <img fetchPriority="high" decoding="async"
                   src="/images/kazmeter-new (2).png"
                   alt="KAZMETER — счетчики будущего со встроенным модемом"
                   className="w-[85%] h-[85%] object-contain z-10 relative drop-shadow-2xl scale-[1.3]"
@@ -263,6 +264,31 @@ export default function Home() {
       </section>
 
       {/* Popular Products */}
+      {/* Подборки каталога: до этого на них не ссылалась ни одна страница
+          вне раздела /catalog, и поисковик доходил до них в последнюю очередь. */}
+      <section className="bg-white section-padding">
+        <div className="container-main">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#1B4332] mb-3">
+            Что вам нужно
+          </h2>
+          <p className="text-[#5C7A6B] mb-8 max-w-2xl">
+            Подборки по типу прибора и способу передачи показаний — чтобы не листать весь каталог.
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {COLLECTIONS.map((c) => (
+              <Link
+                key={c.slug}
+                to={`/catalog/${c.slug}`}
+                className="border border-[#D8E8DE] rounded-xl p-5 hover:border-[#52B788] hover:shadow-sm transition-all"
+              >
+                <div className="font-semibold text-[#1B4332] mb-1">{c.h1}</div>
+                <div className="text-sm text-[#5C7A6B]">{c.teaser}</div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-white section-padding">
         <div className="container-main">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10">
@@ -284,7 +310,7 @@ export default function Home() {
                   </div>
                 )}
                 <div className="bg-[#F8FBF9] p-4 flex items-center justify-center aspect-square relative">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src={product.image}
                     alt={product.name}
                     className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 relative z-0"
@@ -333,7 +359,7 @@ export default function Home() {
             {/* Card 1 */}
             <div className="bg-white rounded-[24px] overflow-hidden shadow-sm flex flex-col group hover:shadow-md transition-shadow">
               <div className="aspect-[4/3] bg-gray-100 overflow-hidden relative">
-                <img src="/images/service-installation.jpg" alt="Экономия времени" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img loading="lazy" decoding="async" src="/images/service-installation.jpg" alt="Экономия времени" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
               <div className="p-8 flex-1 flex flex-col">
                 <div className="w-12 h-12 bg-[#F0FDF4] rounded-2xl flex items-center justify-center mb-6">
@@ -349,7 +375,7 @@ export default function Home() {
             {/* Card 2 */}
             <div className="bg-white rounded-[24px] overflow-hidden shadow-sm flex flex-col group hover:shadow-md transition-shadow">
               <div className="aspect-[4/3] bg-gray-100 overflow-hidden relative">
-                <img src="/images/product-kazmeter-15c.jpg" alt="Точные данные" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img loading="lazy" decoding="async" src="/images/product-kazmeter-15c.jpg" alt="Точные данные" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
               <div className="p-8 flex-1 flex flex-col">
                 <div className="w-12 h-12 bg-[#F0FDF4] rounded-2xl flex items-center justify-center mb-6">
@@ -365,7 +391,7 @@ export default function Home() {
             {/* Card 3 */}
             <div className="bg-white rounded-[24px] overflow-hidden shadow-sm flex flex-col group hover:shadow-md transition-shadow">
               <div className="aspect-[4/3] bg-gray-100 overflow-hidden relative">
-                <img src="/images/solution-smart-home.jpg" alt="Контроль расходов" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img loading="lazy" decoding="async" src="/images/solution-smart-home.jpg" alt="Контроль расходов" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
               <div className="p-8 flex-1 flex flex-col">
                 <div className="w-12 h-12 bg-[#F0FDF4] rounded-2xl flex items-center justify-center mb-6">
@@ -399,7 +425,7 @@ export default function Home() {
             {solutions.map((solution) => (
               <div key={solution.title} className="card-base overflow-hidden group">
                 <div className="aspect-[4/3] overflow-hidden">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src={solution.image}
                     alt={solution.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -438,7 +464,7 @@ export default function Home() {
             {projects.map((project) => (
               <div key={project.name} className="card-base overflow-hidden group">
                 <div className="aspect-video overflow-hidden">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src={project.image}
                     alt={project.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"

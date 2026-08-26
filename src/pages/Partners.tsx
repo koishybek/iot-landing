@@ -153,7 +153,7 @@ export default function Partners() {
               </ul>
             </div>
             <div className="rounded-2xl overflow-hidden shadow-lg">
-              <img
+              <img loading="lazy" decoding="async"
                 src="/images/about-office.jpg"
                 alt="Технические возможности"
                 className="w-full h-auto object-cover"

@@ -150,7 +150,16 @@ export default function About() {
                   <stat.icon size={28} className="text-[#52B788]" />
                 </div>
                 <div className="text-4xl md:text-5xl font-bold text-[#1B4332] mb-3">
-                  <CountUp end={stat.value} suffix={stat.suffix} enableScrollSpy={true} scrollSpyOnce={true} duration={2.5} />
+                  {/* При пререндере CountUp отдаёт ноль, и настоящие числа не
+                      попадали в HTML. В браузере анимация работает как прежде. */}
+                  {typeof window === "undefined" ? (
+                    <span>
+                      {stat.value}
+                      {stat.suffix}
+                    </span>
+                  ) : (
+                    <CountUp end={stat.value} suffix={stat.suffix} enableScrollSpy={true} scrollSpyOnce={true} duration={2.5} />
+                  )}
                 </div>
                 <div className="text-[#5C7A6B] font-medium">{stat.label}</div>
               </motion.div>
@@ -172,7 +181,7 @@ export default function About() {
               className="order-2 lg:order-1 relative perspective-1000"
             >
               <div className="absolute inset-0 bg-gradient-to-tr from-[#52B788]/20 to-transparent rounded-3xl transform -rotate-3 scale-105 blur-lg z-0"></div>
-              <img
+              <img loading="lazy" decoding="async"
                 src="/images/solution_smart_metrix.png"
                 alt="Smart Metrix Dashboard"
                 className="w-full h-auto object-cover rounded-3xl shadow-2xl relative z-10 border border-white/50"
@@ -255,7 +264,7 @@ export default function About() {
               className="mx-4 md:mx-8 bg-white rounded-2xl p-6 flex items-center justify-center w-[200px] h-[120px] border border-[#D8E8DE] hover:border-[#52B788] hover:shadow-xl transition-all duration-300 group cursor-pointer"
               title={partner.name}
             >
-              <img 
+              <img loading="lazy" decoding="async" 
                 src={partner.img} 
                 alt={partner.name}
                 className="max-w-full max-h-full object-contain transition-all duration-500 transform group-hover:scale-110" 

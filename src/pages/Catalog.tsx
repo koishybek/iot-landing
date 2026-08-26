@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import {
   Search,
   SlidersHorizontal,
-  Heart,
-  ArrowRightLeft,
   ChevronDown,
   X,
 } from "lucide-react";
 import productsData from "../data/products.json";
 import { COLLECTIONS } from "../lib/collections";
+import { useCart } from "../context/CartContext";
+import LeadBlock from "../components/LeadBlock";
 
 // Type assertion to ensure TS knows the structure if needed, or just let it infer.
 const products = productsData as any[];
@@ -18,37 +18,37 @@ const categories = [
   { id: "heat", name: "Теплосчетчики" },
   { id: "electricity", name: "Электросчетчики" },
   { id: "iot", name: "IoT устройства" },
-  { id: "pulse", name: "Импульсные" },
-  { id: "lora", name: "LoRaWAN" },
-  { id: "nbiot", name: "NB-IoT" },
-  { id: "nbiot_kazmeter", name: "Связь нб казметр" },
 ];
 
 const manufacturers = [
-  { id: "kazmeter", name: "KAZMETER" },
-  { id: "vvt", name: "ВВТ" },
-  { id: "mur", name: "МУР" },
-  { id: "stv", name: "СТВУ" },
-  { id: "other", name: "Другие" },
+  { id: "kazmeter", name: "KAZMETER", match: "KAZMETER" },
+  { id: "yomtey", name: "YomteY", match: "YOMTEY" },
+  { id: "expdevice", name: "ExpDevice", match: "EXPDEVICE" },
+  { id: "vvt", name: "ВВТ", match: "ВВТ" },
+  { id: "mur", name: "МУР", match: "МУР" },
 ];
+
+/** Марка определяется по названию: поле manufacturer в данных не заполнено. */
+const matchesManufacturer = (name: string, id: string) => {
+  const m = manufacturers.find((x) => x.id === id);
+  return m ? name.toUpperCase().includes(m.match) : false;
+};
 
 const protocols = [
   { id: "lorawan", name: "LoRaWAN" },
   { id: "nbiot", name: "NB-IoT" },
   { id: "nbiot_kazmeter", name: "Связь нб казметр" },
   { id: "pulse", name: "Импульсный выход" },
-  { id: "mbus", name: "M-Bus" },
   { id: "rs485", name: "RS-485" },
 ];
 
 export default function Catalog() {
+  const { addToCart } = useCart();
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("default");
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedManufacturers, setSelectedManufacturers] = useState<string[]>([]);
   const [selectedProtocols, setSelectedProtocols] = useState<string[]>([]);
-  const [favorites, setFavorites] = useState<string[]>([]);
-  const [compare, setCompare] = useState<string[]>([]);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   const toggleFilter = (
@@ -60,22 +60,11 @@ export default function Catalog() {
     );
   };
 
-  const getCategoryCount = (catId: string) => {
-    if (catId === "water" || catId === "heat" || catId === "iot" || catId === "electricity") {
-      return products.filter(p => p.category === catId).length;
-    }
-    const protoMap: { [key: string]: string } = {
-      lora: "lorawan",
-      nbiot: "nbiot",
-      pulse: "pulse"
-    };
-    const targetProto = protoMap[catId] || catId;
-    return products.filter(p => p.protocols.includes(targetProto)).length;
-  };
+  const getCategoryCount = (catId: string) =>
+    products.filter((p) => p.category === catId).length;
 
-  const getManufacturerCount = (mId: string) => {
-    return products.filter(p => p.manufacturer === mId).length;
-  };
+  const getManufacturerCount = (mId: string) =>
+    products.filter((p) => matchesManufacturer(p.name, mId)).length;
 
   const getProductWeight = (p: any) => {
     const nameLower = p.name.toLowerCase();
@@ -102,7 +91,10 @@ export default function Catalog() {
         return false;
       if (selectedCategories.length && !selectedCategories.includes(p.category))
         return false;
-      if (selectedManufacturers.length && !selectedManufacturers.includes(p.manufacturer))
+      if (
+        selectedManufacturers.length &&
+        !selectedManufacturers.some((m) => matchesManufacturer(p.name, m))
+      )
         return false;
       if (selectedProtocols.length && !p.protocols.some((pr: string) => selectedProtocols.includes(pr)))
         return false;
@@ -120,15 +112,7 @@ export default function Catalog() {
       return 0;
     });
 
-  const toggleFavorite = (id: string) =>
-    setFavorites((prev) =>
-      prev.includes(id) ? prev.filter((v) => v !== id) : [...prev, id]
-    );
 
-  const toggleCompare = (id: string) =>
-    setCompare((prev) =>
-      prev.includes(id) ? prev.filter((v) => v !== id) : [...prev, id]
-    );
 
   const FilterContent = () => (
     <div className="space-y-8">
@@ -314,7 +298,7 @@ export default function Catalog() {
                   <div key={product.id} className="card-base overflow-hidden group">
                     <Link to={`/catalog/${product.id}`}>
                       <div className="bg-[#F8FBF9] p-4 flex items-center justify-center aspect-square relative">
-                        <img
+                        <img loading="lazy" decoding="async"
                           src={product.image}
                           alt={product.name}
                           className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
@@ -355,27 +339,10 @@ export default function Catalog() {
                           Подробнее
                         </Link>
                         <button
-                          onClick={() => toggleCompare(product.id)}
-                          className={`w-10 h-10 rounded-lg border flex items-center justify-center transition-colors ${
-                            compare.includes(product.id)
-                              ? "border-[#1B4332] bg-[#1B4332] text-white"
-                              : "border-[#D8E8DE] text-[#8BA89B] hover:border-[#1B4332]"
-                          }`}
+                          onClick={() => addToCart(product, product.diameter || "")}
+                          className="flex-1 border border-[#1B4332] text-[#1B4332] rounded-lg text-sm py-2.5 font-medium hover:bg-[#1B4332] hover:text-white transition-colors"
                         >
-                          <ArrowRightLeft size={16} />
-                        </button>
-                        <button
-                          onClick={() => toggleFavorite(product.id)}
-                          className={`w-10 h-10 rounded-lg border flex items-center justify-center transition-colors ${
-                            favorites.includes(product.id)
-                              ? "border-red-400 bg-red-50 text-red-500"
-                              : "border-[#D8E8DE] text-[#8BA89B] hover:border-red-400"
-                          }`}
-                        >
-                          <Heart
-                            size={16}
-                            fill={favorites.includes(product.id) ? "currentColor" : "none"}
-                          />
+                          Запросить цену
                         </button>
                       </div>
                     </div>
@@ -391,6 +358,7 @@ export default function Catalog() {
           </div>
         </div>
       </section>
+      <LeadBlock source="Каталог" />
     </div>
   );
 }

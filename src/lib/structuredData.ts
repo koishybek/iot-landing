@@ -168,13 +168,10 @@ export function getStructuredData(pathname: string): object | null {
       image: product.image ? `${SITE_URL}${product.image}` : undefined,
       category: product.category,
       brand: brandOf(product.name),
-      offers: {
-        "@type": "Offer",
-        url: `${SITE_URL}${path}`,
-        priceCurrency: "KZT",
-        availability: "https://schema.org/InStock",
-        seller: { "@id": ORGANIZATION_ID },
-      },
+      // Блок offers убран намеренно: цен в каталоге нет, а Offer без price
+      // объявлял бы наличие и валюту при видимом «Запросить цену» — разметка
+      // противоречила бы странице. Появятся цены — вернуть вместе с price.
+      url: `${SITE_URL}${path}`,
     });
     graph.push(
       breadcrumb([

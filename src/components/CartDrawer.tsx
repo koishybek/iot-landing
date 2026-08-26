@@ -175,7 +175,7 @@ export default function CartDrawer() {
                   >
                     {/* Image */}
                     <div className="w-16 h-16 bg-white rounded-lg p-2 border border-[#D8E8DE] flex items-center justify-center flex-shrink-0">
-                      <img src={item.image} alt={item.name} className="max-w-full max-h-full object-contain" />
+                      <img loading="lazy" decoding="async" src={item.image} alt={item.name} className="max-w-full max-h-full object-contain" />
                     </div>
 
                     {/* Details */}

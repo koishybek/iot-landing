@@ -59,7 +59,7 @@ export default function Header() {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2 shrink-0">
-              <img src="/images/logo-mark.png" alt="" className="h-10 w-10 object-contain shrink-0" />
+              <img decoding="async" src="/images/logo-mark.png" alt="" className="h-10 w-10 object-contain shrink-0" />
               <span className="text-[16px] font-bold tracking-tight text-[#1B4332] leading-none whitespace-nowrap">
                 IoT-Exponenta
               </span>
@@ -86,9 +86,15 @@ export default function Header() {
 
             {/* Right side */}
             <div className="flex items-center gap-3">
-              <button className={`hidden md:flex items-center justify-center w-10 h-10 rounded-lg transition-colors text-[#1B4332] ${isHome ? "hover:bg-[#E5E7E5]" : "hover:bg-[#F8FBF9]"}`}>
+              {/* Раньше кнопка не имела обработчика и не делала ничего.
+                  Поиск по товарам живёт в каталоге — туда и ведём. */}
+              <Link
+                to="/catalog"
+                aria-label="Поиск по каталогу"
+                className={`hidden md:flex items-center justify-center w-10 h-10 rounded-lg transition-colors text-[#1B4332] ${isHome ? "hover:bg-[#E5E7E5]" : "hover:bg-[#F8FBF9]"}`}
+              >
                 <Search size={20} />
-              </button>
+              </Link>
               
               <button
                 onClick={() => setCartOpen(true)}

@@ -125,7 +125,7 @@ export default function Solutions() {
               return (
                 <div key={solution.title} className={`card-base overflow-hidden flex flex-col md:col-span-1 ${spanClass}`}>
                   <div className="aspect-video overflow-hidden">
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={solution.image}
                       alt={solution.title}
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"

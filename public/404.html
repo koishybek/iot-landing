@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>Страница не найдена — IoT-Exponenta</title>
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <style>
+      :root {
+        --ink: #1b4332;
+        --ink-2: #5c7a6b;
+        --muted: #8ba89b;
+        --line: #d8e8de;
+        --ground: #f8fbf9;
+        --accent: #52b788;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.25rem;
+        padding: 2rem 1.25rem;
+        background: var(--ground);
+        color: var(--ink);
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        line-height: 1.6;
+        text-align: center;
+      }
+      img { height: 44px; width: auto; }
+      h1 { font-size: clamp(1.6rem, 5vw, 2.2rem); font-weight: 700; margin: 0; letter-spacing: -0.02em; }
+      p { margin: 0; color: var(--ink-2); max-width: 44ch; }
+      nav { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin-top: 0.5rem; }
+      a.btn {
+        display: inline-block;
+        padding: 0.7rem 1.4rem;
+        border-radius: 0.6rem;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        background: var(--ink);
+        color: #fff;
+      }
+      a.btn.ghost { background: #fff; color: var(--ink); border: 1px solid var(--line); }
+      a.btn:hover { background: var(--accent); color: #fff; }
+      .tel { margin-top: 0.75rem; font-size: 0.95rem; color: var(--muted); }
+      .tel a { color: var(--ink); font-weight: 600; text-decoration: none; }
+    </style>
+  </head>
+  <body>
+    <img src="/images/logo.png" alt="IoT-Exponenta" />
+    <h1>Такой страницы нет</h1>
+    <p>
+      Возможно, адрес устарел или в нём опечатка. Оборудование и услуги
+      никуда не делись — загляните в каталог.
+    </p>
+    <nav>
+      <a class="btn" href="/catalog">Каталог</a>
+      <a class="btn ghost" href="/">На главную</a>
+      <a class="btn ghost" href="/contacts">Контакты</a>
+    </nav>
+    <p class="tel">Не нашли нужное — позвоните: <a href="tel:+77711731722">+7 771 173 1722</a></p>
+  </body>
+</html>

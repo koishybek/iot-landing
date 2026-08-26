@@ -78,7 +78,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         },
       ];
     });
-    setCartOpen(true); // Open the cart when item is added
+    // Корзину сами не открываем: она перекрывала каталог при каждом
+    // добавлении и мешала набирать несколько позиций подряд.
   };
 
   const removeFromCart = (id: string, diameter: string) => {

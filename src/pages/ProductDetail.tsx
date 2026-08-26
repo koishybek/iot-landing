@@ -69,7 +69,7 @@ export default function ProductDetail() {
             {/* Gallery */}
             <div>
               <div className="bg-[#F8FBF9] rounded-2xl p-8 flex items-center justify-center aspect-square">
-                <img
+                <img loading="lazy" decoding="async"
                   src={product.image}
                   alt={product.name}
                   className="w-full h-full object-contain"
@@ -324,7 +324,7 @@ export default function ProductDetail() {
               {relatedProducts.map((rp) => (
                 <Link key={rp.id} to={`/catalog/${rp.id}`} className="card-base overflow-hidden group">
                   <div className="bg-[#F8FBF9] p-4 flex items-center justify-center aspect-square">
-                    <img src={rp.image} alt={rp.name} className="w-full h-full object-contain group-hover:scale-105 transition-transform" />
+                    <img loading="lazy" decoding="async" src={rp.image} alt={rp.name} className="w-full h-full object-contain group-hover:scale-105 transition-transform" />
                   </div>
                   <div className="p-4">
                     <h3 className="font-semibold text-[#1B4332] text-sm mb-1 group-hover:text-[#2D6A4F] transition-colors">{rp.name}</h3>

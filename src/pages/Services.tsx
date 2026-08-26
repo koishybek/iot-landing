@@ -108,7 +108,7 @@ const itemVariants: Variants = {
 
 const ImageCard = ({ service, className = "", onClick }: { service: any, className?: string, onClick: () => void }) => (
   <motion.div variants={itemVariants} className={`relative rounded-3xl overflow-hidden group min-h-[300px] cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300 ${className}`} onClick={onClick}>
-    <img src={service.image} alt={service.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+    <img loading="lazy" decoding="async" src={service.image} alt={service.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
     <div className="absolute inset-0 bg-gradient-to-t from-[#0A1F16]/90 via-[#0A1F16]/40 to-transparent transition-opacity duration-300 group-hover:opacity-90" />
     <div className="absolute inset-x-6 bottom-6 z-10 flex flex-col justify-end">
       <h3 className="text-xl lg:text-2xl font-bold text-white mb-2 leading-snug">{service.title}</h3>
@@ -149,7 +149,7 @@ export default function Services() {
       <section className="relative bg-white pt-24 pb-12 md:pt-32 md:pb-20 flex items-center">
         {/* Background Overlay showing industrial theme fading into white */}
         <div className="absolute inset-0 z-0">
-          <img src="/images/service-installation.jpg" alt="Фон услуг" className="w-full h-full object-cover object-center" />
+          <img loading="lazy" decoding="async" src="/images/service-installation.jpg" alt="Фон услуг" className="w-full h-full object-cover object-center" />
           <div className="absolute inset-0 bg-white/90" />
         </div>
         

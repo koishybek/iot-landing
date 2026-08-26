@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 import { COLLECTIONS, getCollection, getCollectionProducts } from "../lib/collections";
+import LeadBlock from "../components/LeadBlock";
 
 interface CollectionProps {
   slug: string;
@@ -61,7 +62,7 @@ export default function Collection({ slug }: CollectionProps) {
               <div key={product.id} className="card-base overflow-hidden group">
                 <Link to={`/catalog/${product.id}`}>
                   <div className="bg-[#F8FBF9] p-4 flex items-center justify-center aspect-square relative">
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={product.image}
                       alt={product.name}
                       className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
@@ -96,6 +97,8 @@ export default function Collection({ slug }: CollectionProps) {
           </div>
         </div>
       </section>
+
+      <LeadBlock source={collection.h1} />
 
       {/* Перелинковка: поисковик обходит подборки друг через друга, а не только с каталога */}
       <section className="bg-[#F8FBF9] border-t border-[#D8E8DE] py-10 md:py-14">
