@@ -257,21 +257,41 @@ export default function About() {
           </motion.div>
         </div>
         
-        <Marquee speed={40} gradient={true} gradientColor="white" gradientWidth={100} className="py-4">
-          {[...partners, ...partners, ...partners, ...partners].map((partner, index) => (
-            <div
-              key={`${partner.name}-${index}`}
-              className="mx-4 md:mx-8 bg-white rounded-2xl p-6 flex items-center justify-center w-[200px] h-[120px] border border-[#D8E8DE] hover:border-[#52B788] hover:shadow-xl transition-all duration-300 group cursor-pointer"
-              title={partner.name}
-            >
-              <img loading="lazy" decoding="async" 
-                src={partner.img} 
-                alt={partner.name}
-                className="max-w-full max-h-full object-contain transition-all duration-500 transform group-hover:scale-110" 
-              />
-            </div>
-          ))}
-        </Marquee>
+        {/* Marquee не рендерит содержимое вне браузера: логотипы девяти партнёров,
+            включая два городских водоканала, не попадали в HTML вообще. При
+            пререндере отдаём обычную сетку, в браузере — прежнюю бегущую строку. */}
+        {typeof window === "undefined" ? (
+          <div className="container-main grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 py-4">
+            {partners.map((partner) => (
+              <div
+                key={partner.name}
+                className="bg-white rounded-2xl p-6 flex items-center justify-center h-[120px] border border-[#D8E8DE]"
+              >
+                <img
+                  src={partner.img}
+                  alt={partner.name}
+                  className="max-w-full max-h-full object-contain"
+                />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <Marquee speed={40} gradient={true} gradientColor="white" gradientWidth={100} className="py-4">
+            {[...partners, ...partners, ...partners, ...partners].map((partner, index) => (
+              <div
+                key={`${partner.name}-${index}`}
+                className="mx-4 md:mx-8 bg-white rounded-2xl p-6 flex items-center justify-center w-[200px] h-[120px] border border-[#D8E8DE] hover:border-[#52B788] hover:shadow-xl transition-all duration-300 group cursor-pointer"
+                title={partner.name}
+              >
+                <img loading="lazy" decoding="async"
+                  src={partner.img}
+                  alt={partner.name}
+                  className="max-w-full max-h-full object-contain transition-all duration-500 transform group-hover:scale-110"
+                />
+              </div>
+            ))}
+          </Marquee>
+        )}
       </section>
 
       {/* CTA / Contact Section */}

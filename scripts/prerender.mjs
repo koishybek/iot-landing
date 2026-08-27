@@ -132,8 +132,11 @@ async function main() {
   // Собранный SSR-бандл: Rollup уже разобрался с CommonJS-зависимостями,
   // поэтому здесь достаточно обычного динамического импорта.
   const bundle = pathToFileURL(path.join(root, "dist-ssr", "entry-ssr.js")).href;
-  const { render, getAllRoutes, getPageSeo, SITE_URL, getStructuredData, serializeStructuredData } =
-    await import(bundle);
+  const {
+    render, getAllRoutes, getPageSeo, SITE_URL,
+    getStructuredData, serializeStructuredData,
+    COLLECTIONS, PRODUCTS,
+  } = await import(bundle);
 
   let rendered = 0;
   const failed = [];
@@ -202,6 +205,36 @@ async function main() {
     `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`,
     "utf-8",
   );
+
+  // llms.txt — короткая машиночитаемая карта сайта для ИИ-ассистентов.
+  // Они читают HTML без выполнения JavaScript, и такой обзор повышает шанс,
+  // что в ответе сошлются на нас, а не на конкурента.
+  const llms = [
+    "# IoT-Exponenta (Kazmeter / Казметер)",
+    "",
+    "> Поставка, монтаж и диспетчеризация приборов учёта воды, тепла, газа и",
+    "> электроэнергии в Астане и по Казахстану. Собственная марка приборов Kazmeter.",
+    "",
+    "Адрес: г. Астана, ул. Алексея Петрова 18/1. Телефон: +7 771 173 1722.",
+    "Приборы поддерживают импульсный выход, LoRaWAN и NB-IoT для дистанционной",
+    "передачи показаний.",
+    "",
+    "## Подборки каталога",
+    ...COLLECTIONS.map((c) => `- [${c.h1}](${SITE_URL}/catalog/${c.slug}): ${c.intro.split(".")[0]}.`),
+    "",
+    "## Товары",
+    ...PRODUCTS.map((p) => `- [${p.name}](${SITE_URL}/catalog/${p.id})`),
+    "",
+    "## Разделы",
+    `- [О компании](${SITE_URL}/about)`,
+    `- [Услуги](${SITE_URL}/services)`,
+    `- [Готовые решения](${SITE_URL}/solutions)`,
+    `- [Проекты](${SITE_URL}/projects)`,
+    `- [Контакты](${SITE_URL}/contacts)`,
+    "",
+  ].join("\n");
+  await writeFile(path.join(distDir, "llms.txt"), llms, "utf-8");
+  console.log(`Карта для ИИ-ассистентов: dist/llms.txt (${COLLECTIONS.length} подборок, ${PRODUCTS.length} товаров)`);
 
   console.log(`\nПререндер: ${rendered}/${routes.length} страниц с разметкой в HTML`);
   console.log(`Карта сайта: ${routes.length} адресов → dist/sitemap.xml`);

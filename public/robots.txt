@@ -1,4 +1,25 @@
 User-agent: *
 Allow: /
 
+# Краулеры ИИ-ассистентов разрешены осознанно: ответы ChatGPT, Perplexity,
+# Claude и AI Overviews — отдельный источник обращений в B2B, и попасть в них
+# можно только если бот видит сайт. Если решите закрыться — поменять на Disallow.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
 Sitemap: https://www.iot-exp.kz/sitemap.xml

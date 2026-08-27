@@ -21,3 +21,6 @@ export function render(url: string): string {
 // чтобы не поднимать второй раз весь модульный граф.
 export { getAllRoutes, getPageSeo, SITE_URL } from "./lib/seo";
 export { getStructuredData, serializeStructuredData } from "./lib/structuredData";
+
+export { COLLECTIONS } from "./lib/collections";
+export { default as PRODUCTS } from "./data/products.json";

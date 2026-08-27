@@ -188,19 +188,39 @@ export default function Solutions() {
                   <tr key={row.feature} className={idx % 2 === 0 ? "bg-white" : "bg-[#F8FBF9]"}>
                     <td className="px-6 py-3.5 text-sm text-[#5C7A6B]">{row.feature}</td>
                     <td className="px-4 py-3.5 text-center">
-                      {row.private ? <CheckCircle size={18} className="text-[#52B788] mx-auto" /> : <X size={18} className="text-[#D8E8DE] mx-auto" />}
+                      {row.private ? (
+                        <><CheckCircle size={18} className="text-[#52B788] mx-auto" /><span className="sr-only">Да</span></>
+                      ) : (
+                        <><X size={18} className="text-[#D8E8DE] mx-auto" /><span className="sr-only">Нет</span></>
+                      )}
                     </td>
                     <td className="px-4 py-3.5 text-center">
-                      {row.construction ? <CheckCircle size={18} className="text-[#52B788] mx-auto" /> : <X size={18} className="text-[#D8E8DE] mx-auto" />}
+                      {row.construction ? (
+                        <><CheckCircle size={18} className="text-[#52B788] mx-auto" /><span className="sr-only">Да</span></>
+                      ) : (
+                        <><X size={18} className="text-[#D8E8DE] mx-auto" /><span className="sr-only">Нет</span></>
+                      )}
                     </td>
                     <td className="px-4 py-3.5 text-center">
-                      {row.ksk ? <CheckCircle size={18} className="text-[#52B788] mx-auto" /> : <X size={18} className="text-[#D8E8DE] mx-auto" />}
+                      {row.ksk ? (
+                        <><CheckCircle size={18} className="text-[#52B788] mx-auto" /><span className="sr-only">Да</span></>
+                      ) : (
+                        <><X size={18} className="text-[#D8E8DE] mx-auto" /><span className="sr-only">Нет</span></>
+                      )}
                     </td>
                     <td className="px-4 py-3.5 text-center">
-                      {row.heat ? <CheckCircle size={18} className="text-[#52B788] mx-auto" /> : <X size={18} className="text-[#D8E8DE] mx-auto" />}
+                      {row.heat ? (
+                        <><CheckCircle size={18} className="text-[#52B788] mx-auto" /><span className="sr-only">Да</span></>
+                      ) : (
+                        <><X size={18} className="text-[#D8E8DE] mx-auto" /><span className="sr-only">Нет</span></>
+                      )}
                     </td>
                     <td className="px-4 py-3.5 text-center">
-                      {row.dispatch ? <CheckCircle size={18} className="text-[#52B788] mx-auto" /> : <X size={18} className="text-[#D8E8DE] mx-auto" />}
+                      {row.dispatch ? (
+                        <><CheckCircle size={18} className="text-[#52B788] mx-auto" /><span className="sr-only">Да</span></>
+                      ) : (
+                        <><X size={18} className="text-[#D8E8DE] mx-auto" /><span className="sr-only">Нет</span></>
+                      )}
                     </td>
                   </tr>
                 ))}
