@@ -33,6 +33,28 @@ const offices = [
   },
 ];
 
+/**
+ * Официальные дилеры в регионах. Это отдельные компании, работающие под своими
+ * юридическими лицами, — поэтому они вынесены из offices и подписаны явно.
+ */
+const dealers = [
+  {
+    city: "Жезказган",
+    company: "ИП «Сеник Константин Александрович»",
+    address: "ул. М. Жалиля, 19, офис 8",
+    contacts: [{ phone: "+7 705 121 54 63", name: "" }],
+  },
+  {
+    city: "Актау",
+    company: "ТОО «САМД КАЗ» (SAMD KAZ)",
+    address: "мкр. 4А, здание 39, офис 210",
+    contacts: [
+      { phone: "+7 701 742 86 92", name: "Виталий" },
+      { phone: "+7 777 204 27 27", name: "Алексей" },
+    ],
+  },
+];
+
 const inquiryTypes = [
   { icon: Wrench, title: "Заказать услугу", desc: "Монтаж, поверка, обслуживание" },
   { icon: FileText, title: "Запросить КП", desc: "Коммерческое предложение" },
@@ -158,7 +180,49 @@ export default function Contacts() {
         </div>
       </section>
 
-
+      {/* Официальные дилеры в регионах */}
+      <section className="bg-[#F8FBF9] section-padding border-t border-[#D8E8DE]">
+        <div className="container-main">
+          <h2 className="text-3xl font-bold text-[#1B4332] mb-3">Наши дилеры</h2>
+          <p className="text-[#5C7A6B] mb-10 max-w-2xl">
+            Официальные представители в регионах. У них можно приобрести оборудование
+            и заказать монтаж на месте — по тем же условиям, что и в наших офисах.
+          </p>
+          <div className="grid md:grid-cols-2 gap-8">
+            {dealers.map((dealer) => (
+              <div key={dealer.city} className="rounded-2xl p-8 border border-[#D8E8DE] bg-white">
+                <span className="inline-block bg-[#D8F3DC] text-[#1B4332] text-xs font-medium px-3 py-1 rounded-full mb-4">
+                  Официальный дилер
+                </span>
+                <h3 className="text-2xl font-bold text-[#1B4332] mb-1">{dealer.city}</h3>
+                <p className="text-sm text-[#8BA89B] mb-6">{dealer.company}</p>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <MapPin size={20} className="text-[#52B788] flex-shrink-0 mt-0.5" />
+                    <span className="text-[#5C7A6B]">
+                      г. {dealer.city}, {dealer.address}
+                    </span>
+                  </div>
+                  <div className="space-y-2">
+                    {dealer.contacts.map((c) => (
+                      <div key={c.phone} className="flex items-center gap-3">
+                        <Phone size={20} className="text-[#52B788] flex-shrink-0" />
+                        <a
+                          href={`tel:${c.phone.replace(/\s/g, "")}`}
+                          className="text-[#1B4332] font-medium hover:text-[#52B788] transition-colors"
+                        >
+                          {c.phone}
+                        </a>
+                        {c.name && <span className="text-[#8BA89B] text-sm">— {c.name}</span>}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Inquiry Type Cards */}
       <section className="bg-white section-padding">
@@ -245,6 +309,8 @@ export default function Contacts() {
                       <option value="Алматы">Алматы</option>
                       <option value="Шымкент">Шымкент</option>
                       <option value="Туркестан">Туркестан</option>
+                      <option value="Жезказган">Жезказган</option>
+                      <option value="Актау">Актау</option>
                       <option value="Другой">Другой</option>
                     </select>
                   </div>

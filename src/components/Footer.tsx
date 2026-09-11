@@ -127,6 +127,24 @@ export default function Footer() {
                     </a>
                   </div>
                 </div>
+                {/* Официальные дилеры в регионах */}
+                <div>
+                  <span className="text-white/40 text-xs block">Жезказган (дилер):</span>
+                  <a href="tel:+77051215463" className="text-white hover:text-[#52B788] transition-colors text-sm font-medium">
+                    +7 705 121 54 63
+                  </a>
+                </div>
+                <div>
+                  <span className="text-white/40 text-xs block">Актау (дилер):</span>
+                  <div className="flex flex-col">
+                    <a href="tel:+77017428692" className="text-white hover:text-[#52B788] transition-colors text-sm font-medium">
+                      +7 701 742 86 92
+                    </a>
+                    <a href="tel:+77772042727" className="text-white hover:text-[#52B788] transition-colors text-sm font-medium">
+                      +7 777 204 27 27
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -155,6 +173,14 @@ export default function Footer() {
                 <div>
                   <span className="text-white/40 text-xs block">Алматы:</span>
                   <span>просп. Назарбаева, 50, офис 412</span>
+                </div>
+                <div>
+                  <span className="text-white/40 text-xs block">Жезказган (дилер):</span>
+                  <span>ул. М. Жалиля, 19, офис 8</span>
+                </div>
+                <div>
+                  <span className="text-white/40 text-xs block">Актау (дилер):</span>
+                  <span>мкр. 4А, здание 39, офис 210</span>
                 </div>
               </div>
             </div>

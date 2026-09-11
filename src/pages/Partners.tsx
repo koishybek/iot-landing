@@ -252,6 +252,8 @@ export default function Partners() {
                   <option value="Алматы">Алматы</option>
                   <option value="Шымкент">Шымкент</option>
                   <option value="Туркестан">Туркестан</option>
+                  <option value="Жезказган">Жезказган</option>
+                  <option value="Актау">Актау</option>
                   <option value="Другой">Другой</option>
                 </select>
               </div>

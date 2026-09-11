@@ -355,6 +355,8 @@ export default function About() {
                 <option value="Алматы">Алматы</option>
                 <option value="Шымкент">Шымкент</option>
                 <option value="Туркестан">Туркестан</option>
+                <option value="Жезказган">Жезказган</option>
+                <option value="Актау">Актау</option>
                 <option value="Другой">Другой</option>
               </select>
               <input type="email" name="Email" placeholder="Email (необязательно)" className="w-full bg-[#F8FBF9] border border-[#D8E8DE] rounded-xl px-5 py-4 focus:outline-none focus:border-[#52B788] focus:ring-2 focus:ring-[#52B788]/20 transition-all" />

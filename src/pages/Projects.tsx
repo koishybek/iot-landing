@@ -124,8 +124,8 @@ const projects = [
     year: "2023"
   },
   {
-    id: "bi-city-seoul",
-    name: "ЖК BI City Seoul (Астана)",
+    id: "zhk-respublika",
+    name: "ЖК Республика Астана SAT-NS",
     city: "astana",
     description: "Модернизация общедомовых узлов учета с установкой цифровых расходомеров.",
     results: [
@@ -135,7 +135,7 @@ const projects = [
       "Снижение эксплуатационных потерь"
     ],
     metrics: { devices: "120+", period: "2 мес.", savings: "15%", status: "Завершен" },
-    image: "/images/solution_ksk.png",
+    image: "/images/projects/zhk-respublika.jpg",
     year: "2023"
   },
   // Шымкент
@@ -390,6 +390,8 @@ export default function Projects() {
                   <option value="Алматы">Алматы</option>
                   <option value="Шымкент">Шымкент</option>
                   <option value="Туркестан">Туркестан</option>
+                  <option value="Жезказган">Жезказган</option>
+                  <option value="Актау">Актау</option>
                   <option value="Другой">Другой</option>
                 </select>
               </div>

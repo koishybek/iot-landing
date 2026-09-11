@@ -264,6 +264,8 @@ export default function Solutions() {
                 <option value="Алматы">Алматы</option>
                 <option value="Шымкент">Шымкент</option>
                 <option value="Туркестан">Туркестан</option>
+                <option value="Жезказган">Жезказган</option>
+                <option value="Актау">Актау</option>
                 <option value="Другой">Другой</option>
               </select>
               <input type="email" name="Email" placeholder="Email" className="w-full border border-[#D8E8DE] rounded-lg px-4 py-3 focus:outline-none focus:border-[#52B788]" />
